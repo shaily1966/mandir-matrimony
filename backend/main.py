@@ -5,7 +5,7 @@ import asyncpg
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from fastapi.staticfiles import StaticFiles
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mandir")
@@ -33,7 +33,7 @@ app.include_router(kundali_router)
 app.include_router(matches_router)
 app.include_router(messages_router)
 app.include_router(payments_router)
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+
 
 @app.get("/api/health")
 async def health():
