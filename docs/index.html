@@ -1,1 +1,158 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mandir Matrimony — Hindu Matrimony for the Canadian Diaspora</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#160C07;--bg:#FBF4E6;--saffron:#D9601A;--gold:#C4912A;--gold-lt:#E8BF6A;--text:#1C1208;--muted:#8A7460;--serif:"Cormorant Garamond",serif;--sans:"Jost",sans-serif}
+body{font-family:var(--sans);background:var(--dark);color:var(--bg);min-height:100vh}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(22,12,7,0.95);border-bottom:1px solid rgba(196,145,42,0.15)}
+.logo{font-family:var(--serif);font-size:1.35rem;font-weight:600;color:var(--gold-lt);text-decoration:none}.logo span{color:var(--saffron)}
+.btn-nav{padding:.5rem 1.25rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;text-decoration:none}
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem}
+.hero-eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;display:block}
+h1{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:600;line-height:1.05;margin-bottom:1rem}
+h1 em{font-style:italic;color:var(--gold-lt)}
+.hero-sub{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:rgba(251,244,230,.55);margin-bottom:2.5rem}
+.hero-form{display:flex;max-width:460px;margin:0 auto 1rem;border:1px solid rgba(196,145,42,.4);border-radius:3px;overflow:hidden}
+.hero-form input{flex:1;padding:.9rem 1.2rem;background:rgba(255,255,255,.06);border:none;outline:none;font-family:var(--sans);font-size:.88rem;color:var(--bg)}
+.hero-form input::placeholder{color:rgba(251,244,230,.35)}
+.hero-form button{padding:.9rem 1.6rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer}
+.hero-note{font-size:.75rem;color:rgba(251,244,230,.3)}
+.hero-stats{display:flex;justify-content:center;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(196,145,42,.15)}
+.stat-num{font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--gold-lt)}
+.stat-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(251,244,230,.4);margin-top:.3rem}
+#trust{background:rgba(22,12,7,.8);border-top:1px solid rgba(196,145,42,.1);border-bottom:1px solid rgba(196,145,42,.1);padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
+.trust-item{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,145,42,.7)}
+section{padding:6rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:1rem}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.15;margin-bottom:1.2rem}
+.section-title em{font-style:italic;color:var(--gold-lt)}
+.section-body{font-size:1rem;font-weight:300;line-height:1.8;color:var(--muted);max-width:560px}
+#jyotish{background:var(--dark)}
+.jyotish-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.koot-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(196,145,42,.15);border:1px solid rgba(196,145,42,.15);border-radius:4px;overflow:hidden;margin-top:2rem}
+.koot-item{background:rgba(22,12,7,.95);padding:1.2rem 1.4rem}
+.koot-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--gold-lt);margin-bottom:.2rem}
+.koot-max{font-size:.65rem;font-weight:500;letter-spacing:.1em;color:rgba(196,145,42,.5);text-transform:uppercase}
+#how{background:#F5EDD6;color:var(--text)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.step{text-align:center;padding:0 1rem}
+.step-num{width:4rem;height:4rem;border:1px solid rgba(196,145,42,.3);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--gold);margin-bottom:1.5rem}
+.step-title{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:.7rem}
+.step-body{font-size:.88rem;font-weight:300;line-height:1.75;color:var(--muted)}
+#waitlist{background:var(--dark);text-align:center}
+.waitlist-form{max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:.8rem}
+.waitlist-form .row{display:flex;gap:.8rem}
+.waitlist-form input,.waitlist-form select{flex:1;padding:.85rem 1.1rem;background:rgba(255,255,255,.06);border:1px solid rgba(196,145,42,.2);border-radius:3px;outline:none;font-family:var(--sans);font-size:.85rem;color:var(--bg)}
+.waitlist-form select option{background:var(--dark)}
+.btn-cta{width:100%;padding:1rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;margin-top:.4rem}
+.success-msg{display:none;padding:2rem;border:1px solid rgba(196,145,42,.3);border-radius:4px}
+.success-msg h3{font-family:var(--serif);font-size:1.5rem;color:var(--gold-lt);margin-bottom:.5rem}
+footer{background:var(--dark);border-top:1px solid rgba(196,145,42,.1);padding:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer .logo{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--gold-lt)}
+footer p{font-size:.75rem;color:rgba(251,244,230,.25)}
+@media(max-width:768px){.jyotish-grid,.steps{grid-template-columns:1fr}.hero-stats{gap:1.5rem}.koot-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo">Mandir <span>Matrimony</span></a>
+  <a href="#waitlist" class="btn-nav">Join Waitlist</a>
+</nav>
+<section id="hero">
+  <div>
+    <span class="hero-eyebrow">om &nbsp; Mandir Matrimony &nbsp; om</span>
+    <h1>Find Your <em>Jivanasathi</em><br>Guided by the Stars</h1>
+    <p class="hero-sub">Canada's first Hindu matrimony platform built around authentic Vedic astrology.</p>
+    <form class="hero-form" onsubmit="handleHero(event)">
+      <input type="email" id="hero-email" placeholder="Your email address" required/>
+      <button type="submit">Join Waitlist</button>
+    </form>
+    <p class="hero-note">Free to join &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Early access</p>
+    <div class="hero-stats">
+      <div><div class="stat-num">36</div><div class="stat-label">Guna points</div></div>
+      <div><div class="stat-num">27</div><div class="stat-label">Nakshatras</div></div>
+      <div><div class="stat-num">8</div><div class="stat-label">Koots</div></div>
+      <div><div class="stat-num">.ca</div><div class="stat-label">Built for Canada</div></div>
+    </div>
+  </div>
+</section>
+<div id="trust">
+  <span class="trust-item">Pan-Hindu all communities</span>
+  <span class="trust-item">Full Vedic Kundali matching</span>
+  <span class="trust-item">Immigration status filters</span>
+  <span class="trust-item">Free to join</span>
+</div>
+<section id="jyotish">
+  <div class="container">
+    <div class="jyotish-grid">
+      <div>
+        <p class="section-label">Vedic Astrology</p>
+        <h2 class="section-title">Matching beyond<br><em>horoscopes</em></h2>
+        <p class="section-body">Mandir Matrimony computes your full Janam Kundali from birth date, time, and place using the Swiss Ephemeris with Lahiri ayanamsa. Every match is scored across all 8 Koots with Mangal, Nadi, and Bhakoot Dosha checks built in.</p>
+      </div>
+      <div class="koot-list">
+        <div class="koot-item"><div class="koot-name">1. Varna</div><div class="koot-max">Max 1 pt</div></div>
+        <div class="koot-item"><div class="koot-name">2. Vashya</div><div class="koot-max">Max 2 pts</div></div>
+        <div class="koot-item"><div class="koot-name">3. Tara</div><div class="koot-max">Max 3 pts</div></div>
+        <div class="koot-item"><div class="koot-name">4. Yoni</div><div class="koot-max">Max 4 pts</div></div>
+        <div class="koot-item"><div class="koot-name">5. Graha Maitri</div><div class="koot-max">Max 5 pts</div></div>
+        <div class="koot-item"><div class="koot-name">6. Gana</div><div class="koot-max">Max 6 pts</div></div>
+        <div class="koot-item"><div class="koot-name">7. Bhakoot</div><div class="koot-max">Max 7 pts</div></div>
+        <div class="koot-item"><div class="koot-name">8. Nadi</div><div class="koot-max">Max 8 pts</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="how">
+  <div class="container">
+    <p class="section-label">Simple process</p>
+    <h2 class="section-title" style="color:var(--text)">How Mandir Matrimony works</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3 class="step-title">Create your profile</h3><p class="step-body">Enter your details, community, profession, lifestyle, and Canadian city.</p></div>
+      <div class="step"><div class="step-num">2</div><h3 class="step-title">Enter your Kundali</h3><p class="step-body">Provide birth date, time, and place. We compute the full chart automatically using Lahiri ayanamsa.</p></div>
+      <div class="step"><div class="step-num">3</div><h3 class="step-title">Meet your matches</h3><p class="step-body">Browse profiles ranked by Guna score with dosha flags shown clearly — free.</p></div>
+    </div>
+  </div>
+</section>
+<section id="waitlist">
+  <div class="container">
+    <p class="section-label">Early access</p>
+    <h2 class="section-title">Be among the first</h2>
+    <p class="section-body" style="max-width:500px;margin:0 auto 2rem">Join the waitlist for early access, founding member pricing, and a free full Kundali report.</p>
+    <div id="form-wrap">
+      <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+        <div class="row">
+          <input type="text" placeholder="Your name" required/>
+          <input type="email" placeholder="Email address" required/>
+        </div>
+        <div class="row">
+          <select><option value="" disabled selected>I am looking for...</option><option>A groom</option><option>A bride</option></select>
+          <select><option value="" disabled selected>Your province</option><option>Ontario</option><option>British Columbia</option><option>Alberta</option><option>Quebec</option><option>Manitoba</option><option>Other</option></select>
+        </div>
+        <button type="submit" class="btn-cta">Reserve my spot — it's free</button>
+      </form>
+    </div>
+    <div class="success-msg" id="success">
+      <div style="font-size:2.5rem;margin-bottom:1rem">🙏</div>
+      <h3>You're on the list.</h3>
+      <p style="color:var(--muted);font-size:.88rem">We'll be in touch soon. Jai Shri Ram.</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="logo">Mandir <span style="color:var(--saffron)">Matrimony</span></div>
+  <p>2025 Mandir Matrimony Inc. mandirmatrimony.ca Toronto, Canada</p>
+</footer>
+<script>
+function handleHero(e){e.preventDefault();document.querySelector('.hero-form').innerHTML='<p style="color:#E8BF6A;font-family:var(--serif);font-size:1.1rem;padding:1rem">You\'re on the list!</p>';}
+function handleWaitlist(e){e.preventDefault();document.getElementById('form-wrap').style.display='none';document.getElementById('success').style.display='block';}
+</script>
+</body>
+</html>
