@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Create Your Profile — Mandir Matrimony</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#160C07;--bg:#FBF4E6;--saffron:#D9601A;--gold:#C4912A;--gold-lt:#E8BF6A;--text:#1C1208;--muted:#8A7460;--serif:"Cormorant Garamond",serif;--sans:"Jost",sans-serif}
+body{font-family:var(--sans);background:var(--dark);min-height:100vh;display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid rgba(196,145,42,.12)}
+.logo{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--gold-lt)}.logo span{color:var(--saffron)}
+.progress-bar{height:3px;background:rgba(196,145,42,.12);margin:0}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));transition:width .4s ease}
+main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:3rem 1.5rem}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(196,145,42,.15);border-radius:8px;padding:2.5rem;width:100%;max-width:600px}
+.step-content{display:none}.step-content.active{display:block}
+.step-heading{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--bg);margin-bottom:.4rem}
+.step-sub{font-size:.88rem;font-weight:300;color:var(--muted);margin-bottom:2rem;line-height:1.6}
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(196,145,42,.7);margin-bottom:.5rem}
+.field input,.field select,.field textarea{width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(196,145,42,.18);border-radius:4px;outline:none;font-family:var(--sans);font-size:.9rem;color:var(--bg);font-weight:300;transition:border-color .2s}
+.field input::placeholder,.field textarea::placeholder{color:rgba(251,244,230,.25)}
+.field select option{background:var(--dark);color:var(--bg)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(196,145,42,.5)}
+.field textarea{min-height:100px;resize:vertical}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.gender-row{display:flex;gap:1rem}
+.gender-btn{flex:1;padding:.9rem;text-align:center;border:1px solid rgba(196,145,42,.18);border-radius:4px;font-family:var(--sans);font-size:.88rem;color:rgba(251,244,230,.5);cursor:pointer;transition:all .2s;background:rgba(255,255,255,.03)}
+.gender-btn.selected{border-color:var(--saffron);color:var(--bg);background:rgba(217,96,26,.12)}
+.gender-btn .icon{font-size:1.5rem;display:block;margin-bottom:.3rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{padding:.4rem .9rem;border:1px solid rgba(196,145,42,.2);border-radius:20px;font-size:.78rem;color:rgba(251,244,230,.5);cursor:pointer;transition:all .15s;user-select:none;background:transparent}
+.chip.selected{background:rgba(196,145,42,.15);border-color:var(--gold);color:var(--gold-lt)}
+.divider{height:1px;background:rgba(196,145,42,.1);margin:1.5rem 0}
+.hint{font-size:.72rem;color:var(--muted);margin-top:.35rem}
+.btn-row{display:flex;gap:1rem;margin-top:2rem}
+.btn-back{padding:.75rem 1.5rem;background:transparent;border:1px solid rgba(196,145,42,.2);border-radius:3px;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(251,244,230,.5);cursor:pointer;transition:all .2s}
+.btn-back:hover{border-color:rgba(196,145,42,.4);color:var(--bg)}
+.btn-next{flex:1;padding:.85rem;background:var(--saffron);border:none;border-radius:3px;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#fff;cursor:pointer;transition:background .2s}
+.btn-next:hover{background:#c4521a}
+.skip{font-size:.75rem;color:rgba(251,244,230,.25);text-align:center;margin-top:1rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.success-step{text-align:center;padding:2rem 0}
+.success-step .om{font-size:3.5rem;margin-bottom:1rem}
+.success-step h2{font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--gold-lt);margin-bottom:.7rem}
+.success-step p{font-size:.92rem;font-weight:300;color:var(--muted);line-height:1.7}
+.step-indicators{display:flex;justify-content:center;gap:.5rem;padding:1rem}
+.step-dot{width:8px;height:8px;border-radius:50%;background:rgba(196,145,42,.2);transition:background .3s}
+.step-dot.active{background:var(--saffron)}
+.step-dot.done{background:rgba(196,145,42,.5)}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Mandir <span>Matrimony</span></div>
+  <div style="font-size:.78rem;color:var(--muted)" id="step-label">Step 1 of 5</div>
+</header>
+<div class="progress-bar"><div class="progress-fill" id="progress" style="width:20%"></div></div>
+<div class="step-indicators" id="dots"></div>
+
+<main>
+<div class="card">
+
+  <!-- STEP 1 -->
+  <div class="step-content active" id="step-1">
+    <h2 class="step-heading">Tell us about yourself</h2>
+    <p class="step-sub">This is how you'll appear to potential matches.</p>
+    <div class="field">
+      <label>I am a</label>
+      <div class="gender-row">
+        <div class="gender-btn" onclick="selectGender('female')"><span class="icon">👰</span>Bride</div>
+        <div class="gender-btn" onclick="selectGender('male')"><span class="icon">🤵</span>Groom</div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Full name</label><input type="text" id="full_name" placeholder="As on ID"/></div>
+      <div class="field"><label>Display name</label><input type="text" id="display_name" placeholder="Shown to others"/></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Date of birth</label><input type="date" id="dob"/></div>
+      <div class="field"><label>Dietary preference</label>
+        <select id="diet">
+          <option value="">Any</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="non_vegetarian">Non-vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="jain">Jain</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Community / Caste</label><input type="text" id="caste" placeholder="e.g. Brahmin, Patel"/></div>
+      <div class="field"><label>Gotra</label><input type="text" id="gotra" placeholder="e.g. Kashyap"/><p class="hint">Important for Jyotish matching</p></div>
+    </div>
+    <div class="field"><label>Mother tongue</label>
+      <select id="mother_tongue">
+        <option value="">Select language</option>
+        <option>Hindi</option><option>Punjabi</option><option>Gujarati</option>
+        <option>Tamil</option><option>Telugu</option><option>Kannada</option>
+        <option>Malayalam</option><option>Marathi</option><option>Bengali</option><option>Other</option>
+      </select>
+    </div>
+    <div class="field"><label>About me</label><textarea id="about_me" placeholder="A few lines about yourself..."></textarea></div>
+    <div class="btn-row"><button class="btn-next" onclick="nextStep(1)">Continue →</button></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-content" id="step-2">
+    <h2 class="step-heading">Your Canadian life</h2>
+    <p class="step-sub">Help matches understand where you are in your Canadian journey.</p>
+    <div class="field">
+      <label>Immigration status</label>
+      <div class="chips" id="immigration_chips">
+        <div class="chip" onclick="toggleChip(this,'immigration')">Canadian Citizen</div>
+        <div class="chip" onclick="toggleChip(this,'immigration')">Permanent Resident</div>
+        <div class="chip" onclick="toggleChip(this,'immigration')">Work Permit</div>
+        <div class="chip" onclick="toggleChip(this,'immigration')">Study Permit</div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Province</label>
+        <select id="province">
+          <option value="">Select province</option>
+          <option value="ON">Ontario</option><option value="BC">British Columbia</option>
+          <option value="AB">Alberta</option><option value="QC">Quebec</option>
+          <option value="MB">Manitoba</option><option value="SK">Saskatchewan</option>
+          <option value="NS">Nova Scotia</option><option value="NB">New Brunswick</option>
+        </select>
+      </div>
+      <div class="field"><label>City</label><input type="text" id="city" placeholder="e.g. Brampton, Mississauga"/></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Years in Canada</label>
+        <select id="years_canada">
+          <option value="">Select</option>
+          <option>Less than 1 year</option><option>1–3 years</option>
+          <option>3–5 years</option><option>5–10 years</option><option>10+ years</option>
+        </select>
+      </div>
+      <div class="field"><label>Native state (India)</label><input type="text" id="native_state" placeholder="e.g. Punjab, Gujarat"/></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(2)">← Back</button>
+      <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-content" id="step-3">
+    <h2 class="step-heading">Education & career</h2>
+    <p class="step-sub">Your professional life is part of your story.</p>
+    <div class="field-row">
+      <div class="field"><label>Education level</label>
+        <select id="education">
+          <option value="">Select</option>
+          <option>High School</option><option>Diploma / College</option>
+          <option>Bachelor's Degree</option><option>Master's Degree</option>
+          <option>PhD / Doctorate</option><option>Professional (MD, JD, etc.)</option>
+        </select>
+      </div>
+      <div class="field"><label>Field of study</label><input type="text" id="field_study" placeholder="e.g. Computer Science"/></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Employment type</label>
+        <select id="employment">
+          <option value="">Select</option>
+          <option>Employed (full-time)</option><option>Self-employed</option>
+          <option>Business owner</option><option>Student</option>
+        </select>
+      </div>
+      <div class="field"><label>Occupation</label><input type="text" id="occupation" placeholder="e.g. Software Engineer"/></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(3)">← Back</button>
+      <button class="btn-next" onclick="nextStep(3)">Continue →</button>
+    </div>
+    <p class="skip" onclick="nextStep(3)">Skip career details</p>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-content" id="step-4">
+    <h2 class="step-heading">Your Janam Kundali</h2>
+    <p class="step-sub">Your birth chart is the foundation of every match. We compute it using the Swiss Ephemeris with Lahiri ayanamsa.</p>
+    <div class="field-row">
+      <div class="field"><label>Date of birth</label><input type="date" id="k_dob"/></div>
+      <div class="field"><label>Birth time</label><input type="time" id="k_time"/><p class="hint">Leave blank if unknown</p></div>
+    </div>
+    <div class="field"><label>Birth city</label><input type="text" id="birth_place" placeholder="e.g. Amritsar, Punjab, India"/></div>
+    <div class="field-row">
+      <div class="field"><label>Latitude</label><input type="number" id="birth_lat" step="0.0001" placeholder="31.6340"/></div>
+      <div class="field"><label>Longitude</label><input type="number" id="birth_lon" step="0.0001" placeholder="74.8723"/></div>
+    </div>
+    <div class="field"><label>Timezone</label>
+      <select id="birth_tz">
+        <option value="Asia/Kolkata">India (IST)</option>
+        <option value="America/Toronto" selected>Eastern (Toronto/GTA)</option>
+        <option value="America/Vancouver">Pacific (Vancouver)</option>
+        <option value="America/Edmonton">Mountain (Calgary)</option>
+        <option value="America/Winnipeg">Central (Winnipeg)</option>
+      </select>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(4)">← Back</button>
+      <button class="btn-next" onclick="nextStep(4)">Continue →</button>
+    </div>
+    <p class="skip" onclick="nextStep(4)">Add Kundali later</p>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-content" id="step-5">
+    <h2 class="step-heading">Partner preferences</h2>
+    <p class="step-sub">Tell us what you're looking for. Wider preferences = more matches.</p>
+    <div class="field">
+      <label>Immigration status preference</label>
+      <div class="chips">
+        <div class="chip" onclick="this.classList.toggle('selected')">Canadian Citizen</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Permanent Resident</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Work Permit</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Province preference (empty = all Canada)</label>
+      <div class="chips">
+        <div class="chip" onclick="this.classList.toggle('selected')">Ontario</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">BC</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Alberta</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Manitoba</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Quebec</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Dietary preference</label>
+      <div class="chips">
+        <div class="chip" onclick="this.classList.toggle('selected')">Vegetarian</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Non-veg</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Vegan</div>
+        <div class="chip" onclick="this.classList.toggle('selected')">Jain</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Mangal Dosha preference</label>
+      <div class="chips" id="mangal_pref">
+        <div class="chip selected" onclick="selectSingle(this,'mangal_pref')">No preference</div>
+        <div class="chip" onclick="selectSingle(this,'mangal_pref')">Match only</div>
+        <div class="chip" onclick="selectSingle(this,'mangal_pref')">Non-Manglik only</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="prevStep(5)">← Back</button>
+      <button class="btn-next" onclick="submitProfile()">Complete Profile →</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="step-content" id="step-6">
+    <div class="success-step">
+      <div class="om">🙏</div>
+      <h2>Your profile is live.</h2>
+      <p>Your Kundali has been computed and your matches are being ranked by Guna score.<br><br>
+        <em style="color:var(--gold-lt);font-family:var(--serif);font-size:1.1rem">Subh Vivah — may you find your Jivanasathi.</em>
+      </p>
+      <div style="margin-top:2rem">
+        <a href="app.html" style="display:inline-block;padding:.85rem 2.5rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:3px">View my matches →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<script>
+let currentStep = 1;
+const totalSteps = 5;
+let state = {gender: ''};
+
+function updateProgress(step) {
+  document.getElementById('progress').style.width = `${(step/totalSteps)*100}%`;
+  document.getElementById('step-label').textContent = step <= totalSteps ? `Step ${step} of ${totalSteps}` : 'Complete';
+  document.querySelectorAll('.step-dot').forEach((d,i) => {
+    d.classList.toggle('active', i+1 === step);
+    d.classList.toggle('done', i+1 < step);
+  });
+}
+
+function renderDots() {
+  document.getElementById('dots').innerHTML = Array.from({length: totalSteps}, (_,i) =>
+    `<div class="step-dot ${i===0?'active':''}"></div>`).join('');
+}
+
+function showStep(n) {
+  document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+  document.getElementById(`step-${n}`).classList.add('active');
+  currentStep = n;
+  updateProgress(n);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextStep(from) {
+  if (from === 1 && !state.gender) { alert('Please select Bride or Groom'); return; }
+  showStep(from + 1);
+}
+
+function prevStep(from) { showStep(from - 1); }
+
+function selectGender(g) {
+  state.gender = g;
+  document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelector(`.gender-btn[onclick*="${g}"]`).classList.add('selected');
+}
+
+function toggleChip(el, key) {
+  el.closest('.chips').querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function selectSingle(el, groupId) {
+  el.closest('.chips').querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function submitProfile() {
+  console.log('Profile submitted:', state);
+  showStep(6);
+  document.getElementById('dots').style.display = 'none';
+}
+
+renderDots();
+</script>
+</body>
+</html>
