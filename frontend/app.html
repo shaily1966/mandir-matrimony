@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mandir Matrimony — Your Matches</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#160C07;--bg:#FBF4E6;--bg2:#F5EDD6;--saffron:#D9601A;--gold:#C4912A;--gold-lt:#E8BF6A;--text:#1C1208;--muted:#8A7460;--border:rgba(196,145,42,.18);--sidebar:220px;--serif:"Cormorant Garamond",serif;--sans:"Jost",sans-serif}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+aside{width:var(--sidebar);min-height:100vh;background:var(--dark);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:50;border-right:1px solid rgba(196,145,42,.1)}
+.sidebar-logo{padding:1.4rem 1.5rem 1rem;font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--gold-lt);border-bottom:1px solid rgba(196,145,42,.1)}
+.sidebar-logo span{color:var(--saffron)}
+.nav-menu{flex:1;padding:1rem 0}
+.nav-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.5rem;font-size:.82rem;color:rgba(251,244,230,.45);cursor:pointer;transition:all .15s;border-left:2px solid transparent}
+.nav-item:hover{color:rgba(251,244,230,.8);background:rgba(196,145,42,.05)}
+.nav-item.active{color:var(--gold-lt);border-left-color:var(--saffron);background:rgba(217,96,26,.06)}
+.nav-badge{margin-left:auto;background:var(--saffron);color:#fff;font-size:.65rem;font-weight:600;padding:1px 6px;border-radius:10px}
+main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column}
+.topbar{padding:1rem 2rem;background:var(--bg);border-bottom:1px solid rgba(28,18,8,.08);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.topbar h1{font-family:var(--serif);font-size:1.5rem;font-weight:600}
+.panel{display:none;flex:1}
+.panel.active{display:flex;flex-direction:column}
+.feed-layout{display:flex;flex:1;height:calc(100vh - 61px)}
+.feed-list{width:360px;flex-shrink:0;overflow-y:auto;border-right:1px solid rgba(28,18,8,.08)}
+.feed-detail{flex:1;overflow-y:auto}
+.match-card{display:flex;gap:1rem;padding:1.2rem 1.5rem;border-bottom:1px solid rgba(28,18,8,.06);cursor:pointer;transition:background .15s;position:relative}
+.match-card:hover{background:rgba(196,145,42,.04)}
+.match-card.selected{background:rgba(217,96,26,.06);border-left:2px solid var(--saffron)}
+.match-photo{width:56px;height:56px;border-radius:6px;background:var(--bg2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.match-name{font-family:var(--serif);font-size:1rem;font-weight:600}
+.match-meta{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+.guna-badge{position:absolute;top:1rem;right:1rem;font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--gold);text-align:center}
+.guna-label{font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block}
+.dosha-flags{display:flex;gap:.35rem;margin-top:.5rem;flex-wrap:wrap}
+.flag{font-size:.62rem;font-weight:500;padding:1px 7px;border-radius:10px}
+.flag-ok{background:rgba(25,120,50,.1);color:#1a7c34}
+.flag-warn{background:rgba(217,96,26,.1);color:var(--saffron)}
+.profile-detail{padding:2rem}
+.profile-header{display:flex;gap:2rem;margin-bottom:2rem}
+.profile-main-photo{width:140px;height:180px;border-radius:8px;background:var(--bg2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.profile-name{font-family:var(--serif);font-size:2rem;font-weight:600}
+.profile-tagline{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+.action-row{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+.btn-primary{padding:.65rem 1.5rem;background:var(--saffron);color:#fff;border:none;border-radius:3px;font-family:var(--sans);font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.btn-secondary{padding:.65rem 1.5rem;background:transparent;border:1px solid var(--border);border-radius:3px;font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--muted);cursor:pointer}
+.score-hero{background:var(--dark);border-radius:8px;padding:1.5rem;margin-bottom:1rem;display:flex;align-items:center;gap:2rem;color:var(--bg)}
+.score-num{font-family:var(--serif);font-size:3.5rem;font-weight:600;color:var(--gold-lt);line-height:1}
+.score-level{font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--saffron);margin-top:.4rem}
+.koot-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;flex:1}
+.koot-mini-val{font-size:1rem;font-weight:600;color:var(--gold-lt);font-family:var(--serif)}
+.koot-mini-name{font-size:.6rem;color:rgba(251,244,230,.35);text-transform:uppercase;letter-spacing:.08em}
+.section-card{background:var(--bg);border:1px solid rgba(28,18,8,.08);border-radius:6px;padding:1.5rem;margin-bottom:1rem}
+.section-card h3{font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid rgba(28,18,8,.07)}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
+.info-label{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.info-value{font-size:.9rem}
+.empty-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;color:var(--muted)}
+.empty-icon{font-size:3rem;margin-bottom:1rem}
+.empty-state h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+.msg-layout{display:flex;flex:1;height:calc(100vh - 61px)}
+.conv-list{width:300px;flex-shrink:0;overflow-y:auto;border-right:1px solid rgba(28,18,8,.08)}
+.chat-pane{flex:1;display:flex;flex-direction:column}
+.conv-item{display:flex;align-items:center;gap:.75rem;padding:1rem 1.2rem;border-bottom:1px solid rgba(28,18,8,.06);cursor:pointer;transition:background .15s}
+.conv-item:hover,.conv-item.selected{background:rgba(196,145,42,.04)}
+.conv-avatar{width:40px;height:40px;border-radius:50%;background:var(--bg2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.conv-name{font-weight:500;font-size:.88rem}
+.conv-last{font-size:.75rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.chat-header{padding:1rem 1.5rem;border-bottom:1px solid rgba(28,18,8,.08);display:flex;align-items:center;gap:.75rem}
+.chat-messages{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.msg{display:flex;max-width:70%}
+.msg.sent{align-self:flex-end}
+.msg-bubble{padding:.65rem 1rem;border-radius:12px;font-size:.88rem;line-height:1.5}
+.msg.recv .msg-bubble{background:var(--bg2);color:var(--text);border-bottom-left-radius:3px}
+.msg.sent .msg-bubble{background:var(--saffron);color:#fff;border-bottom-right-radius:3px}
+.chat-input-row{padding:1rem 1.5rem;border-top:1px solid rgba(28,18,8,.08);display:flex;gap:.75rem}
+.chat-input-row input{flex:1;padding:.7rem 1rem;border:1px solid rgba(28,18,8,.12);border-radius:20px;font-family:var(--sans);font-size:.88rem;outline:none}
+.send-btn{width:36px;height:36px;border-radius:50%;background:var(--saffron);border:none;cursor:pointer;color:#fff;font-size:1rem;flex-shrink:0}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(196,145,42,.2);border-radius:2px}
+@media(max-width:768px){aside{width:60px}.nav-item span:last-child{display:none}main{margin-left:60px}.feed-list{width:100%}.feed-detail{display:none}}
+</style>
+</head>
+<body>
+<aside>
+  <div class="sidebar-logo">Mandir <span>Matrimony</span></div>
+  <nav class="nav-menu">
+    <div class="nav-item active" onclick="showPanel(event,'matches')"><span>💑</span><span>Matches</span></div>
+    <div class="nav-item" onclick="showPanel(event,'interests')"><span>💌</span><span>Interests</span><span class="nav-badge">3</span></div>
+    <div class="nav-item" onclick="showPanel(event,'messages')"><span>💬</span><span>Messages</span><span class="nav-badge">1</span></div>
+    <div class="nav-item" onclick="showPanel(event,'profile')"><span>👤</span><span>My Profile</span></div>
+  </nav>
+</aside>
+<main>
+  <div class="panel active" id="panel-matches">
+    <div class="topbar"><h1>Your Matches</h1><span style="font-size:.78rem;color:var(--muted)">Sorted by Guna score</span></div>
+    <div class="feed-layout">
+      <div class="feed-list" id="feed-list"></div>
+      <div class="feed-detail" id="feed-detail">
+        <div class="empty-state"><div class="empty-icon">🪔</div><h3>Select a match</h3><p>Click any match to view their full profile and Kundali compatibility.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel" id="panel-interests">
+    <div class="topbar"><h1>Interests</h1></div>
+    <div style="padding:2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem" id="interests-container"></div>
+  </div>
+  <div class="panel" id="panel-messages">
+    <div class="topbar"><h1>Messages</h1></div>
+    <div class="msg-layout">
+      <div class="conv-list" id="conv-list"></div>
+      <div class="chat-pane" id="chat-pane">
+        <div class="empty-state"><div class="empty-icon">💬</div><h3>Select a conversation</h3></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel" id="panel-profile">
+    <div class="topbar"><h1>My Profile</h1><a href="onboarding.html" class="btn-primary" style="text-decoration:none;font-size:.78rem">Edit Profile</a></div>
+    <div style="padding:2rem"><div class="section-card"><h3>Profile</h3><p style="color:var(--muted);font-size:.9rem">Your profile is live and being matched by Guna score.</p></div></div>
+  </div>
+</main>
+<script>
+const MATCHES=[
+  {id:"1",name:"Anjali Sharma",age:27,city:"Brampton, ON",occupation:"Software Engineer",caste:"Brahmin",gotra:"Bharadwaj",immigration:"Permanent Resident",mother_tongue:"Punjabi",dietary:"Vegetarian",guna:31,level:"excellent",nadi:false,bhakoot:false,mangal:true,rashi:"Tula (Libra)",nakshatra:"Chitra",mahadasha:"Jupiter",photo:"👰",about:"Raised in Brampton, working at a tech firm downtown. I love cooking, yoga, and Ontario hiking trails."},
+  {id:"2",name:"Meera Patel",age:25,city:"Mississauga, ON",occupation:"Doctor (Resident)",caste:"Patel",gotra:"Kashyap",immigration:"Canadian Citizen",mother_tongue:"Gujarati",dietary:"Vegetarian",guna:28,level:"good",nadi:false,bhakoot:true,mangal:true,rashi:"Mithuna (Gemini)",nakshatra:"Ardra",mahadasha:"Rahu",photo:"👩‍⚕️",about:"Family medicine resident at Trillium Hospital. Gujarati roots, born in Toronto."},
+  {id:"3",name:"Pooja Iyer",age:29,city:"Vancouver, BC",occupation:"Chartered Accountant",caste:"Iyer Brahmin",gotra:"Vasishtha",immigration:"Canadian Citizen",mother_tongue:"Tamil",dietary:"Vegetarian",guna:24,level:"average",nadi:false,bhakoot:false,mangal:false,rashi:"Karka (Cancer)",nakshatra:"Pushya",mahadasha:"Saturn",photo:"👩‍💼",about:"Tamil Brahmin, grew up in Chennai, moved to Vancouver for my CA."},
+];
+const INTERESTS=[
+  {id:"i1",from:"Rajesh Verma",age:29,city:"Brampton",guna:27,photo:"🤵",msg:"I loved reading your profile. Would love to connect."},
+  {id:"i2",from:"Amit Nair",age:30,city:"Toronto",guna:24,photo:"👨",msg:"Namaste! We share a lot in common. Hope we can talk."},
+  {id:"i3",from:"Kiran Menon",age:28,city:"Mississauga",guna:29,photo:"👨‍💼",msg:"Hi! Thank you for accepting my interest."},
+];
+const CONVS=[
+  {id:"c1",name:"Kiran Menon",photo:"👨‍💼",guna:29,last:"See you Saturday!",msgs:[{from:"them",text:"Hi! Thank you for accepting my interest.",time:"Mon 2:14 PM"},{from:"me",text:"Of course! I really liked your profile.",time:"Mon 4:30 PM"},{from:"them",text:"Would you be open to a video call this weekend?",time:"Mon 4:45 PM"},{from:"me",text:"See you Saturday!",time:"Mon 5:01 PM"}]},
+];
+
+function showPanel(e,name){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
+  document.getElementById("panel-"+name).classList.add("active");
+  e.currentTarget.classList.add("active");
+}
+
+function renderFeed(){
+  document.getElementById("feed-list").innerHTML=MATCHES.map(m=>`
+    <div class="match-card" onclick="showDetail('${m.id}')" id="card-${m.id}">
+      <div class="match-photo">${m.photo}</div>
+      <div style="flex:1">
+        <div class="match-name">${m.name}</div>
+        <div class="match-meta">${m.age} · ${m.city}</div>
+        <div class="match-meta">${m.occupation}</div>
+        <div class="dosha-flags">
+          <span class="flag ${m.nadi?"flag-warn":"flag-ok"}">${m.nadi?"Nadi Dosha":"No Nadi Dosha"}</span>
+          <span class="flag ${m.mangal?"flag-ok":"flag-warn"}">${m.mangal?"Mangal ✓":"Mangal mismatch"}</span>
+        </div>
+      </div>
+      <div class="guna-badge">${m.guna}<span class="guna-label">/ 36</span><span class="guna-label" style="color:${m.level==="excellent"?"#1a7c34":m.level==="good"?"var(--gold)":"var(--muted)"}">${m.level}</span></div>
+    </div>
+  `).join("");
+}
+
+function showDetail(id){
+  const m=MATCHES.find(x=>x.id===id);
+  document.querySelectorAll(".match-card").forEach(c=>c.classList.remove("selected"));
+  document.getElementById("card-"+id).classList.add("selected");
+  document.getElementById("feed-detail").innerHTML=`
+    <div class="profile-detail">
+      <div class="profile-header">
+        <div class="profile-main-photo">${m.photo}</div>
+        <div>
+          <div class="profile-name">${m.name}</div>
+          <div class="profile-tagline">${m.age} · ${m.caste} · ${m.city}</div>
+          <div class="profile-tagline">${m.occupation} · ${m.mother_tongue} · ${m.immigration}</div>
+          <div class="action-row">
+            <button class="btn-primary" onclick="alert('Interest sent to ${m.name}!')">Send Interest 💌</button>
+            <button class="btn-secondary" onclick="alert('Full Kundali Report — $4.99 CAD')">Full Report ($4.99)</button>
+          </div>
+        </div>
+      </div>
+      <div class="score-hero">
+        <div style="text-align:center;flex-shrink:0">
+          <div class="score-num">${m.guna}<span style="font-size:1rem;color:rgba(251,244,230,.4)">/36</span></div>
+          <div class="score-level">${m.level}</div>
+        </div>
+        <div class="koot-mini">
+          <div><div class="koot-mini-val">1</div><div class="koot-mini-name">Varna</div></div>
+          <div><div class="koot-mini-val">2</div><div class="koot-mini-name">Vashya</div></div>
+          <div><div class="koot-mini-val">2.5</div><div class="koot-mini-name">Tara</div></div>
+          <div><div class="koot-mini-val">4</div><div class="koot-mini-name">Yoni</div></div>
+          <div><div class="koot-mini-val">5</div><div class="koot-mini-name">Gr. Maitri</div></div>
+          <div><div class="koot-mini-val">6</div><div class="koot-mini-name">Gana</div></div>
+          <div><div class="koot-mini-val">7</div><div class="koot-mini-name">Bhakoot</div></div>
+          <div><div class="koot-mini-val">8</div><div class="koot-mini-name">Nadi</div></div>
+        </div>
+      </div>
+      <div class="section-card"><h3>About ${m.name.split(" ")[0]}</h3><p style="font-size:.9rem;line-height:1.7;color:var(--muted)">${m.about}</p></div>
+      <div class="section-card"><h3>Kundali</h3><div class="info-grid"><div><div class="info-label">Rashi</div><div class="info-value">${m.rashi}</div></div><div><div class="info-label">Nakshatra</div><div class="info-value">${m.nakshatra}</div></div><div><div class="info-label">Mahadasha</div><div class="info-value">${m.mahadasha}</div></div><div><div class="info-label">Gotra</div><div class="info-value">${m.gotra}</div></div></div></div>
+    </div>
+  `;
+}
+
+function renderInterests(){
+  document.getElementById("interests-container").innerHTML=INTERESTS.map(i=>`
+    <div class="section-card">
+      <div style="display:flex;gap:1rem;align-items:flex-start"><div style="font-size:2rem">${i.photo}</div><div><div style="font-family:var(--serif);font-size:1.1rem;font-weight:600">${i.from}</div><div style="font-size:.78rem;color:var(--muted)">${i.age} · ${i.city} · ${i.guna}/36 Gunas</div><p style="font-size:.85rem;margin-top:.7rem;color:var(--text);font-style:italic">"${i.msg}"</p></div></div>
+      <div style="display:flex;gap:.7rem;margin-top:1rem"><button class="btn-primary" style="flex:1" onclick="this.textContent='Accepted ✓';this.disabled=true">Accept</button><button class="btn-secondary" style="flex:1">Decline</button></div>
+    </div>
+  `).join("");
+}
+
+function renderConvs(){
+  document.getElementById("conv-list").innerHTML=CONVS.map(c=>`
+    <div class="conv-item" onclick="openConv('${c.id}')"><div class="conv-avatar">${c.photo}</div><div><div class="conv-name">${c.name}</div><div class="conv-last">${c.last}</div></div></div>
+  `).join("");
+}
+
+function openConv(id){
+  const conv=CONVS.find(c=>c.id===id);
+  document.getElementById("chat-pane").innerHTML=`
+    <div class="chat-header"><div class="conv-avatar">${conv.photo}</div><div><div style="font-family:var(--serif);font-size:1rem;font-weight:600">${conv.name}</div><div style="font-size:.72rem;color:var(--muted)">${conv.guna}/36 Gunas</div></div></div>
+    <div class="chat-messages" id="msgs-${id}">${conv.msgs.map(m=>`<div class="msg ${m.from==="me"?"sent":"recv"}"><div class="msg-bubble">${m.text}</div></div>`).join("")}</div>
+    <div class="chat-input-row"><input type="text" placeholder="Type a message..." id="msg-input" onkeydown="if(event.key==='Enter')sendMsg('${id}')"/><button class="send-btn" onclick="sendMsg('${id}')">➤</button></div>
+  `;
+}
+
+function sendMsg(id){
+  const input=document.getElementById("msg-input");
+  const text=input.value.trim();
+  if(!text)return;
+  const msgs=document.getElementById("msgs-"+id);
+  const div=document.createElement("div");
+  div.className="msg sent";
+  div.innerHTML=`<div class="msg-bubble">${text}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+  input.value="";
+}
+
+renderFeed();renderInterests();renderConvs();
+</script>
+</body>
+</html>
