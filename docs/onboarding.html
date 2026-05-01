@@ -201,6 +201,7 @@
     }
     .success-step p{font-size:0.92rem;font-weight:300;color:var(--muted);line-height:1.7;}
   </style>
+<script async crossorigin="anonymous" data-clerk-publishable-key="pk_test_d2FudGVkLW11dHQtOTkuY2xlcmsuYWNjb3VudHMuZGV2JA" src="https://wanted-mutt-99.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -874,6 +875,47 @@
     }
   });
 
+  const API = 'https://mandir-matrimony-production.up.railway.app';
+
+  async function getToken() {
+    if (window.Clerk && window.Clerk.session) {
+      return await window.Clerk.session.getToken();
+    }
+    return null;
+  }
+
+  async function apiPost(endpoint, body, token) {
+    const resp = await fetch(API + endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      },
+      body: JSON.stringify(body),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.detail || 'API error ' + resp.status);
+    }
+    return await resp.json();
+  }
+
+  async function apiPut(endpoint, body, token) {
+    const resp = await fetch(API + endpoint, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      },
+      body: JSON.stringify(body),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.detail || 'API error ' + resp.status);
+    }
+    return await resp.json();
+  }
+
   async function computeKundali() {
     const place = document.getElementById('birth_place').value;
     const lat = document.getElementById('birth_lat').value;
@@ -883,16 +925,78 @@
       alert('Please select a city from the dropdown to auto-fill coordinates. This is needed for accurate Kundali computation.');
       return;
     }
-    console.log('Computing kundali for:', place, lat, lon);
+    // Store kundali data in state for submission
+    state.kundali = {
+      birth_place: place,
+      birth_lat: parseFloat(lat),
+      birth_lon: parseFloat(lon),
+      birth_date: document.getElementById('k_birth_date').value,
+      birth_time: document.getElementById('k_birth_time').value || null,
+      birth_tz: document.getElementById('birth_tz').value,
+    };
     showStep(5);
   }
 
   async function submitProfile() {
-    // In production: POST to all the relevant /api/profiles/* endpoints
-    console.log('Submitting profile:', state);
-    showStep(7);
-    document.getElementById('stepper').style.display = 'none';
-    document.getElementById('progress').style.width = '100%';
+    const btn = document.querySelector('#step-6 .btn-next');
+    if (btn) { btn.textContent = 'Saving...'; btn.disabled = true; }
+
+    try {
+      const token = await getToken();
+      if (!token) {
+        alert('Please sign in to save your profile.');
+        window.location.href = 'index.html';
+        return;
+      }
+
+      // 1. Create profile
+      const profileData = {
+        full_name: document.getElementById('full_name')?.value || state.full_name || '',
+        display_name: document.getElementById('display_name')?.value || '',
+        gender: state.gender || 'other',
+        date_of_birth: document.getElementById('date_of_birth')?.value || '',
+        caste: document.getElementById('caste')?.value || null,
+        gotra: document.getElementById('gotra')?.value || null,
+        mother_tongue: document.getElementById('mother_tongue')?.value || null,
+        dietary_preference: document.getElementById('dietary')?.value || null,
+        about_me: document.getElementById('about_me')?.value || null,
+      };
+      const profileResp = await apiPost('/api/profiles/', profileData, token);
+      console.log('Profile created:', profileResp);
+
+      // 2. Save Canada/location details
+      const immigration = state.immigration || document.querySelector('#immigration_chips .chip.selected')?.dataset?.val || 'permanent_resident';
+      const canadaData = {
+        immigration_status: immigration,
+        province: document.getElementById('province')?.value || null,
+        city: document.getElementById('city')?.value || null,
+        willing_to_relocate: true,
+      };
+      await apiPut('/api/profiles/canada', canadaData, token).catch(e => console.warn('Canada details:', e));
+
+      // 3. Compute Kundali if we have the data
+      if (state.kundali && state.kundali.birth_lat && state.kundali.birth_date) {
+        const kundaliData = {
+          birth_date: state.kundali.birth_date,
+          birth_time: state.kundali.birth_time || null,
+          birth_place: state.kundali.birth_place,
+          latitude: state.kundali.birth_lat,
+          longitude: state.kundali.birth_lon,
+          timezone: state.kundali.birth_tz,
+        };
+        await apiPost('/api/kundali/compute', kundaliData, token).catch(e => console.warn('Kundali compute:', e));
+      }
+
+      // 4. Success!
+      showStep(7);
+      document.getElementById('stepper').style.display = 'none';
+      document.getElementById('progress').style.width = '100%';
+
+    } catch(err) {
+      console.error('Submit error:', err);
+      alert('Something went wrong: ' + err.message + '. Please try again.');
+      if (btn) { btn.textContent = 'Complete Profile →'; btn.disabled = false; }
+    }
   }
 
   // Pre-fill kundali date when DOB changes
