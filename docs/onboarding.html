@@ -528,34 +528,34 @@
           <p class="hint">Leave blank if unknown</p>
         </div>
       </div>
-      <div class="field">
-        <label>Birth city</label>
-        <input type="text" id="birth_place" placeholder="e.g. Amritsar, Punjab, India"/>
+      <div class="field" style="position:relative">
+        <label>Birth city <span style="color:var(--saffron)">*</span></label>
+        <input type="text" id="birth_place" placeholder="Start typing your birth city..." autocomplete="off" oninput="searchCity(this.value)"/>
+        <p class="hint">Type city name — latitude and longitude auto-filled automatically</p>
+        <div id="city-results" style="position:absolute;top:calc(100% - 8px);left:0;right:0;background:#1a0e08;border:1px solid rgba(196,145,42,.3);border-top:none;border-radius:0 0 4px 4px;z-index:100;display:none;max-height:220px;overflow-y:auto"></div>
       </div>
-      <div class="field-row">
-        <div class="field">
-          <label>Latitude</label>
-          <input type="number" id="birth_lat" step="0.0001" placeholder="31.6340"/>
-        </div>
-        <div class="field">
-          <label>Longitude</label>
-          <input type="number" id="birth_lon" step="0.0001" placeholder="74.8723"/>
-        </div>
+      <input type="hidden" id="birth_lat"/>
+      <input type="hidden" id="birth_lon"/>
+      <div id="location-confirmed" style="display:none;background:rgba(196,145,42,.08);border:1px solid rgba(196,145,42,.2);border-radius:4px;padding:.75rem 1rem;margin-bottom:1rem">
+        <div style="font-size:.82rem;color:var(--gold-lt);font-weight:500" id="location-name"></div>
+        <div style="font-size:.72rem;color:rgba(251,244,230,.35);margin-top:.2rem" id="location-coords"></div>
       </div>
-      <p class="hint" style="margin-top:-0.8rem;margin-bottom:1rem">
-        💡 <a href="https://maps.google.com" target="_blank" style="color:var(--gold);text-decoration:none">Look up coordinates on Google Maps</a> — right-click any point
-      </p>
       <div class="field">
         <label>Timezone</label>
         <select id="birth_tz">
-          <option value="Asia/Kolkata">India (IST)</option>
-          <option value="America/Toronto" selected>Eastern (Toronto/GTA)</option>
-          <option value="America/Vancouver">Pacific (Vancouver)</option>
-          <option value="America/Edmonton">Mountain (Calgary)</option>
-          <option value="America/Winnipeg">Central (Winnipeg)</option>
-          <option value="America/Halifax">Atlantic (Halifax)</option>
+          <option value="Asia/Kolkata">India (IST, UTC+5:30)</option>
+          <option value="America/Toronto" selected>Eastern Canada — Toronto, Ottawa</option>
+          <option value="America/Vancouver">Pacific Canada — Vancouver</option>
+          <option value="America/Edmonton">Mountain Canada — Calgary, Edmonton</option>
+          <option value="America/Winnipeg">Central Canada — Winnipeg</option>
+          <option value="America/Halifax">Atlantic Canada — Halifax</option>
+          <option value="America/New_York">US Eastern — New York, New Jersey</option>
+          <option value="America/Chicago">US Central — Chicago, Texas</option>
+          <option value="America/Los_Angeles">US Pacific — California, Washington</option>
+          <option value="Europe/London">UK — London</option>
           <option value="UTC">UTC</option>
         </select>
+        <p class="hint">Select the timezone of your birth city</p>
       </div>
     </div>
 
@@ -821,11 +821,69 @@
     }
   }
 
+  // Nominatim city search
+  let searchTimer = null;
+  async function searchCity(query) {
+    clearTimeout(searchTimer);
+    const resultsBox = document.getElementById('city-results');
+    if (query.length < 3) { resultsBox.style.display='none'; return; }
+    searchTimer = setTimeout(async () => {
+      try {
+        const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=6&addressdetails=1`;
+        const resp = await fetch(url, {headers:{'Accept-Language':'en'}});
+        const data = await resp.json();
+        if (!data.length) { resultsBox.style.display='none'; return; }
+        resultsBox.innerHTML = data.map(r => {
+          const display = r.display_name;
+          const lat = parseFloat(r.lat).toFixed(4);
+          const lon = parseFloat(r.lon).toFixed(4);
+          return `<div onclick="selectCity('${display.replace(/'/g,'&#39;')}',${lat},${lon})" style="padding:.7rem 1rem;border-bottom:1px solid rgba(196,145,42,.1);cursor:pointer;font-size:.82rem;color:rgba(251,244,230,.7);transition:background .15s" onmouseover="this.style.background='rgba(196,145,42,.1)'" onmouseout="this.style.background=''">
+            <div style="color:var(--gold-lt);font-weight:500">${r.name || display.split(',')[0]}</div>
+            <div style="font-size:.7rem;color:rgba(251,244,230,.35);margin-top:.1rem">${display.split(',').slice(1,4).join(',')}</div>
+          </div>`;
+        }).join('');
+        resultsBox.style.display = 'block';
+      } catch(e) { console.error('City search error:', e); }
+    }, 400);
+  }
+
+  function selectCity(displayName, lat, lon) {
+    document.getElementById('birth_place').value = displayName.split(',')[0];
+    document.getElementById('birth_lat').value = lat;
+    document.getElementById('birth_lon').value = lon;
+    document.getElementById('city-results').style.display = 'none';
+    // Show confirmed location
+    document.getElementById('location-name').textContent = displayName.split(',').slice(0,2).join(',');
+    document.getElementById('location-coords').textContent = `Lat: ${lat}, Lon: ${lon}`;
+    document.getElementById('location-confirmed').style.display = 'block';
+    // Auto-detect timezone from country
+    const country = displayName.toLowerCase();
+    const tz = document.getElementById('birth_tz');
+    if (country.includes('india')) tz.value = 'Asia/Kolkata';
+    else if (country.includes('ontario') || country.includes('quebec')) tz.value = 'America/Toronto';
+    else if (country.includes('british columbia')) tz.value = 'America/Vancouver';
+    else if (country.includes('alberta')) tz.value = 'America/Edmonton';
+    else if (country.includes('manitoba')) tz.value = 'America/Winnipeg';
+    else if (country.includes('united kingdom')) tz.value = 'Europe/London';
+  }
+
+  // Close results when clicking outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#city-results') && e.target.id !== 'birth_place') {
+      document.getElementById('city-results').style.display = 'none';
+    }
+  });
+
   async function computeKundali() {
     const place = document.getElementById('birth_place').value;
-    if (!place) { showStep(5); return; } // skip if no data
-    // In production: POST to /api/kundali/compute
-    console.log('Computing kundali for:', place);
+    const lat = document.getElementById('birth_lat').value;
+    const lon = document.getElementById('birth_lon').value;
+    if (!place) { showStep(5); return; }
+    if (!lat || !lon) {
+      alert('Please select a city from the dropdown to auto-fill coordinates. This is needed for accurate Kundali computation.');
+      return;
+    }
+    console.log('Computing kundali for:', place, lat, lon);
     showStep(5);
   }
 
