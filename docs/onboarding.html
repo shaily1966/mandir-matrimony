@@ -345,9 +345,13 @@
       <label>Immigration status</label>
       <div class="chips" id="immigration_chips">
         <div class="chip" data-val="citizen"          onclick="toggleChip(this,'immigration')">Canadian Citizen</div>
-        <div class="chip" data-val="permanent_resident" onclick="toggleChip(this,'immigration')">Permanent Resident</div>
+        <div class="chip" data-val="permanent_resident" onclick="toggleChip(this,'immigration')">Canadian PR</div>
         <div class="chip" data-val="work_permit"      onclick="toggleChip(this,'immigration')">Work Permit</div>
         <div class="chip" data-val="study_permit"     onclick="toggleChip(this,'immigration')">Study Permit</div>
+        <div class="chip" data-val="us_citizen"       onclick="toggleChip(this,'immigration')">US Citizen</div>
+        <div class="chip" data-val="h1b"              onclick="toggleChip(this,'immigration')">H1B / US Work Visa</div>
+        <div class="chip" data-val="indian_resident"  onclick="toggleChip(this,'immigration')">Indian Resident</div>
+        <div class="chip" data-val="visitor"          onclick="toggleChip(this,'immigration')">Visitor</div>
       </div>
       <input type="hidden" id="immigration_status"/>
     </div>
@@ -602,8 +606,12 @@
       <label>Immigration status (leave empty = any)</label>
       <div class="chips">
         <div class="chip" data-val="citizen"           onclick="toggleMultiChip(this,'pref_immigration')">Canadian Citizen</div>
-        <div class="chip" data-val="permanent_resident" onclick="toggleMultiChip(this,'pref_immigration')">Permanent Resident</div>
+        <div class="chip" data-val="permanent_resident" onclick="toggleMultiChip(this,'pref_immigration')">Canadian PR</div>
         <div class="chip" data-val="work_permit"       onclick="toggleMultiChip(this,'pref_immigration')">Work Permit</div>
+        <div class="chip" data-val="us_citizen"        onclick="toggleMultiChip(this,'pref_immigration')">US Citizen</div>
+        <div class="chip" data-val="h1b"               onclick="toggleMultiChip(this,'pref_immigration')">H1B / US Work Visa</div>
+        <div class="chip" data-val="indian_resident"   onclick="toggleMultiChip(this,'pref_immigration')">Indian Resident</div>
+        <div class="chip" data-val="visitor"           onclick="toggleMultiChip(this,'pref_immigration')">Visitor / Other</div>
       </div>
     </div>
 
@@ -701,7 +709,7 @@
          </em>
       </p>
       <div class="btn-row" style="justify-content:center;margin-top:2rem">
-        <a href="/app" class="btn-next" style="text-decoration:none;text-align:center;flex:none;padding:0.85rem 2.5rem">
+        <a href="app.html" class="btn-next" style="text-decoration:none;text-align:center;flex:none;padding:0.85rem 2.5rem">
           View my matches →
         </a>
       </div>
