@@ -5,10 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mandir Matrimony — Your Matches</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<!-- Clerk -->
+<script async crossorigin="anonymous" data-clerk-publishable-key="pk_test_d2FudGVkLW11dHQtOTkuY2xlcmsuYWNjb3VudHMuZGV2JA" src="https://wanted-mutt-99.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" type="text/javascript"></script>
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--dark:#160C07;--bg:#FBF4E6;--bg2:#F5EDD6;--saffron:#D9601A;--gold:#C4912A;--gold-lt:#E8BF6A;--text:#1C1208;--muted:#8A7460;--border:rgba(196,145,42,.18);--sidebar:220px;--serif:"Cormorant Garamond",serif;--sans:"Jost",sans-serif}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+
+/* Loading screen */
+#loading-screen{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:1000;flex-direction:column;gap:1rem}
+#loading-screen .logo{font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--gold-lt)}
+#loading-screen .logo span{color:var(--saffron)}
+#loading-screen p{font-size:.82rem;color:rgba(251,244,230,.4);letter-spacing:.1em;text-transform:uppercase}
+
 aside{width:var(--sidebar);min-height:100vh;background:var(--dark);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:50;border-right:1px solid rgba(196,145,42,.1)}
 .sidebar-logo{padding:1.4rem 1.5rem 1rem;font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--gold-lt);border-bottom:1px solid rgba(196,145,42,.1)}
 .sidebar-logo span{color:var(--saffron)}
@@ -17,6 +28,12 @@ aside{width:var(--sidebar);min-height:100vh;background:var(--dark);display:flex;
 .nav-item:hover{color:rgba(251,244,230,.8);background:rgba(196,145,42,.05)}
 .nav-item.active{color:var(--gold-lt);border-left-color:var(--saffron);background:rgba(217,96,26,.06)}
 .nav-badge{margin-left:auto;background:var(--saffron);color:#fff;font-size:.65rem;font-weight:600;padding:1px 6px;border-radius:10px}
+.sidebar-bottom{padding:1rem 1.5rem;border-top:1px solid rgba(196,145,42,.1)}
+.user-info{font-size:.78rem;color:rgba(251,244,230,.5);margin-bottom:.75rem;word-break:break-all}
+.user-name{color:var(--gold-lt);font-weight:500;font-size:.85rem;margin-bottom:.2rem}
+.btn-signout{width:100%;padding:.5rem;background:transparent;border:1px solid rgba(196,145,42,.2);border-radius:3px;color:rgba(251,244,230,.4);font-family:var(--sans);font-size:.72rem;cursor:pointer;transition:all .2s;letter-spacing:.08em;text-transform:uppercase}
+.btn-signout:hover{border-color:rgba(196,145,42,.5);color:var(--gold-lt)}
+
 main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column}
 .topbar{padding:1rem 2rem;background:var(--bg);border-bottom:1px solid rgba(28,18,8,.08);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
 .topbar h1{font-family:var(--serif);font-size:1.5rem;font-weight:600}
@@ -78,11 +95,17 @@ main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column}
 .chat-input-row input{flex:1;padding:.7rem 1rem;border:1px solid rgba(28,18,8,.12);border-radius:20px;font-family:var(--sans);font-size:.88rem;outline:none}
 .send-btn{width:36px;height:36px;border-radius:50%;background:var(--saffron);border:none;cursor:pointer;color:#fff;font-size:1rem;flex-shrink:0}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(196,145,42,.2);border-radius:2px}
-@media(max-width:768px){aside{width:60px}.nav-item span:last-child{display:none}main{margin-left:60px}.feed-list{width:100%}.feed-detail{display:none}}
 </style>
 </head>
 <body>
-<aside>
+
+<!-- Loading screen shown while Clerk loads -->
+<div id="loading-screen">
+  <div class="logo">Mandir <span>Matrimony</span></div>
+  <p>Loading your matches...</p>
+</div>
+
+<aside style="display:none" id="sidebar">
   <div class="sidebar-logo">Mandir <span>Matrimony</span></div>
   <nav class="nav-menu">
     <div class="nav-item active" onclick="showPanel(event,'matches')"><span>💑</span><span>Matches</span></div>
@@ -90,8 +113,14 @@ main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column}
     <div class="nav-item" onclick="showPanel(event,'messages')"><span>💬</span><span>Messages</span><span class="nav-badge">1</span></div>
     <div class="nav-item" onclick="showPanel(event,'profile')"><span>👤</span><span>My Profile</span></div>
   </nav>
+  <div class="sidebar-bottom">
+    <div class="user-name" id="user-display-name">Loading...</div>
+    <div class="user-info" id="user-email"></div>
+    <button class="btn-signout" onclick="signOut()">Sign Out</button>
+  </div>
 </aside>
-<main>
+
+<main style="display:none" id="main-content">
   <div class="panel active" id="panel-matches">
     <div class="topbar"><h1>Your Matches</h1><span style="font-size:.78rem;color:var(--muted)">Sorted by Guna score</span></div>
     <div class="feed-layout">
@@ -119,30 +148,71 @@ main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column}
     <div style="padding:2rem"><div class="section-card"><h3>Profile</h3><p style="color:var(--muted);font-size:.9rem">Your profile is live and being matched by Guna score.</p></div></div>
   </div>
 </main>
+
 <script>
 const MATCHES=[
   {id:"1",name:"Anjali Sharma",age:27,city:"Brampton, ON",occupation:"Software Engineer",caste:"Brahmin",gotra:"Bharadwaj",immigration:"Permanent Resident",mother_tongue:"Punjabi",dietary:"Vegetarian",guna:31,level:"excellent",nadi:false,bhakoot:false,mangal:true,rashi:"Tula (Libra)",nakshatra:"Chitra",mahadasha:"Jupiter",photo:"👰",about:"Raised in Brampton, working at a tech firm downtown. I love cooking, yoga, and Ontario hiking trails."},
   {id:"2",name:"Meera Patel",age:25,city:"Mississauga, ON",occupation:"Doctor (Resident)",caste:"Patel",gotra:"Kashyap",immigration:"Canadian Citizen",mother_tongue:"Gujarati",dietary:"Vegetarian",guna:28,level:"good",nadi:false,bhakoot:true,mangal:true,rashi:"Mithuna (Gemini)",nakshatra:"Ardra",mahadasha:"Rahu",photo:"👩‍⚕️",about:"Family medicine resident at Trillium Hospital. Gujarati roots, born in Toronto."},
   {id:"3",name:"Pooja Iyer",age:29,city:"Vancouver, BC",occupation:"Chartered Accountant",caste:"Iyer Brahmin",gotra:"Vasishtha",immigration:"Canadian Citizen",mother_tongue:"Tamil",dietary:"Vegetarian",guna:24,level:"average",nadi:false,bhakoot:false,mangal:false,rashi:"Karka (Cancer)",nakshatra:"Pushya",mahadasha:"Saturn",photo:"👩‍💼",about:"Tamil Brahmin, grew up in Chennai, moved to Vancouver for my CA."},
 ];
+
 const INTERESTS=[
   {id:"i1",from:"Rajesh Verma",age:29,city:"Brampton",guna:27,photo:"🤵",msg:"I loved reading your profile. Would love to connect."},
   {id:"i2",from:"Amit Nair",age:30,city:"Toronto",guna:24,photo:"👨",msg:"Namaste! We share a lot in common. Hope we can talk."},
   {id:"i3",from:"Kiran Menon",age:28,city:"Mississauga",guna:29,photo:"👨‍💼",msg:"Hi! Thank you for accepting my interest."},
 ];
+
 const CONVS=[
-  {id:"c1",name:"Kiran Menon",photo:"👨‍💼",guna:29,last:"See you Saturday!",msgs:[{from:"them",text:"Hi! Thank you for accepting my interest.",time:"Mon 2:14 PM"},{from:"me",text:"Of course! I really liked your profile.",time:"Mon 4:30 PM"},{from:"them",text:"Would you be open to a video call this weekend?",time:"Mon 4:45 PM"},{from:"me",text:"See you Saturday!",time:"Mon 5:01 PM"}]},
+  {id:"c1",name:"Kiran Menon",photo:"👨‍💼",guna:29,last:"See you Saturday!",msgs:[
+    {from:"them",text:"Hi! Thank you for accepting my interest."},
+    {from:"me",text:"Of course! I really liked your profile."},
+    {from:"them",text:"Would you be open to a video call this weekend?"},
+    {from:"me",text:"See you Saturday!"}
+  ]},
 ];
 
-function showPanel(e,name){
+// Clerk auth
+window.addEventListener('load', async () => {
+  await window.Clerk.load();
+  const user = window.Clerk.user;
+
+  if (!user) {
+    // Not signed in — redirect to landing page
+    window.location.href = 'index.html';
+    return;
+  }
+
+  // Signed in — show app
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('sidebar').style.display = 'flex';
+  document.getElementById('main-content').style.display = 'flex';
+
+  // Show user info
+  const name = user.firstName || user.emailAddresses[0]?.emailAddress?.split('@')[0] || 'User';
+  const email = user.emailAddresses[0]?.emailAddress || '';
+  document.getElementById('user-display-name').textContent = name;
+  document.getElementById('user-email').textContent = email;
+
+  // Render app
+  renderFeed();
+  renderInterests();
+  renderConvs();
+});
+
+async function signOut() {
+  await window.Clerk.signOut();
+  window.location.href = 'index.html';
+}
+
+function showPanel(e, name) {
   document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
   document.getElementById("panel-"+name).classList.add("active");
   e.currentTarget.classList.add("active");
 }
 
-function renderFeed(){
-  document.getElementById("feed-list").innerHTML=MATCHES.map(m=>`
+function renderFeed() {
+  document.getElementById("feed-list").innerHTML = MATCHES.map(m=>`
     <div class="match-card" onclick="showDetail('${m.id}')" id="card-${m.id}">
       <div class="match-photo">${m.photo}</div>
       <div style="flex:1">
@@ -159,8 +229,8 @@ function renderFeed(){
   `).join("");
 }
 
-function showDetail(id){
-  const m=MATCHES.find(x=>x.id===id);
+function showDetail(id) {
+  const m = MATCHES.find(x=>x.id===id);
   document.querySelectorAll(".match-card").forEach(c=>c.classList.remove("selected"));
   document.getElementById("card-"+id).classList.add("selected");
   document.getElementById("feed-detail").innerHTML=`
@@ -194,49 +264,69 @@ function showDetail(id){
         </div>
       </div>
       <div class="section-card"><h3>About ${m.name.split(" ")[0]}</h3><p style="font-size:.9rem;line-height:1.7;color:var(--muted)">${m.about}</p></div>
-      <div class="section-card"><h3>Kundali</h3><div class="info-grid"><div><div class="info-label">Rashi</div><div class="info-value">${m.rashi}</div></div><div><div class="info-label">Nakshatra</div><div class="info-value">${m.nakshatra}</div></div><div><div class="info-label">Mahadasha</div><div class="info-value">${m.mahadasha}</div></div><div><div class="info-label">Gotra</div><div class="info-value">${m.gotra}</div></div></div></div>
-    </div>
-  `;
+      <div class="section-card"><h3>Kundali</h3>
+        <div class="info-grid">
+          <div><div class="info-label">Rashi</div><div class="info-value">${m.rashi}</div></div>
+          <div><div class="info-label">Nakshatra</div><div class="info-value">${m.nakshatra}</div></div>
+          <div><div class="info-label">Mahadasha</div><div class="info-value">${m.mahadasha}</div></div>
+          <div><div class="info-label">Gotra</div><div class="info-value">${m.gotra}</div></div>
+        </div>
+      </div>
+    </div>`;
 }
 
-function renderInterests(){
-  document.getElementById("interests-container").innerHTML=INTERESTS.map(i=>`
+function renderInterests() {
+  document.getElementById("interests-container").innerHTML = INTERESTS.map(i=>`
     <div class="section-card">
-      <div style="display:flex;gap:1rem;align-items:flex-start"><div style="font-size:2rem">${i.photo}</div><div><div style="font-family:var(--serif);font-size:1.1rem;font-weight:600">${i.from}</div><div style="font-size:.78rem;color:var(--muted)">${i.age} · ${i.city} · ${i.guna}/36 Gunas</div><p style="font-size:.85rem;margin-top:.7rem;color:var(--text);font-style:italic">"${i.msg}"</p></div></div>
-      <div style="display:flex;gap:.7rem;margin-top:1rem"><button class="btn-primary" style="flex:1" onclick="this.textContent='Accepted ✓';this.disabled=true">Accept</button><button class="btn-secondary" style="flex:1">Decline</button></div>
-    </div>
-  `).join("");
+      <div style="display:flex;gap:1rem;align-items:flex-start">
+        <div style="font-size:2rem">${i.photo}</div>
+        <div>
+          <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600">${i.from}</div>
+          <div style="font-size:.78rem;color:var(--muted)">${i.age} · ${i.city} · ${i.guna}/36 Gunas</div>
+          <p style="font-size:.85rem;margin-top:.7rem;color:var(--text);font-style:italic">"${i.msg}"</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:.7rem;margin-top:1rem">
+        <button class="btn-primary" style="flex:1" onclick="this.textContent='Accepted ✓';this.disabled=true">Accept</button>
+        <button class="btn-secondary" style="flex:1">Decline</button>
+      </div>
+    </div>`).join("");
 }
 
-function renderConvs(){
-  document.getElementById("conv-list").innerHTML=CONVS.map(c=>`
-    <div class="conv-item" onclick="openConv('${c.id}')"><div class="conv-avatar">${c.photo}</div><div><div class="conv-name">${c.name}</div><div class="conv-last">${c.last}</div></div></div>
-  `).join("");
+function renderConvs() {
+  document.getElementById("conv-list").innerHTML = CONVS.map(c=>`
+    <div class="conv-item" onclick="openConv('${c.id}')">
+      <div class="conv-avatar">${c.photo}</div>
+      <div><div class="conv-name">${c.name}</div><div class="conv-last">${c.last}</div></div>
+    </div>`).join("");
 }
 
-function openConv(id){
-  const conv=CONVS.find(c=>c.id===id);
+function openConv(id) {
+  const conv = CONVS.find(c=>c.id===id);
   document.getElementById("chat-pane").innerHTML=`
-    <div class="chat-header"><div class="conv-avatar">${conv.photo}</div><div><div style="font-family:var(--serif);font-size:1rem;font-weight:600">${conv.name}</div><div style="font-size:.72rem;color:var(--muted)">${conv.guna}/36 Gunas</div></div></div>
+    <div class="chat-header">
+      <div class="conv-avatar">${conv.photo}</div>
+      <div><div style="font-family:var(--serif);font-size:1rem;font-weight:600">${conv.name}</div><div style="font-size:.72rem;color:var(--muted)">${conv.guna}/36 Gunas</div></div>
+    </div>
     <div class="chat-messages" id="msgs-${id}">${conv.msgs.map(m=>`<div class="msg ${m.from==="me"?"sent":"recv"}"><div class="msg-bubble">${m.text}</div></div>`).join("")}</div>
-    <div class="chat-input-row"><input type="text" placeholder="Type a message..." id="msg-input" onkeydown="if(event.key==='Enter')sendMsg('${id}')"/><button class="send-btn" onclick="sendMsg('${id}')">➤</button></div>
-  `;
+    <div class="chat-input-row">
+      <input type="text" placeholder="Type a message..." id="msg-input" onkeydown="if(event.key==='Enter')sendMsg('${id}')"/>
+      <button class="send-btn" onclick="sendMsg('${id}')">➤</button>
+    </div>`;
 }
 
-function sendMsg(id){
-  const input=document.getElementById("msg-input");
-  const text=input.value.trim();
-  if(!text)return;
-  const msgs=document.getElementById("msgs-"+id);
-  const div=document.createElement("div");
-  div.className="msg sent";
-  div.innerHTML=`<div class="msg-bubble">${text}</div>`;
+function sendMsg(id) {
+  const input = document.getElementById("msg-input");
+  const text = input.value.trim();
+  if(!text) return;
+  const msgs = document.getElementById("msgs-"+id);
+  const div = document.createElement("div");
+  div.className = "msg sent";
+  div.innerHTML = `<div class="msg-bubble">${text}</div>`;
   msgs.appendChild(div);
-  msgs.scrollTop=msgs.scrollHeight;
-  input.value="";
+  msgs.scrollTop = msgs.scrollHeight;
+  input.value = "";
 }
-
-renderFeed();renderInterests();renderConvs();
 </script>
 </body>
 </html>
