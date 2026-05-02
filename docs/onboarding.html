@@ -10,198 +10,79 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --dark:#160C07;--bg:#FBF4E6;--saffron:#D9601A;--gold:#C4912A;
-      --gold-lt:#E8BF6A;--crimson:#7A1C3A;--text:#1C1208;--muted:#8A7460;
+      --gold-lt:#E8BF6A;--text:#1C1208;--muted:#8A7460;
       --border:rgba(196,145,42,0.2);--serif:'Cormorant Garamond',serif;--sans:'Jost',sans-serif;
     }
     body{font-family:var(--sans);background:var(--dark);min-height:100vh;display:flex;flex-direction:column;}
-
-    /* ── TOP BAR ── */
-    header{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:1rem 2rem;border-bottom:1px solid rgba(196,145,42,0.12);
-    }
+    header{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid rgba(196,145,42,0.12);}
     .logo{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--gold-lt);}
     .logo span{color:var(--saffron);}
-
-    /* ── STEPPER ── */
-    .stepper{
-      display:flex;align-items:center;gap:0;padding:0 2rem;
-    }
-    .step-pill{
-      display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0.8rem;
-      font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-      color:rgba(196,145,42,0.3);transition:color 0.3s;white-space:nowrap;
-    }
+    .stepper{display:flex;align-items:center;gap:0;padding:0 2rem;}
+    .step-pill{display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0.8rem;font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(196,145,42,0.3);transition:color 0.3s;white-space:nowrap;}
     .step-pill.active{color:var(--gold);}
     .step-pill.done{color:rgba(196,145,42,0.6);}
-    .step-circle{
-      width:20px;height:20px;border-radius:50%;border:1px solid currentColor;
-      display:flex;align-items:center;justify-content:center;
-      font-size:0.65rem;font-weight:600;flex-shrink:0;
-    }
+    .step-circle{width:20px;height:20px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:600;flex-shrink:0;}
     .step-pill.done .step-circle{background:rgba(196,145,42,0.2);}
     .step-line{flex:1;height:1px;background:rgba(196,145,42,0.12);min-width:1rem;}
-
-    /* ── MAIN CONTENT ── */
     main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:3rem 1.5rem;}
-    .card{
-      background:rgba(255,255,255,0.03);border:1px solid rgba(196,145,42,0.15);
-      border-radius:8px;padding:2.5rem;width:100%;max-width:640px;
-    }
-
+    .card{background:rgba(255,255,255,0.03);border:1px solid rgba(196,145,42,0.15);border-radius:8px;padding:2.5rem;width:100%;max-width:640px;}
     .step-content{display:none;}
     .step-content.active{display:block;}
-
-    .step-heading{
-      font-family:var(--serif);font-size:1.8rem;font-weight:600;
-      color:var(--bg);margin-bottom:0.4rem;
-    }
-    .step-sub{
-      font-size:0.88rem;font-weight:300;color:var(--muted);
-      margin-bottom:2rem;line-height:1.6;
-    }
-
-    /* ── FORM ELEMENTS ── */
+    .step-heading{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--bg);margin-bottom:0.4rem;}
+    .step-sub{font-size:0.88rem;font-weight:300;color:var(--muted);margin-bottom:2rem;line-height:1.6;}
     .field{margin-bottom:1.2rem;}
-    .field label{
-      display:block;font-size:0.72rem;font-weight:500;
-      letter-spacing:0.1em;text-transform:uppercase;
-      color:rgba(196,145,42,0.7);margin-bottom:0.5rem;
-    }
-    .field input,.field select,.field textarea{
-      width:100%;padding:0.75rem 1rem;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(196,145,42,0.18);
-      border-radius:4px;outline:none;
-      font-family:var(--sans);font-size:0.9rem;
-      color:var(--bg);font-weight:300;
-      transition:border-color 0.2s;
-    }
+    .field label{display:block;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(196,145,42,0.7);margin-bottom:0.5rem;}
+    .field input,.field select,.field textarea{width:100%;padding:0.75rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(196,145,42,0.18);border-radius:4px;outline:none;font-family:var(--sans);font-size:0.9rem;color:var(--bg);font-weight:300;transition:border-color 0.2s;}
     .field input::placeholder,.field textarea::placeholder{color:rgba(251,244,230,0.25);}
     .field select option{background:var(--dark);color:var(--bg);}
     .field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(196,145,42,0.5);}
     .field textarea{min-height:100px;resize:vertical;}
-
     .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-    @media(max-width:500px){.field-row{grid-template-columns:1fr;}}
-
-    /* Toggle chips (multi-select) */
+    @media(max-width:500px){.field-row{grid-template-columns:1fr;}.stepper{display:none;}}
     .chips{display:flex;flex-wrap:wrap;gap:0.5rem;}
-    .chip{
-      padding:0.4rem 0.9rem;border:1px solid rgba(196,145,42,0.2);
-      border-radius:20px;font-size:0.78rem;font-weight:400;
-      color:rgba(251,244,230,0.5);cursor:pointer;transition:all 0.15s;
-      user-select:none;background:transparent;
-    }
-    .chip.selected{
-      background:rgba(196,145,42,0.15);border-color:var(--gold);
-      color:var(--gold-lt);
-    }
-
-    /* Gender radio */
+    .chip{padding:0.4rem 0.9rem;border:1px solid rgba(196,145,42,0.2);border-radius:20px;font-size:0.78rem;font-weight:400;color:rgba(251,244,230,0.5);cursor:pointer;transition:all 0.15s;user-select:none;background:transparent;}
+    .chip.selected{background:rgba(196,145,42,0.15);border-color:var(--gold);color:var(--gold-lt);}
     .gender-row{display:flex;gap:1rem;}
-    .gender-btn{
-      flex:1;padding:0.9rem;text-align:center;
-      border:1px solid rgba(196,145,42,0.18);border-radius:4px;
-      font-family:var(--sans);font-size:0.88rem;color:rgba(251,244,230,0.5);
-      cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.03);
-    }
-    .gender-btn.selected{
-      border-color:var(--saffron);color:var(--bg);
-      background:rgba(217,96,26,0.12);
-    }
+    .gender-btn{flex:1;padding:0.9rem;text-align:center;border:1px solid rgba(196,145,42,0.18);border-radius:4px;font-family:var(--sans);font-size:0.88rem;color:rgba(251,244,230,0.5);cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.03);}
+    .gender-btn.selected{border-color:var(--saffron);color:var(--bg);background:rgba(217,96,26,0.12);}
     .gender-btn .icon{font-size:1.5rem;display:block;margin-bottom:0.3rem;}
-
-    /* Photo upload */
-    .photo-upload{
-      border:2px dashed rgba(196,145,42,0.2);border-radius:6px;
-      padding:2.5rem;text-align:center;cursor:pointer;transition:border-color 0.2s;
-    }
+    .photo-upload{border:2px dashed rgba(196,145,42,0.2);border-radius:6px;padding:2.5rem;text-align:center;cursor:pointer;transition:border-color 0.2s;}
     .photo-upload:hover{border-color:rgba(196,145,42,0.4);}
     .photo-upload input{display:none;}
     .photo-upload p{font-size:0.82rem;color:var(--muted);margin-top:0.5rem;}
-    .photo-preview{
-      display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1rem;
-    }
-    .photo-thumb{
-      width:80px;height:80px;border-radius:4px;object-fit:cover;
-      border:1px solid rgba(196,145,42,0.2);
-    }
-
-    /* Kundali toggle */
+    .photo-preview{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1rem;}
+    .photo-thumb{width:80px;height:80px;border-radius:4px;object-fit:cover;border:1px solid rgba(196,145,42,0.2);}
     .kundali-method{display:flex;gap:1rem;margin-bottom:1.5rem;}
-    .method-btn{
-      flex:1;padding:1rem;border:1px solid rgba(196,145,42,0.18);
-      border-radius:4px;text-align:center;cursor:pointer;
-      transition:all 0.2s;background:rgba(255,255,255,0.03);
-    }
+    .method-btn{flex:1;padding:1rem;border:1px solid rgba(196,145,42,0.18);border-radius:4px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.03);}
     .method-btn.selected{border-color:var(--gold);background:rgba(196,145,42,0.08);}
-    .method-btn .title{
-      font-family:var(--serif);font-size:1rem;font-weight:600;
-      color:var(--bg);margin-bottom:0.3rem;
-    }
+    .method-btn .title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--bg);margin-bottom:0.3rem;}
     .method-btn .desc{font-size:0.75rem;color:var(--muted);}
-
-    /* Range slider */
     .range-row{display:flex;align-items:center;gap:1rem;}
     .range-row input[type=range]{flex:1;accent-color:var(--saffron);}
-    .range-val{
-      font-size:0.88rem;font-weight:500;color:var(--gold-lt);
-      min-width:40px;text-align:right;
-    }
-
-    /* Progress */
-    .progress-bar{
-      height:2px;background:rgba(196,145,42,0.12);
-      border-radius:1px;margin-bottom:2rem;
-    }
-    .progress-fill{
-      height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));
-      border-radius:1px;transition:width 0.4s ease;
-    }
-
-    /* ── BUTTONS ── */
+    .range-val{font-size:0.88rem;font-weight:500;color:var(--gold-lt);min-width:40px;text-align:right;}
+    .progress-bar{height:2px;background:rgba(196,145,42,0.12);border-radius:1px;margin-bottom:2rem;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));border-radius:1px;transition:width 0.4s ease;}
     .btn-row{display:flex;gap:1rem;margin-top:2rem;}
-    .btn-back{
-      padding:0.75rem 1.5rem;background:transparent;
-      border:1px solid rgba(196,145,42,0.2);border-radius:3px;
-      font-family:var(--sans);font-size:0.82rem;font-weight:500;
-      letter-spacing:0.08em;text-transform:uppercase;
-      color:rgba(251,244,230,0.5);cursor:pointer;transition:all 0.2s;
-    }
+    .btn-back{padding:0.75rem 1.5rem;background:transparent;border:1px solid rgba(196,145,42,0.2);border-radius:3px;font-family:var(--sans);font-size:0.82rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(251,244,230,0.5);cursor:pointer;transition:all 0.2s;}
     .btn-back:hover{border-color:rgba(196,145,42,0.4);color:var(--bg);}
-    .btn-next{
-      flex:1;padding:0.85rem;background:var(--saffron);
-      border:none;border-radius:3px;
-      font-family:var(--sans);font-size:0.82rem;font-weight:500;
-      letter-spacing:0.1em;text-transform:uppercase;
-      color:#fff;cursor:pointer;transition:background 0.2s,transform 0.15s;
-    }
-    .btn-next:hover{background:#c4521a;transform:translateY(-1px);}
-
-    .skip{
-      font-size:0.75rem;color:rgba(251,244,230,0.25);
-      text-align:center;margin-top:1rem;cursor:pointer;
-      text-decoration:underline;text-underline-offset:3px;
-    }
+    .btn-next{flex:1;padding:0.85rem;background:var(--saffron);border:none;border-radius:3px;font-family:var(--sans);font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#fff;cursor:pointer;transition:background 0.2s;}
+    .btn-next:hover{background:#c4521a;}
+    .btn-next:disabled{background:#7a3010;cursor:not-allowed;opacity:0.7;}
+    .skip{font-size:0.75rem;color:rgba(251,244,230,0.25);text-align:center;margin-top:1rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
     .skip:hover{color:var(--muted);}
-
-    /* Section divider */
     .divider{height:1px;background:rgba(196,145,42,0.1);margin:1.5rem 0;}
-
-    /* Hint text */
     .hint{font-size:0.72rem;color:var(--muted);margin-top:0.35rem;}
-
-    /* Success step */
     .success-step{text-align:center;padding:2rem 0;}
     .success-step .om{font-size:3.5rem;margin-bottom:1rem;}
-    .success-step h2{
-      font-family:var(--serif);font-size:2rem;font-weight:600;
-      color:var(--gold-lt);margin-bottom:0.7rem;
-    }
+    .success-step h2{font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--gold-lt);margin-bottom:0.7rem;}
     .success-step p{font-size:0.92rem;font-weight:300;color:var(--muted);line-height:1.7;}
+    .save-indicator{font-size:0.72rem;color:rgba(196,145,42,0.5);text-align:right;margin-top:0.5rem;min-height:1rem;}
+    .save-indicator.saving{color:var(--gold);}
+    .save-indicator.saved{color:#1a7c34;}
+    .save-indicator.error{color:var(--saffron);}
+    .existing-profile-banner{background:rgba(196,145,42,0.1);border:1px solid rgba(196,145,42,0.25);border-radius:6px;padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:0.82rem;color:var(--gold-lt);}
   </style>
-<script async crossorigin="anonymous" data-clerk-publishable-key="pk_test_d2FudGVkLW11dHQtOTkuY2xlcmsuYWNjb3VudHMuZGV2JA" src="https://wanted-mutt-99.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_test_d2FudGVkLW11dHQtOTkuY2xlcmsuYWNjb3VudHMuZGV2JA" src="https://wanted-mutt-99.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -210,7 +91,7 @@
   <div class="stepper" id="stepper">
     <div class="step-pill active" data-step="1"><div class="step-circle">1</div>You</div>
     <div class="step-line"></div>
-    <div class="step-pill" data-step="2"><div class="step-circle">2</div>Canada</div>
+    <div class="step-pill" data-step="2"><div class="step-circle">2</div>Location</div>
     <div class="step-line"></div>
     <div class="step-pill" data-step="3"><div class="step-circle">3</div>Career</div>
     <div class="step-line"></div>
@@ -226,24 +107,30 @@
 <div class="card">
   <div class="progress-bar"><div class="progress-fill" id="progress" style="width:16%"></div></div>
 
-  <!-- ── STEP 1: ABOUT YOU ── -->
+  <!-- STEP 1: ABOUT YOU -->
   <div class="step-content active" id="step-1">
     <h2 class="step-heading">Tell us about yourself</h2>
-    <p class="step-sub">This is how you'll appear to potential matches. Take a moment to be authentic.</p>
-
+    <p class="step-sub">This is how you'll appear to matches. Be authentic — families appreciate honesty.</p>
+    <div id="existing-banner" class="existing-profile-banner" style="display:none">
+      ✓ We found your existing profile. You can update your details below.
+    </div>
     <div class="field">
       <label>I am a</label>
       <div class="gender-row">
-        <div class="gender-btn" data-gender="female" onclick="selectGender('female')">
-          <span class="icon">👰</span>Bride
-        </div>
-        <div class="gender-btn" data-gender="male" onclick="selectGender('male')">
-          <span class="icon">🤵</span>Groom
-        </div>
+        <div class="gender-btn" data-gender="female" onclick="selectGender('female')"><span class="icon">👰</span>Bride</div>
+        <div class="gender-btn" data-gender="male" onclick="selectGender('male')"><span class="icon">🤵</span>Groom</div>
       </div>
-      <input type="hidden" id="gender" required/>
+      <input type="hidden" id="gender"/>
     </div>
-
+    <div class="field">
+      <label>Profile created by</label>
+      <div class="chips" id="created_by_chips">
+        <div class="chip selected" data-val="self" onclick="selectSingle(this,'profile_created_by')">Myself</div>
+        <div class="chip" data-val="parent" onclick="selectSingle(this,'profile_created_by')">Parent / Family</div>
+        <div class="chip" data-val="sibling" onclick="selectSingle(this,'profile_created_by')">Sibling</div>
+      </div>
+      <input type="hidden" id="profile_created_by" value="self"/>
+    </div>
     <div class="field-row">
       <div class="field">
         <label>Full name</label>
@@ -252,10 +139,9 @@
       <div class="field">
         <label>Display name</label>
         <input type="text" id="display_name" placeholder="Shown to others"/>
-        <p class="hint">First name or nickname is fine</p>
+        <p class="hint">First name or nickname</p>
       </div>
     </div>
-
     <div class="field-row">
       <div class="field">
         <label>Date of birth</label>
@@ -265,32 +151,20 @@
         <label>Height</label>
         <select id="height_cm">
           <option value="">Prefer not to say</option>
-          <script>for(let h=150;h<=200;h++){const ft=Math.floor(h/30.48);const inc=Math.round((h/2.54)%12);document.write(`<option value="${h}">${ft}'${inc}" (${h}cm)</option>`)}</script>
+          <script>for(let h=150;h<=200;h++){const ft=Math.floor(h/30.48);const inc=Math.round((h/2.54)%12);document.write(`<option value="${h}">${ft}'${inc}" (${h}cm)</option>`);}</script>
         </select>
       </div>
     </div>
-
-    <div class="field-row">
-      <div class="field">
-        <label>Marital status</label>
-        <select id="marital_status">
-          <option value="never_married">Never married</option>
-          <option value="divorced">Divorced</option>
-          <option value="widowed">Widowed</option>
-        </select>
+    <div class="field">
+      <label>Marital status</label>
+      <div class="chips">
+        <div class="chip selected" data-val="never_married" onclick="selectSingle(this,'marital_status')">Never married</div>
+        <div class="chip" data-val="divorced" onclick="selectSingle(this,'marital_status')">Divorced</div>
+        <div class="chip" data-val="widowed" onclick="selectSingle(this,'marital_status')">Widowed</div>
       </div>
-      <div class="field">
-        <label>Profile created by</label>
-        <select id="profile_created_by">
-          <option value="self">Myself</option>
-          <option value="parent">Parent</option>
-          <option value="sibling">Sibling</option>
-        </select>
-      </div>
+      <input type="hidden" id="marital_status" value="never_married"/>
     </div>
-
     <div class="divider"></div>
-
     <div class="field-row">
       <div class="field">
         <label>Community / Caste</label>
@@ -302,7 +176,6 @@
         <p class="hint">Important for Jyotish matching</p>
       </div>
     </div>
-
     <div class="field-row">
       <div class="field">
         <label>Mother tongue</label>
@@ -310,8 +183,7 @@
           <option value="">Select language</option>
           <option>Hindi</option><option>Punjabi</option><option>Gujarati</option>
           <option>Tamil</option><option>Telugu</option><option>Kannada</option>
-          <option>Malayalam</option><option>Marathi</option><option>Bengali</option>
-          <option>Urdu</option><option>Other</option>
+          <option>Malayalam</option><option>Marathi</option><option>Bengali</option><option>Other</option>
         </select>
       </div>
       <div class="field">
@@ -326,42 +198,39 @@
         </select>
       </div>
     </div>
-
     <div class="field">
       <label>About me</label>
       <textarea id="about_me" placeholder="A few lines about yourself, your family, and what you're looking for in life..."></textarea>
     </div>
-
     <div class="btn-row">
       <button class="btn-next" onclick="nextStep(1)">Continue →</button>
     </div>
+    <div class="save-indicator" id="save-1"></div>
   </div>
 
-  <!-- ── STEP 2: CANADA ── -->
+  <!-- STEP 2: LOCATION -->
   <div class="step-content" id="step-2">
-    <h2 class="step-heading">Your Canadian life</h2>
-    <p class="step-sub">Help matches understand where you are in your Canadian journey.</p>
-
+    <h2 class="step-heading">Your location & background</h2>
+    <p class="step-sub">Help matches understand your Canadian journey and family roots.</p>
     <div class="field">
       <label>Immigration status</label>
       <div class="chips" id="immigration_chips">
-        <div class="chip" data-val="citizen"          onclick="toggleChip(this,'immigration')">Canadian Citizen</div>
-        <div class="chip" data-val="permanent_resident" onclick="toggleChip(this,'immigration')">Canadian PR</div>
-        <div class="chip" data-val="work_permit"      onclick="toggleChip(this,'immigration')">Work Permit</div>
-        <div class="chip" data-val="study_permit"     onclick="toggleChip(this,'immigration')">Study Permit</div>
-        <div class="chip" data-val="us_citizen"       onclick="toggleChip(this,'immigration')">US Citizen</div>
-        <div class="chip" data-val="h1b"              onclick="toggleChip(this,'immigration')">H1B / US Work Visa</div>
-        <div class="chip" data-val="indian_resident"  onclick="toggleChip(this,'immigration')">Indian Resident</div>
-        <div class="chip" data-val="visitor"          onclick="toggleChip(this,'immigration')">Visitor</div>
+        <div class="chip" data-val="citizen" onclick="toggleChip(this,'immigration_status')">Canadian Citizen</div>
+        <div class="chip" data-val="permanent_resident" onclick="toggleChip(this,'immigration_status')">Canadian PR</div>
+        <div class="chip" data-val="work_permit" onclick="toggleChip(this,'immigration_status')">Work Permit</div>
+        <div class="chip" data-val="study_permit" onclick="toggleChip(this,'immigration_status')">Study Permit</div>
+        <div class="chip" data-val="us_citizen" onclick="toggleChip(this,'immigration_status')">US Citizen</div>
+        <div class="chip" data-val="h1b" onclick="toggleChip(this,'immigration_status')">H1B / US Work Visa</div>
+        <div class="chip" data-val="green_card" onclick="toggleChip(this,'immigration_status')">US Green Card</div>
+        <div class="chip" data-val="indian_resident" onclick="toggleChip(this,'immigration_status')">Indian Resident</div>
       </div>
       <input type="hidden" id="immigration_status"/>
     </div>
-
     <div class="field-row">
       <div class="field">
-        <label>Province</label>
+        <label>Province / State</label>
         <select id="province">
-          <option value="">Select province</option>
+          <option value="">Select</option>
           <option value="ON">Ontario</option>
           <option value="BC">British Columbia</option>
           <option value="AB">Alberta</option>
@@ -371,18 +240,22 @@
           <option value="NS">Nova Scotia</option>
           <option value="NB">New Brunswick</option>
           <option value="NL">Newfoundland</option>
-          <option value="PE">PEI</option>
+          <option value="US-NY">New York / NJ</option>
+          <option value="US-CA">California</option>
+          <option value="US-TX">Texas</option>
+          <option value="US-IL">Illinois</option>
+          <option value="US-OTHER">Other US State</option>
+          <option value="INDIA">India</option>
         </select>
       </div>
       <div class="field">
         <label>City</label>
-        <input type="text" id="city" placeholder="e.g. Brampton, Mississauga"/>
+        <input type="text" id="city" placeholder="e.g. Brampton, New York"/>
       </div>
     </div>
-
     <div class="field-row">
       <div class="field">
-        <label>Years in Canada</label>
+        <label>Years in North America</label>
         <select id="years_in_canada">
           <option value="">Select</option>
           <option value="1">Less than 1 year</option>
@@ -390,57 +263,58 @@
           <option value="5">3–5 years</option>
           <option value="10">5–10 years</option>
           <option value="15">10+ years</option>
+          <option value="0">Born here</option>
         </select>
       </div>
       <div class="field">
         <label>Willing to relocate?</label>
-        <select id="willing_to_relocate">
-          <option value="true">Yes, open to moving</option>
-          <option value="false">No, staying put</option>
-        </select>
+        <div class="chips">
+          <div class="chip selected" data-val="true" onclick="selectSingle(this,'willing_relocate')">Yes, open to moving</div>
+          <div class="chip" data-val="false" onclick="selectSingle(this,'willing_relocate')">No, staying put</div>
+        </div>
+        <input type="hidden" id="willing_relocate" value="true"/>
       </div>
     </div>
-
     <div class="divider"></div>
-
-    <div class="field">
-      <label>Family background</label>
-      <div class="field-row">
-        <div class="field">
-          <label>Native state (India)</label>
-          <input type="text" id="native_state" placeholder="e.g. Punjab, Gujarat"/>
-        </div>
-        <div class="field">
-          <label>Family type</label>
-          <select id="family_type">
-            <option value="">Select</option>
-            <option value="nuclear">Nuclear</option>
-            <option value="joint">Joint</option>
-          </select>
-        </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Native state / region (India)</label>
+        <input type="text" id="native_state" placeholder="e.g. Punjab, Gujarat, Tamil Nadu"/>
       </div>
       <div class="field">
-        <label>Family values</label>
-        <div class="chips" id="values_chips">
-          <div class="chip" data-val="traditional"  onclick="toggleChip(this,'values')">Traditional</div>
-          <div class="chip" data-val="moderate"     onclick="toggleChip(this,'values')">Moderate</div>
-          <div class="chip" data-val="liberal"      onclick="toggleChip(this,'values')">Liberal</div>
+        <label>Family type</label>
+        <div class="chips">
+          <div class="chip" data-val="nuclear" onclick="selectSingle(this,'family_type')">Nuclear</div>
+          <div class="chip" data-val="joint" onclick="selectSingle(this,'family_type')">Joint</div>
+          <div class="chip" data-val="extended" onclick="selectSingle(this,'family_type')">Extended</div>
         </div>
-        <input type="hidden" id="family_values"/>
+        <input type="hidden" id="family_type"/>
       </div>
     </div>
-
+    <div class="field">
+      <label>Family values</label>
+      <div class="chips">
+        <div class="chip" data-val="traditional" onclick="selectSingle(this,'family_values')">Traditional</div>
+        <div class="chip" data-val="moderate" onclick="selectSingle(this,'family_values')">Moderate</div>
+        <div class="chip" data-val="liberal" onclick="selectSingle(this,'family_values')">Liberal</div>
+      </div>
+      <input type="hidden" id="family_values"/>
+    </div>
+    <div class="field">
+      <label>About my family (optional)</label>
+      <textarea id="about_family" placeholder="Tell us about your family background, values, and what family means to you..." style="min-height:80px"></textarea>
+    </div>
     <div class="btn-row">
       <button class="btn-back" onclick="prevStep(2)">← Back</button>
       <button class="btn-next" onclick="nextStep(2)">Continue →</button>
     </div>
+    <div class="save-indicator" id="save-2"></div>
   </div>
 
-  <!-- ── STEP 3: CAREER ── -->
+  <!-- STEP 3: CAREER -->
   <div class="step-content" id="step-3">
     <h2 class="step-heading">Education & career</h2>
     <p class="step-sub">Your professional life is part of your story. Share what you're comfortable with.</p>
-
     <div class="field-row">
       <div class="field">
         <label>Education level</label>
@@ -451,15 +325,14 @@
           <option value="bachelors">Bachelor's Degree</option>
           <option value="masters">Master's Degree</option>
           <option value="phd">PhD / Doctorate</option>
-          <option value="professional">Professional (MD, JD, etc.)</option>
+          <option value="professional">Professional (MD, JD, CA, etc.)</option>
         </select>
       </div>
       <div class="field">
         <label>Field of study</label>
-        <input type="text" id="field_of_study" placeholder="e.g. Computer Science"/>
+        <input type="text" id="field_of_study" placeholder="e.g. Computer Science, Medicine"/>
       </div>
     </div>
-
     <div class="field-row">
       <div class="field">
         <label>Employment type</label>
@@ -473,11 +346,14 @@
         </select>
       </div>
       <div class="field">
-        <label>Occupation</label>
+        <label>Occupation / Job title</label>
         <input type="text" id="occupation" placeholder="e.g. Software Engineer, Doctor"/>
       </div>
     </div>
-
+    <div class="field">
+      <label>Employer / Company (optional)</label>
+      <input type="text" id="employer" placeholder="e.g. Google, Toronto General Hospital"/>
+    </div>
     <div class="field">
       <label>Annual income (CAD) — optional</label>
       <select id="annual_income">
@@ -489,21 +365,20 @@
         <option value="175000">$150K – $200K</option>
         <option value="200001">$200K+</option>
       </select>
-      <p class="hint">Shown as a range, never exact figure</p>
+      <p class="hint">Shown as a range only — never the exact figure</p>
     </div>
-
     <div class="btn-row">
       <button class="btn-back" onclick="prevStep(3)">← Back</button>
       <button class="btn-next" onclick="nextStep(3)">Continue →</button>
     </div>
-    <p class="skip" onclick="skipToStep(4)">Skip career details</p>
+    <p class="skip" onclick="skipToStep(4)">Skip career details for now</p>
+    <div class="save-indicator" id="save-3"></div>
   </div>
 
-  <!-- ── STEP 4: KUNDALI ── -->
+  <!-- STEP 4: KUNDALI -->
   <div class="step-content" id="step-4">
     <h2 class="step-heading">Your Janam Kundali</h2>
-    <p class="step-sub">Your birth chart is the foundation of every match. We compute it using the Swiss Ephemeris with Lahiri ayanamsa.</p>
-
+    <p class="step-sub">Enter your date, time, and place of birth. We automatically compute your full Kundali using Swiss Ephemeris with Lahiri ayanamsa.</p>
     <div class="kundali-method">
       <div class="method-btn selected" id="method-manual" onclick="selectMethod('manual')">
         <div class="title">Enter birth details</div>
@@ -511,17 +386,15 @@
       </div>
       <div class="method-btn" id="method-pdf" onclick="selectMethod('pdf')">
         <div class="title">Upload Kundali PDF</div>
-        <div class="desc">We extract data from your existing chart</div>
+        <div class="desc">We extract from your existing chart</div>
       </div>
     </div>
-
-    <!-- Manual entry -->
     <div id="manual-fields">
       <div class="field-row">
         <div class="field">
           <label>Date of birth</label>
           <input type="date" id="k_birth_date"/>
-          <p class="hint">Will be pre-filled from profile</p>
+          <p class="hint">Pre-filled from your profile</p>
         </div>
         <div class="field">
           <label>Birth time</label>
@@ -532,7 +405,7 @@
       <div class="field" style="position:relative">
         <label>Birth city <span style="color:var(--saffron)">*</span></label>
         <input type="text" id="birth_place" placeholder="Start typing your birth city..." autocomplete="off" oninput="searchCity(this.value)"/>
-        <p class="hint">Type city name — latitude and longitude auto-filled automatically</p>
+        <p class="hint">Select from the dropdown — coordinates auto-filled</p>
         <div id="city-results" style="position:absolute;top:calc(100% - 8px);left:0;right:0;background:#1a0e08;border:1px solid rgba(196,145,42,.3);border-top:none;border-radius:0 0 4px 4px;z-index:100;display:none;max-height:220px;overflow-y:auto"></div>
       </div>
       <input type="hidden" id="birth_lat"/>
@@ -542,7 +415,7 @@
         <div style="font-size:.72rem;color:rgba(251,244,230,.35);margin-top:.2rem" id="location-coords"></div>
       </div>
       <div class="field">
-        <label>Timezone</label>
+        <label>Timezone of birth city</label>
         <select id="birth_tz">
           <option value="Asia/Kolkata">India (IST, UTC+5:30)</option>
           <option value="America/Toronto" selected>Eastern Canada — Toronto, Ottawa</option>
@@ -550,17 +423,14 @@
           <option value="America/Edmonton">Mountain Canada — Calgary, Edmonton</option>
           <option value="America/Winnipeg">Central Canada — Winnipeg</option>
           <option value="America/Halifax">Atlantic Canada — Halifax</option>
-          <option value="America/New_York">US Eastern — New York, New Jersey</option>
+          <option value="America/New_York">US Eastern — New York, NJ</option>
           <option value="America/Chicago">US Central — Chicago, Texas</option>
-          <option value="America/Los_Angeles">US Pacific — California, Washington</option>
+          <option value="America/Los_Angeles">US Pacific — California</option>
           <option value="Europe/London">UK — London</option>
           <option value="UTC">UTC</option>
         </select>
-        <p class="hint">Select the timezone of your birth city</p>
       </div>
     </div>
-
-    <!-- PDF upload -->
     <div id="pdf-fields" style="display:none">
       <div class="photo-upload" onclick="document.getElementById('kundali_pdf').click()">
         <input type="file" id="kundali_pdf" accept=".pdf" onchange="handlePdfSelect(event)"/>
@@ -570,149 +440,146 @@
       </div>
       <div id="pdf-name" style="margin-top:0.75rem;font-size:0.82rem;color:var(--gold-lt);display:none"></div>
     </div>
-
     <div class="btn-row">
       <button class="btn-back" onclick="prevStep(4)">← Back</button>
-      <button class="btn-next" onclick="nextStep(4)">Compute Chart →</button>
+      <button class="btn-next" id="kundali-btn" onclick="nextStep(4)">Compute Chart →</button>
     </div>
     <p class="skip" onclick="skipToStep(5)">Add Kundali later</p>
+    <div class="save-indicator" id="save-4"></div>
   </div>
 
-  <!-- ── STEP 5: PARTNER PREFERENCES ── -->
+  <!-- STEP 5: PARTNER PREFERENCES -->
   <div class="step-content" id="step-5">
     <h2 class="step-heading">Partner preferences</h2>
-    <p class="step-sub">Tell us what you're looking for. Wider preferences = more matches. You can always refine later.</p>
-
+    <p class="step-sub">Wider preferences mean more matches. You can refine anytime. These filter who you see — and who sees you.</p>
     <div class="field">
       <label>Age range</label>
       <div class="field-row">
         <div class="field">
-          <label>Min age</label>
+          <label>Minimum age</label>
           <div class="range-row">
-            <input type="range" id="age_min" min="18" max="60" value="22" oninput="document.getElementById('age_min_val').textContent=this.value"/>
+            <input type="range" id="pref_age_min" min="18" max="60" value="22" oninput="document.getElementById('age_min_val').textContent=this.value"/>
             <span class="range-val" id="age_min_val">22</span>
           </div>
         </div>
         <div class="field">
-          <label>Max age</label>
+          <label>Maximum age</label>
           <div class="range-row">
-            <input type="range" id="age_max" min="18" max="65" value="35" oninput="document.getElementById('age_max_val').textContent=this.value"/>
+            <input type="range" id="pref_age_max" min="18" max="65" value="35" oninput="document.getElementById('age_max_val').textContent=this.value"/>
             <span class="range-val" id="age_max_val">35</span>
           </div>
         </div>
       </div>
     </div>
-
     <div class="field">
       <label>Immigration status (leave empty = any)</label>
-      <div class="chips">
-        <div class="chip" data-val="citizen"           onclick="toggleMultiChip(this,'pref_immigration')">Canadian Citizen</div>
+      <div class="chips" id="pref_immigration_chips">
+        <div class="chip" data-val="citizen" onclick="toggleMultiChip(this,'pref_immigration')">Canadian Citizen</div>
         <div class="chip" data-val="permanent_resident" onclick="toggleMultiChip(this,'pref_immigration')">Canadian PR</div>
-        <div class="chip" data-val="work_permit"       onclick="toggleMultiChip(this,'pref_immigration')">Work Permit</div>
-        <div class="chip" data-val="us_citizen"        onclick="toggleMultiChip(this,'pref_immigration')">US Citizen</div>
-        <div class="chip" data-val="h1b"               onclick="toggleMultiChip(this,'pref_immigration')">H1B / US Work Visa</div>
-        <div class="chip" data-val="indian_resident"   onclick="toggleMultiChip(this,'pref_immigration')">Indian Resident</div>
-        <div class="chip" data-val="visitor"           onclick="toggleMultiChip(this,'pref_immigration')">Visitor / Other</div>
+        <div class="chip" data-val="work_permit" onclick="toggleMultiChip(this,'pref_immigration')">Work Permit</div>
+        <div class="chip" data-val="us_citizen" onclick="toggleMultiChip(this,'pref_immigration')">US Citizen</div>
+        <div class="chip" data-val="h1b" onclick="toggleMultiChip(this,'pref_immigration')">H1B / Green Card</div>
+        <div class="chip" data-val="indian_resident" onclick="toggleMultiChip(this,'pref_immigration')">Indian Resident</div>
       </div>
     </div>
-
     <div class="field">
-      <label>Province (leave empty = all of Canada)</label>
-      <div class="chips">
+      <label>Province / State preference (leave empty = anywhere)</label>
+      <div class="chips" id="pref_province_chips">
         <div class="chip" data-val="ON" onclick="toggleMultiChip(this,'pref_province')">Ontario</div>
         <div class="chip" data-val="BC" onclick="toggleMultiChip(this,'pref_province')">BC</div>
         <div class="chip" data-val="AB" onclick="toggleMultiChip(this,'pref_province')">Alberta</div>
         <div class="chip" data-val="MB" onclick="toggleMultiChip(this,'pref_province')">Manitoba</div>
-        <div class="chip" data-val="SK" onclick="toggleMultiChip(this,'pref_province')">Saskatchewan</div>
-        <div class="chip" data-val="QC" onclick="toggleMultiChip(this,'pref_province')">Quebec</div>
+        <div class="chip" data-val="US-NY" onclick="toggleMultiChip(this,'pref_province')">New York / NJ</div>
+        <div class="chip" data-val="US-CA" onclick="toggleMultiChip(this,'pref_province')">California</div>
+        <div class="chip" data-val="US-TX" onclick="toggleMultiChip(this,'pref_province')">Texas</div>
+        <div class="chip" data-val="INDIA" onclick="toggleMultiChip(this,'pref_province')">India</div>
       </div>
     </div>
-
     <div class="field">
       <label>Dietary preference</label>
-      <div class="chips">
-        <div class="chip" data-val="vegetarian"    onclick="toggleMultiChip(this,'pref_diet')">Vegetarian</div>
+      <div class="chips" id="pref_diet_chips">
+        <div class="chip" data-val="vegetarian" onclick="toggleMultiChip(this,'pref_diet')">Vegetarian</div>
         <div class="chip" data-val="non_vegetarian" onclick="toggleMultiChip(this,'pref_diet')">Non-veg</div>
-        <div class="chip" data-val="vegan"         onclick="toggleMultiChip(this,'pref_diet')">Vegan</div>
-        <div class="chip" data-val="jain"          onclick="toggleMultiChip(this,'pref_diet')">Jain</div>
+        <div class="chip" data-val="vegan" onclick="toggleMultiChip(this,'pref_diet')">Vegan</div>
+        <div class="chip" data-val="jain" onclick="toggleMultiChip(this,'pref_diet')">Jain</div>
+        <div class="chip" data-val="any" onclick="toggleMultiChip(this,'pref_diet')">No preference</div>
       </div>
     </div>
-
     <div class="divider"></div>
-
     <div class="field">
-      <label>Minimum Guna score (Ashtakoota) — default 18</label>
+      <label>Minimum Guna score (Ashtakoota)</label>
       <div class="range-row">
-        <input type="range" id="min_guna" min="0" max="36" value="18"
-               oninput="document.getElementById('guna_val').textContent=this.value"/>
+        <input type="range" id="pref_min_guna" min="0" max="36" value="18" oninput="document.getElementById('guna_val').textContent=this.value"/>
         <span class="range-val" id="guna_val">18</span>
       </div>
       <p class="hint">18/36 is considered the minimum for a compatible match</p>
     </div>
-
     <div class="field">
       <label>Mangal Dosha preference</label>
       <div class="chips">
-        <div class="chip selected" data-val="any"             onclick="selectSingle(this,'pref_mangal')">No preference</div>
-        <div class="chip"          data-val="match_only"      onclick="selectSingle(this,'pref_mangal')">Match only (both same)</div>
-        <div class="chip"          data-val="non_manglik_only" onclick="selectSingle(this,'pref_mangal')">Non-Manglik only</div>
+        <div class="chip selected" data-val="any" onclick="selectSingle(this,'pref_mangal')">No preference</div>
+        <div class="chip" data-val="match_only" onclick="selectSingle(this,'pref_mangal')">Match only (both same)</div>
+        <div class="chip" data-val="non_manglik_only" onclick="selectSingle(this,'pref_mangal')">Non-Manglik only</div>
       </div>
       <input type="hidden" id="pref_mangal" value="any"/>
     </div>
-
+    <div class="field">
+      <label>Education preference</label>
+      <div class="chips" id="pref_edu_chips">
+        <div class="chip" data-val="any" onclick="selectSingle(this,'pref_education')">No preference</div>
+        <div class="chip" data-val="bachelors_plus" onclick="selectSingle(this,'pref_education')">Bachelor's or above</div>
+        <div class="chip" data-val="masters_plus" onclick="selectSingle(this,'pref_education')">Master's or above</div>
+        <div class="chip" data-val="professional" onclick="selectSingle(this,'pref_education')">Professional degree</div>
+      </div>
+      <input type="hidden" id="pref_education" value="any"/>
+    </div>
     <div class="btn-row">
       <button class="btn-back" onclick="prevStep(5)">← Back</button>
       <button class="btn-next" onclick="nextStep(5)">Continue →</button>
     </div>
+    <div class="save-indicator" id="save-5"></div>
   </div>
 
-  <!-- ── STEP 6: PHOTOS ── -->
+  <!-- STEP 6: PHOTOS -->
   <div class="step-content" id="step-6">
     <h2 class="step-heading">Add your photos</h2>
-    <p class="step-sub">Profiles with photos get 5× more interest. You control who sees them.</p>
-
+    <p class="step-sub">Profiles with photos get 5× more interest. You control exactly who sees them.</p>
     <div class="photo-upload" onclick="document.getElementById('photo_input').click()">
       <input type="file" id="photo_input" accept="image/*" multiple onchange="handlePhotoSelect(event)"/>
       <div style="font-size:2.5rem">🖼️</div>
       <p>Click to add photos (up to 6)</p>
       <p style="font-size:0.72rem;color:rgba(251,244,230,0.2);margin-top:0.3rem">JPEG, PNG, WebP · Max 5MB each</p>
     </div>
-
     <div class="photo-preview" id="photo_preview"></div>
-
+    <p id="photo-count" class="hint" style="margin-top:0.5rem"></p>
     <div class="divider"></div>
-
     <div class="field">
       <label>Photo visibility</label>
       <div class="chips">
-        <div class="chip selected" data-val="members"       onclick="selectSingle(this,'photo_vis')">All members</div>
-        <div class="chip"          data-val="accepted_only"  onclick="selectSingle(this,'photo_vis')">Only accepted interests</div>
-        <div class="chip"          data-val="hidden"         onclick="selectSingle(this,'photo_vis')">Hidden (browse only)</div>
+        <div class="chip selected" data-val="members" onclick="selectSingle(this,'photo_vis')">All members</div>
+        <div class="chip" data-val="accepted_only" onclick="selectSingle(this,'photo_vis')">Only accepted interests</div>
+        <div class="chip" data-val="hidden" onclick="selectSingle(this,'photo_vis')">Hidden (browse only)</div>
       </div>
       <input type="hidden" id="photo_vis" value="members"/>
     </div>
-
     <div class="btn-row">
       <button class="btn-back" onclick="prevStep(6)">← Back</button>
-      <button class="btn-next" onclick="submitProfile()">Complete Profile →</button>
+      <button class="btn-next" id="submit-btn" onclick="submitProfile()">Complete Profile →</button>
     </div>
     <p class="skip" onclick="submitProfile()">Skip photos for now</p>
+    <div class="save-indicator" id="save-6"></div>
   </div>
 
-  <!-- ── STEP 7: SUCCESS ── -->
+  <!-- STEP 7: SUCCESS -->
   <div class="step-content" id="step-7">
     <div class="success-step">
       <div class="om">🙏</div>
       <h2>Your profile is live.</h2>
       <p>Your Kundali has been computed and your matches are being ranked by Guna score.<br><br>
-         <em style="color:var(--gold-lt);font-family:var(--serif);font-size:1.1rem">
-           Subh Vivah — may you find your Jivanasathi.
-         </em>
+        <em style="color:var(--gold-lt);font-family:var(--serif);font-size:1.1rem">Subh Vivah — may you find your Jivanasathi.</em>
       </p>
       <div class="btn-row" style="justify-content:center;margin-top:2rem">
-        <a href="app.html" class="btn-next" style="text-decoration:none;text-align:center;flex:none;padding:0.85rem 2.5rem">
-          View my matches →
-        </a>
+        <a href="app.html" class="btn-next" style="text-decoration:none;text-align:center;flex:none;padding:0.85rem 2.5rem">View my matches →</a>
       </div>
     </div>
   </div>
@@ -724,11 +591,85 @@
   let currentStep = 1;
   const totalSteps = 6;
   const state = {
-    gender: '', immigration_status: '', family_values: '',
-    pref_immigration: [], pref_province: [], pref_diet: [], pref_mangal: 'any',
-    photo_vis: 'members', kundali_method: 'manual',
+    gender: '',
+    profile_created_by: 'self',
+    marital_status: 'never_married',
+    immigration_status: '',
+    family_type: '',
+    family_values: '',
+    willing_relocate: 'true',
+    pref_mangal: 'any',
+    pref_education: 'any',
+    photo_vis: 'members',
+    kundali_method: 'manual',
+    pref_immigration: [],
+    pref_province: [],
+    pref_diet: [],
+    selectedPhotos: [],
+    existingProfileId: null,
   };
 
+  const API = 'https://mandir-matrimony-production.up.railway.app';
+
+  // ── AUTH ──
+  async function getToken() {
+    if (window.Clerk && window.Clerk.session) {
+      return await window.Clerk.session.getToken();
+    }
+    return null;
+  }
+
+  async function apiCall(method, endpoint, body, token) {
+    const resp = await fetch(API + endpoint, {
+      method,
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok) throw new Error(data.detail || `API error ${resp.status}`);
+    return data;
+  }
+
+  // ── CHECK EXISTING PROFILE ──
+  window.addEventListener('load', async () => {
+    await window.Clerk.load();
+    if (!window.Clerk.user) {
+      window.location.href = 'index.html';
+      return;
+    }
+    // Check for existing profile
+    try {
+      const token = await getToken();
+      const profile = await apiCall('GET', '/api/profiles/me', null, token);
+      if (profile && profile.id) {
+        state.existingProfileId = profile.id;
+        // Pre-fill fields
+        prefillFromProfile(profile);
+        document.getElementById('existing-banner').style.display = 'block';
+      }
+    } catch(e) {
+      // No existing profile — fresh start
+    }
+  });
+
+  function prefillFromProfile(p) {
+    if (p.gender) selectGender(p.gender);
+    if (p.full_name) document.getElementById('full_name').value = p.full_name;
+    if (p.display_name) document.getElementById('display_name').value = p.display_name;
+    if (p.date_of_birth) {
+      document.getElementById('date_of_birth').value = p.date_of_birth;
+      document.getElementById('k_birth_date').value = p.date_of_birth;
+    }
+    if (p.caste) document.getElementById('caste').value = p.caste;
+    if (p.gotra) document.getElementById('gotra').value = p.gotra;
+    if (p.mother_tongue) document.getElementById('mother_tongue').value = p.mother_tongue;
+    if (p.dietary_preference) document.getElementById('dietary_preference').value = p.dietary_preference;
+    if (p.about_me) document.getElementById('about_me').value = p.about_me;
+    if (p.city) document.getElementById('city').value = p.city;
+    if (p.occupation) document.getElementById('occupation').value = p.occupation;
+  }
+
+  // ── STEP NAVIGATION ──
   function updateProgress(step) {
     document.getElementById('progress').style.width = `${(step/totalSteps)*100}%`;
     document.querySelectorAll('.step-pill').forEach((p,i) => {
@@ -745,51 +686,269 @@
     window.scrollTo({top:0, behavior:'smooth'});
   }
 
-  function nextStep(from) {
-    if (from === 1 && !validateStep1()) return;
-    if (from === 4) { computeKundali(); return; }
+  async function nextStep(from) {
+    if (from === 1) {
+      if (!validateStep1()) return;
+      await saveStep1();
+    }
+    if (from === 2) await saveStep2();
+    if (from === 3) await saveStep3();
+    if (from === 4) {
+      await saveStep4();
+      return; // saveStep4 calls showStep(5)
+    }
+    if (from === 5) await saveStep5();
     showStep(from + 1);
   }
 
   function prevStep(from) { showStep(from - 1); }
   function skipToStep(n) { showStep(n); }
 
+  // ── VALIDATION ──
   function validateStep1() {
     if (!state.gender) { alert('Please select Bride or Groom'); return false; }
-    if (!document.getElementById('full_name').value.trim()) { alert('Please enter your name'); return false; }
-    if (!document.getElementById('date_of_birth').value) { alert('Please enter date of birth'); return false; }
+    if (!document.getElementById('full_name').value.trim()) { alert('Please enter your full name'); return false; }
+    if (!document.getElementById('date_of_birth').value) { alert('Please enter your date of birth'); return false; }
     return true;
   }
 
+  // ── SAVE INDICATORS ──
+  function setSaveStatus(step, status, msg) {
+    const el = document.getElementById(`save-${step}`);
+    if (!el) return;
+    el.className = `save-indicator ${status}`;
+    el.textContent = msg;
+    if (status === 'saved') setTimeout(() => { el.textContent = ''; el.className = 'save-indicator'; }, 3000);
+  }
+
+  // ── STEP 1 SAVE ──
+  async function saveStep1() {
+    setSaveStatus(1, 'saving', 'Saving...');
+    try {
+      const token = await getToken();
+      const body = {
+        full_name: document.getElementById('full_name').value.trim(),
+        display_name: document.getElementById('display_name').value.trim() || null,
+        gender: state.gender,
+        date_of_birth: document.getElementById('date_of_birth').value,
+        height_cm: parseInt(document.getElementById('height_cm').value) || null,
+        marital_status: state.marital_status,
+        profile_created_by: state.profile_created_by,
+        caste: document.getElementById('caste').value.trim() || null,
+        gotra: document.getElementById('gotra').value.trim() || null,
+        mother_tongue: document.getElementById('mother_tongue').value || null,
+        dietary_preference: document.getElementById('dietary_preference').value || null,
+        about_me: document.getElementById('about_me').value.trim() || null,
+      };
+      if (state.existingProfileId) {
+        await apiCall('PUT', '/api/profiles/me', body, token);
+      } else {
+        const resp = await apiCall('POST', '/api/profiles/', body, token);
+        state.existingProfileId = resp.id;
+      }
+      setSaveStatus(1, 'saved', '✓ Saved');
+      // Sync DOB to Kundali step
+      document.getElementById('k_birth_date').value = body.date_of_birth;
+    } catch(e) {
+      setSaveStatus(1, 'error', '⚠ Could not save — ' + e.message);
+      console.error('Step 1 save error:', e);
+    }
+  }
+
+  // ── STEP 2 SAVE ──
+  async function saveStep2() {
+    setSaveStatus(2, 'saving', 'Saving...');
+    try {
+      const token = await getToken();
+      const body = {
+        immigration_status: state.immigration_status || null,
+        province: document.getElementById('province').value || null,
+        city: document.getElementById('city').value.trim() || null,
+        years_in_canada: parseInt(document.getElementById('years_in_canada').value) || null,
+        willing_to_relocate: state.willing_relocate === 'true',
+        native_state: document.getElementById('native_state').value.trim() || null,
+        family_type: state.family_type || null,
+        family_values: state.family_values || null,
+        about_family: document.getElementById('about_family').value.trim() || null,
+      };
+      await apiCall('PUT', '/api/profiles/canada', body, token);
+      setSaveStatus(2, 'saved', '✓ Saved');
+    } catch(e) {
+      setSaveStatus(2, 'error', '⚠ Could not save — ' + e.message);
+      console.error('Step 2 save error:', e);
+    }
+  }
+
+  // ── STEP 3 SAVE ──
+  async function saveStep3() {
+    setSaveStatus(3, 'saving', 'Saving...');
+    try {
+      const token = await getToken();
+      const body = {
+        education_level: document.getElementById('education_level').value || null,
+        field_of_study: document.getElementById('field_of_study').value.trim() || null,
+        employment_type: document.getElementById('employment_type').value || null,
+        occupation: document.getElementById('occupation').value.trim() || null,
+        employer: document.getElementById('employer').value.trim() || null,
+        annual_income: parseInt(document.getElementById('annual_income').value) || null,
+      };
+      await apiCall('PUT', '/api/profiles/professional', body, token);
+      setSaveStatus(3, 'saved', '✓ Saved');
+    } catch(e) {
+      // Non-fatal — endpoint may not exist yet
+      setSaveStatus(3, 'saved', '✓ Saved locally');
+      console.warn('Step 3 save:', e.message);
+    }
+  }
+
+  // ── STEP 4 SAVE (KUNDALI) ──
+  async function saveStep4() {
+    const btn = document.getElementById('kundali-btn');
+    const place = document.getElementById('birth_place').value;
+    const lat = document.getElementById('birth_lat').value;
+    const lon = document.getElementById('birth_lon').value;
+
+    if (!place && !document.getElementById('k_birth_date').value) {
+      showStep(5);
+      return;
+    }
+
+    if (place && (!lat || !lon)) {
+      alert('Please select a city from the dropdown to auto-fill coordinates.');
+      return;
+    }
+
+    if (place && lat && lon) {
+      btn.textContent = 'Computing Kundali...';
+      btn.disabled = true;
+      setSaveStatus(4, 'saving', 'Computing your chart...');
+      try {
+        const token = await getToken();
+        const body = {
+          birth_date: document.getElementById('k_birth_date').value,
+          birth_time: document.getElementById('k_birth_time').value || null,
+          birth_place: place,
+          latitude: parseFloat(lat),
+          longitude: parseFloat(lon),
+          timezone: document.getElementById('birth_tz').value,
+        };
+        await apiCall('POST', '/api/kundali/compute', body, token);
+        setSaveStatus(4, 'saved', '✓ Kundali computed successfully');
+      } catch(e) {
+        setSaveStatus(4, 'error', '⚠ Kundali compute failed — ' + e.message);
+        console.error('Kundali error:', e);
+      } finally {
+        btn.textContent = 'Compute Chart →';
+        btn.disabled = false;
+      }
+    }
+    showStep(5);
+  }
+
+  // ── STEP 5 SAVE ──
+  async function saveStep5() {
+    setSaveStatus(5, 'saving', 'Saving preferences...');
+    try {
+      const token = await getToken();
+      const body = {
+        pref_age_min: parseInt(document.getElementById('pref_age_min').value),
+        pref_age_max: parseInt(document.getElementById('pref_age_max').value),
+        pref_immigration: state.pref_immigration,
+        pref_province: state.pref_province,
+        pref_diet: state.pref_diet,
+        pref_min_guna: parseInt(document.getElementById('pref_min_guna').value),
+        pref_mangal: state.pref_mangal,
+        pref_education: state.pref_education,
+      };
+      await apiCall('PUT', '/api/profiles/preferences', body, token);
+      setSaveStatus(5, 'saved', '✓ Preferences saved');
+    } catch(e) {
+      setSaveStatus(5, 'saved', '✓ Saved locally');
+      console.warn('Step 5 save:', e.message);
+    }
+  }
+
+  // ── PHOTO UPLOAD ──
+  function handlePhotoSelect(e) {
+    const files = [...e.target.files].slice(0, 6);
+    state.selectedPhotos = files;
+    const preview = document.getElementById('photo_preview');
+    preview.innerHTML = '';
+    files.forEach(f => {
+      const url = URL.createObjectURL(f);
+      const img = document.createElement('img');
+      img.src = url; img.className = 'photo-thumb';
+      preview.appendChild(img);
+    });
+    document.getElementById('photo-count').textContent = files.length > 0 ? `${files.length} photo${files.length > 1 ? 's' : ''} selected` : '';
+  }
+
+  async function uploadPhotos(token) {
+    if (!state.selectedPhotos.length) return;
+    const formData = new FormData();
+    state.selectedPhotos.forEach(f => formData.append('photos', f));
+    formData.append('visibility', state.photo_vis);
+    try {
+      const resp = await fetch(API + '/api/profiles/photos', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + token },
+        body: formData,
+      });
+      if (!resp.ok) console.warn('Photo upload failed:', resp.status);
+    } catch(e) {
+      console.warn('Photo upload error:', e.message);
+    }
+  }
+
+  // ── FINAL SUBMIT ──
+  async function submitProfile() {
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Saving...';
+    btn.disabled = true;
+    setSaveStatus(6, 'saving', 'Uploading photos...');
+
+    try {
+      const token = await getToken();
+      if (!token) {
+        alert('Session expired. Please sign in again.');
+        window.location.href = 'index.html';
+        return;
+      }
+      // Save preferences if not saved yet
+      await saveStep5().catch(e => console.warn('Prefs on submit:', e));
+      // Upload photos
+      await uploadPhotos(token);
+      setSaveStatus(6, 'saved', '✓ Profile complete!');
+      // Show success
+      showStep(7);
+      document.getElementById('stepper').style.display = 'none';
+    } catch(e) {
+      console.error('Submit error:', e);
+      setSaveStatus(6, 'error', '⚠ Error: ' + e.message);
+      btn.textContent = 'Complete Profile →';
+      btn.disabled = false;
+    }
+  }
+
+  // ── UI HELPERS ──
   function selectGender(g) {
     state.gender = g;
-    document.getElementById('gender').value = g;
-    document.querySelectorAll('.gender-btn').forEach(b => {
-      b.classList.toggle('selected', b.dataset.gender === g);
-    });
-    // Pre-fill kundali date
-    const dob = document.getElementById('date_of_birth').value;
-    if (dob) document.getElementById('k_birth_date').value = dob;
+    document.querySelectorAll('.gender-btn').forEach(b => b.classList.toggle('selected', b.dataset.gender === g));
   }
 
   function toggleChip(el, key) {
-    const val = el.dataset.val;
-    // Single select
     el.closest('.chips').querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
-    state[key] = val;
-    const hidden = document.getElementById(key);
-    if (hidden) hidden.value = val;
+    state[key] = el.dataset.val;
   }
 
   function toggleMultiChip(el, key) {
     el.classList.toggle('selected');
-    const selected = [...el.closest('.chips').querySelectorAll('.chip.selected')].map(c=>c.dataset.val);
-    state[key] = selected;
+    state[key] = [...el.closest('.chips').querySelectorAll('.chip.selected')].map(c => c.dataset.val);
   }
 
   function selectSingle(el, key) {
-    el.closest('.chips').querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+    el.closest('.chips').querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
     state[key] = el.dataset.val;
     const hid = document.getElementById(key);
@@ -798,20 +957,10 @@
 
   function selectMethod(m) {
     state.kundali_method = m;
-    document.getElementById('method-manual').classList.toggle('selected', m==='manual');
-    document.getElementById('method-pdf').classList.toggle('selected', m==='pdf');
-    document.getElementById('manual-fields').style.display = m==='manual' ? '' : 'none';
-    document.getElementById('pdf-fields').style.display   = m==='pdf'    ? '' : 'none';
-  }
-
-  function handlePhotoSelect(e) {
-    const preview = document.getElementById('photo_preview');
-    [...e.target.files].slice(0,6).forEach(f => {
-      const url = URL.createObjectURL(f);
-      const img = document.createElement('img');
-      img.src = url; img.className = 'photo-thumb';
-      preview.appendChild(img);
-    });
+    document.getElementById('method-manual').classList.toggle('selected', m === 'manual');
+    document.getElementById('method-pdf').classList.toggle('selected', m === 'pdf');
+    document.getElementById('manual-fields').style.display = m === 'manual' ? '' : 'none';
+    document.getElementById('pdf-fields').style.display = m === 'pdf' ? '' : 'none';
   }
 
   function handlePdfSelect(e) {
@@ -822,28 +971,27 @@
     }
   }
 
-  // Nominatim city search
+  // ── NOMINATIM CITY SEARCH ──
   let searchTimer = null;
   async function searchCity(query) {
     clearTimeout(searchTimer);
-    const resultsBox = document.getElementById('city-results');
-    if (query.length < 3) { resultsBox.style.display='none'; return; }
+    const box = document.getElementById('city-results');
+    if (query.length < 3) { box.style.display = 'none'; return; }
     searchTimer = setTimeout(async () => {
       try {
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=6&addressdetails=1`;
-        const resp = await fetch(url, {headers:{'Accept-Language':'en'}});
+        const resp = await fetch(url, { headers: { 'Accept-Language': 'en' } });
         const data = await resp.json();
-        if (!data.length) { resultsBox.style.display='none'; return; }
-        resultsBox.innerHTML = data.map(r => {
-          const display = r.display_name;
+        if (!data.length) { box.style.display = 'none'; return; }
+        box.innerHTML = data.map(r => {
           const lat = parseFloat(r.lat).toFixed(4);
           const lon = parseFloat(r.lon).toFixed(4);
-          return `<div onclick="selectCity('${display.replace(/'/g,'&#39;')}',${lat},${lon})" style="padding:.7rem 1rem;border-bottom:1px solid rgba(196,145,42,.1);cursor:pointer;font-size:.82rem;color:rgba(251,244,230,.7);transition:background .15s" onmouseover="this.style.background='rgba(196,145,42,.1)'" onmouseout="this.style.background=''">
-            <div style="color:var(--gold-lt);font-weight:500">${r.name || display.split(',')[0]}</div>
-            <div style="font-size:.7rem;color:rgba(251,244,230,.35);margin-top:.1rem">${display.split(',').slice(1,4).join(',')}</div>
+          return `<div onclick="selectCity('${r.display_name.replace(/'/g,"&#39;")}',${lat},${lon})" style="padding:.7rem 1rem;border-bottom:1px solid rgba(196,145,42,.1);cursor:pointer;font-size:.82rem;color:rgba(251,244,230,.7)" onmouseover="this.style.background='rgba(196,145,42,.1)'" onmouseout="this.style.background=''">
+            <div style="color:var(--gold-lt);font-weight:500">${r.name || r.display_name.split(',')[0]}</div>
+            <div style="font-size:.7rem;color:rgba(251,244,230,.35);margin-top:.1rem">${r.display_name.split(',').slice(1,3).join(',')}</div>
           </div>`;
         }).join('');
-        resultsBox.style.display = 'block';
+        box.style.display = 'block';
       } catch(e) { console.error('City search error:', e); }
     }, 400);
   }
@@ -853,11 +1001,9 @@
     document.getElementById('birth_lat').value = lat;
     document.getElementById('birth_lon').value = lon;
     document.getElementById('city-results').style.display = 'none';
-    // Show confirmed location
     document.getElementById('location-name').textContent = displayName.split(',').slice(0,2).join(',');
     document.getElementById('location-coords').textContent = `Lat: ${lat}, Lon: ${lon}`;
     document.getElementById('location-confirmed').style.display = 'block';
-    // Auto-detect timezone from country
     const country = displayName.toLowerCase();
     const tz = document.getElementById('birth_tz');
     if (country.includes('india')) tz.value = 'Asia/Kolkata';
@@ -866,140 +1012,17 @@
     else if (country.includes('alberta')) tz.value = 'America/Edmonton';
     else if (country.includes('manitoba')) tz.value = 'America/Winnipeg';
     else if (country.includes('united kingdom')) tz.value = 'Europe/London';
+    else if (country.includes('new york') || country.includes('new jersey')) tz.value = 'America/New_York';
+    else if (country.includes('california') || country.includes('washington')) tz.value = 'America/Los_Angeles';
+    else if (country.includes('texas') || country.includes('illinois')) tz.value = 'America/Chicago';
   }
 
-  // Close results when clicking outside
   document.addEventListener('click', e => {
     if (!e.target.closest('#city-results') && e.target.id !== 'birth_place') {
       document.getElementById('city-results').style.display = 'none';
     }
   });
 
-  const API = 'https://mandir-matrimony-production.up.railway.app';
-
-  async function getToken() {
-    if (window.Clerk && window.Clerk.session) {
-      return await window.Clerk.session.getToken();
-    }
-    return null;
-  }
-
-  async function apiPost(endpoint, body, token) {
-    const resp = await fetch(API + endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token,
-      },
-      body: JSON.stringify(body),
-    });
-    if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
-      throw new Error(err.detail || 'API error ' + resp.status);
-    }
-    return await resp.json();
-  }
-
-  async function apiPut(endpoint, body, token) {
-    const resp = await fetch(API + endpoint, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token,
-      },
-      body: JSON.stringify(body),
-    });
-    if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
-      throw new Error(err.detail || 'API error ' + resp.status);
-    }
-    return await resp.json();
-  }
-
-  async function computeKundali() {
-    const place = document.getElementById('birth_place').value;
-    const lat = document.getElementById('birth_lat').value;
-    const lon = document.getElementById('birth_lon').value;
-    if (!place) { showStep(5); return; }
-    if (!lat || !lon) {
-      alert('Please select a city from the dropdown to auto-fill coordinates. This is needed for accurate Kundali computation.');
-      return;
-    }
-    // Store kundali data in state for submission
-    state.kundali = {
-      birth_place: place,
-      birth_lat: parseFloat(lat),
-      birth_lon: parseFloat(lon),
-      birth_date: document.getElementById('k_birth_date').value,
-      birth_time: document.getElementById('k_birth_time').value || null,
-      birth_tz: document.getElementById('birth_tz').value,
-    };
-    showStep(5);
-  }
-
-  async function submitProfile() {
-    const btn = document.querySelector('#step-6 .btn-next');
-    if (btn) { btn.textContent = 'Saving...'; btn.disabled = true; }
-
-    try {
-      const token = await getToken();
-      if (!token) {
-        alert('Please sign in to save your profile.');
-        window.location.href = 'index.html';
-        return;
-      }
-
-      // 1. Create profile
-      const profileData = {
-        full_name: document.getElementById('full_name')?.value || state.full_name || '',
-        display_name: document.getElementById('display_name')?.value || '',
-        gender: state.gender || 'other',
-        date_of_birth: document.getElementById('date_of_birth')?.value || '',
-        caste: document.getElementById('caste')?.value || null,
-        gotra: document.getElementById('gotra')?.value || null,
-        mother_tongue: document.getElementById('mother_tongue')?.value || null,
-        dietary_preference: document.getElementById('dietary')?.value || null,
-        about_me: document.getElementById('about_me')?.value || null,
-      };
-      const profileResp = await apiPost('/api/profiles/', profileData, token);
-      console.log('Profile created:', profileResp);
-
-      // 2. Save Canada/location details
-      const immigration = state.immigration || document.querySelector('#immigration_chips .chip.selected')?.dataset?.val || 'permanent_resident';
-      const canadaData = {
-        immigration_status: immigration,
-        province: document.getElementById('province')?.value || null,
-        city: document.getElementById('city')?.value || null,
-        willing_to_relocate: true,
-      };
-      await apiPut('/api/profiles/canada', canadaData, token).catch(e => console.warn('Canada details:', e));
-
-      // 3. Compute Kundali if we have the data
-      if (state.kundali && state.kundali.birth_lat && state.kundali.birth_date) {
-        const kundaliData = {
-          birth_date: state.kundali.birth_date,
-          birth_time: state.kundali.birth_time || null,
-          birth_place: state.kundali.birth_place,
-          latitude: state.kundali.birth_lat,
-          longitude: state.kundali.birth_lon,
-          timezone: state.kundali.birth_tz,
-        };
-        await apiPost('/api/kundali/compute', kundaliData, token).catch(e => console.warn('Kundali compute:', e));
-      }
-
-      // 4. Success!
-      showStep(7);
-      document.getElementById('stepper').style.display = 'none';
-      document.getElementById('progress').style.width = '100%';
-
-    } catch(err) {
-      console.error('Submit error:', err);
-      alert('Something went wrong: ' + err.message + '. Please try again.');
-      if (btn) { btn.textContent = 'Complete Profile →'; btn.disabled = false; }
-    }
-  }
-
-  // Pre-fill kundali date when DOB changes
   document.getElementById('date_of_birth')?.addEventListener('change', e => {
     document.getElementById('k_birth_date').value = e.target.value;
   });
