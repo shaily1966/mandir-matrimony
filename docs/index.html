@@ -3,299 +3,354 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mandir Matrimony — Vedic Hindu Matrimony for Canada & North America</title>
-<meta name="description" content="Canada's first Hindu matrimony platform powered by authentic Vedic astrology. Full 8-Koot Kundali matching, diaspora filters, and AI-powered biodata tools. Serving Toronto, Brampton, Vancouver and across North America."/>
-<meta name="keywords" content="Hindu matrimony Canada, Vedic matchmaking Toronto, Kundali matching Canada, Hindu matrimony Brampton, Indian matrimony Ontario, Jyotish matchmaking North America"/>
-<meta property="og:title" content="Mandir Matrimony — Find Your Jivanasathi"/>
-<meta property="og:description" content="Canada's first Hindu matrimony platform built around authentic Vedic astrology and diaspora values."/>
+<title>Mandir Matrimony — Hindu Matrimony for North America & India</title>
+<meta name="description" content="North America's Hindu matrimony platform. Authentic 8-Koot Kundali matching for Hindus across the US, Canada, and Indians seeking matches in North America. Serving all communities with real Vedic astrology."/>
+<meta name="keywords" content="Hindu matrimony North America, Hindu matrimony USA, Hindu matrimony Canada, Vedic matchmaking USA, Kundali matching North America, Hindu matrimony New York, Hindu matrimony Toronto, Indian matrimony USA, Jyotish matchmaking, temple matrimony USA Canada"/>
+<meta property="og:title" content="Mandir Matrimony — Hindu Matrimony for North America"/>
+<meta property="og:description" content="North America's Hindu matrimony platform. Authentic Vedic astrology, immigration-aware filters, and family-first values for Hindus across the US, Canada, and India."/>
 <meta property="og:url" content="https://mandirmatrimony.ca"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://shaily1966.github.io/mandir-matrimony/og-image.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://mandirmatrimony.ca"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Mandir Matrimony","url":"https://mandirmatrimony.ca","description":"North America's Hindu matrimony platform — authentic Vedic astrology matching for Hindus in the US, Canada, and Indians seeking matches in North America","address":{"@type":"PostalAddress","addressLocality":"Brampton","addressRegion":"ON","addressCountry":"CA"},"contactPoint":{"@type":"ContactPoint","email":"hello@mandirmatrimony.ca","contactType":"customer support"},"areaServed":["US","CA","IN"]}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --dark:#0F0A05;
-  --dark2:#1A1008;
-  --bg:#FBF4E6;
-  --bg2:#F5EDD6;
+  --ivory:#FFF8F0;
+  --ivory2:#F5EDD6;
+  --ivory3:#EDE0C8;
   --saffron:#C85A10;
-  --saffron-lt:#E8742A;
+  --saffron-lt:#D97706;
   --gold:#B8861E;
-  --gold-lt:#D4A832;
-  --gold-pale:#E8BF6A;
-  --navy:#1A2F4A;
+  --gold-lt:#C9A227;
+  --gold-pale:#D4A832;
+  --navy:#1F2937;
   --navy2:#243447;
-  --text:#1C1208;
+  --dark:#0F0A05;
+  --text:#1F2937;
   --muted:#6B5A47;
+  --light-muted:#9B8A78;
+  --green:#16A34A;
   --serif:"Cormorant Garamond",serif;
   --sans:"DM Sans",sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
+body{font-family:var(--sans);background:var(--ivory);color:var(--text);overflow-x:hidden}
 
-/* ── MANDALA BG PATTERN ── */
-.mandala-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.045}
-.mandala-bg svg{position:absolute;right:-10%;top:-10%;width:65%;opacity:.6}
-.mandala-bg2{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.03}
-.mandala-bg2 svg{position:absolute;left:-5%;bottom:-10%;width:50%}
+/* ── PATTERNS ── */
+.ivory-pattern{background-image:radial-gradient(circle,rgba(184,134,30,.06) 1px,transparent 1px);background-size:28px 28px}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.9rem 3rem;background:rgba(15,10,5,0.96);border-bottom:1px solid rgba(184,134,30,0.18);transition:all .3s}
-.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--gold-pale);text-decoration:none;letter-spacing:.02em}
-.logo span{color:var(--saffron-lt)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.9rem 3rem;background:rgba(255,248,240,.97);border-bottom:1px solid rgba(184,134,30,.15);box-shadow:0 1px 20px rgba(0,0,0,.06)}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--navy);text-decoration:none}
+.logo span{color:var(--saffron)}
 .nav-links{display:flex;align-items:center;gap:2rem}
-.nav-links a{font-size:.8rem;font-weight:400;letter-spacing:.08em;color:rgba(251,244,230,.55);text-decoration:none;transition:color .2s}
-.nav-links a:hover{color:var(--gold-pale)}
-.nav-cta{display:flex;gap:.8rem}
-.btn-outline{padding:.5rem 1.2rem;border:1px solid rgba(184,134,30,.4);color:var(--gold-pale);font-family:var(--sans);font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;text-decoration:none;transition:all .2s;background:transparent}
-.btn-outline:hover{border-color:var(--gold-pale);color:#fff}
-.btn-primary{padding:.5rem 1.3rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;text-decoration:none;transition:background .2s}
-.btn-primary:hover{background:var(--saffron-lt)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.hamburger span{width:22px;height:2px;background:var(--gold-pale);display:block;transition:all .3s}
+.nav-links a{font-size:.8rem;font-weight:400;letter-spacing:.06em;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--saffron)}
+.nav-cta{display:flex;gap:.8rem;align-items:center}
+.btn-ghost{padding:.5rem 1.2rem;border:1px solid rgba(184,134,30,.35);color:var(--gold);font-family:var(--sans);font-size:.76rem;font-weight:500;letter-spacing:.08em;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s;background:transparent}
+.btn-ghost:hover{border-color:var(--saffron);color:var(--saffron)}
+.btn-nav-cta{padding:.5rem 1.3rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.76rem;font-weight:500;letter-spacing:.08em;border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-nav-cta:hover{background:var(--saffron-lt)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--navy);display:block}
+
+/* ── MOBILE MENU ── */
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,248,240,.98);z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--serif);font-size:1.8rem;color:var(--navy);text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.5rem;right:1.5rem;font-size:1.5rem;color:var(--navy);cursor:pointer;background:none;border:none}
+
+/* ── ANNOUNCEMENT BAR ── */
+.announce{background:var(--navy);color:rgba(255,248,240,.85);text-align:center;padding:.55rem 1rem;font-size:.72rem;font-weight:400;letter-spacing:.06em}
+.announce strong{color:var(--gold-pale)}
 
 /* ── HERO ── */
-#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 5rem;background:var(--dark);position:relative;overflow:hidden}
-.hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(200,90,16,.12) 0%,transparent 70%);pointer-events:none}
-.om{font-size:2rem;color:var(--gold-pale);opacity:.5;margin-bottom:1.5rem;display:block;animation:fadeUp .8s ease both}
-.hero-eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;animation:fadeUp .8s .1s ease both;opacity:0}
-h1{font-family:var(--serif);font-size:clamp(3.2rem,7.5vw,6rem);font-weight:700;line-height:1.02;margin-bottom:1.2rem;color:#fff;animation:fadeUp .8s .2s ease both;opacity:0}
-h1 em{font-style:italic;color:var(--gold-pale)}
-h1 .line2{display:block;color:rgba(255,255,255,.88)}
-.hero-sub{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:rgba(251,244,230,.5);margin-bottom:.6rem;animation:fadeUp .8s .3s ease both;opacity:0}
-.hero-sub2{font-size:.85rem;font-weight:300;color:rgba(251,244,230,.38);margin-bottom:2.8rem;animation:fadeUp .8s .35s ease both;opacity:0;letter-spacing:.04em}
-.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;animation:fadeUp .8s .4s ease both;opacity:0}
-.btn-hero-main{padding:.95rem 2.2rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 24px rgba(200,90,16,.35)}
-.btn-hero-main:hover{background:var(--saffron-lt);box-shadow:0 6px 32px rgba(200,90,16,.5)}
-.btn-hero-sec{padding:.95rem 2.2rem;background:transparent;color:var(--gold-pale);font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(184,134,30,.4);border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}
-.btn-hero-sec:hover{border-color:var(--gold-pale);background:rgba(184,134,30,.08)}
-.hero-note{font-size:.72rem;color:rgba(251,244,230,.25);margin-bottom:3.5rem;animation:fadeUp .8s .45s ease both;opacity:0}
-.hero-trust{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:3.5rem;animation:fadeUp .8s .5s ease both;opacity:0}
-.htag{font-size:.7rem;font-weight:400;letter-spacing:.08em;color:rgba(212,168,50,.7);padding:.35rem .85rem;border:1px solid rgba(184,134,30,.2);border-radius:20px}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(184,134,30,.15);border-radius:4px;overflow:hidden;max-width:640px;margin:0 auto;animation:fadeUp .8s .55s ease both;opacity:0}
-.stat{padding:1.4rem 1rem;text-align:center;border-right:1px solid rgba(184,134,30,.12)}
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 5rem;background:var(--ivory);position:relative;overflow:hidden}
+.hero-mandala{position:absolute;right:-8%;top:-5%;width:55%;opacity:.04;pointer-events:none}
+.hero-mandala2{position:absolute;left:-8%;bottom:-5%;width:40%;opacity:.03;pointer-events:none}
+.om{font-size:2.2rem;color:var(--gold);opacity:.6;margin-bottom:1.5rem;display:block}
+.hero-eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--saffron);margin-bottom:1.5rem;display:block}
+h1{font-family:var(--serif);font-size:clamp(2.8rem,6.5vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:1rem;color:var(--navy)}
+h1 em{font-style:italic;color:var(--saffron)}
+.hero-sub{font-size:1.1rem;font-weight:300;color:var(--muted);margin-bottom:.5rem;max-width:580px;line-height:1.7}
+.hero-trust-line{font-size:.82rem;font-weight:500;color:var(--navy);margin-bottom:.4rem;letter-spacing:.04em}
+.hero-trust-dots{font-size:.78rem;color:var(--light-muted);margin-bottom:2.5rem}
+.hero-trust-dots span{margin:0 .4rem;color:var(--gold)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:.8rem}
+.btn-hero{padding:1rem 2.2rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 20px rgba(200,90,16,.25)}
+.btn-hero:hover{background:var(--saffron-lt);box-shadow:0 6px 28px rgba(200,90,16,.4)}
+.btn-hero-sec{padding:1rem 2.2rem;background:transparent;color:var(--navy);font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(31,41,55,.25);border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-hero-sec:hover{border-color:var(--saffron);color:var(--saffron)}
+.hero-note{font-size:.72rem;color:var(--light-muted);margin-bottom:3.5rem}
+.hero-badges{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:3.5rem}
+.hbadge{font-size:.7rem;font-weight:500;padding:.35rem .85rem;border-radius:20px;border:1px solid rgba(184,134,30,.25);background:rgba(184,134,30,.07);color:var(--gold)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(184,134,30,.2);border-radius:6px;overflow:hidden;max-width:620px;margin:0 auto;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.stat{padding:1.4rem 1rem;text-align:center;border-right:1px solid rgba(184,134,30,.15)}
 .stat:last-child{border-right:none}
-.stat-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--gold-pale)}
-.stat-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(251,244,230,.35);margin-top:.3rem}
+.stat-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--saffron)}
+.stat-label{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--light-muted);margin-top:.3rem}
+.stat-context{font-size:.62rem;color:var(--light-muted);font-style:italic;margin-top:.15rem}
 
 /* ── TRUST BAR ── */
-#trustbar{background:rgba(26,47,74,.95);padding:1.1rem 2rem;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;border-top:1px solid rgba(184,134,30,.1);border-bottom:1px solid rgba(184,134,30,.1)}
-.titem{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(212,168,50,.8)}
-.titem svg{width:14px;height:14px;fill:currentColor;opacity:.7}
+#trustbar{background:var(--navy);padding:1.1rem 2rem;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.titem{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,248,240,.65)}
+.titem .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-pale);flex-shrink:0}
 
-/* ── WHY US ── */
-#why{background:var(--bg);padding:7rem 2rem}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
-.why-text .section-label{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--saffron);margin-bottom:1rem;display:block}
-.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:1.2rem;color:var(--text)}
+/* ── SECTION SHARED ── */
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--saffron);margin-bottom:1rem;display:block}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:1.2rem}
 .section-title em{font-style:italic;color:var(--gold)}
-.section-body{font-size:.95rem;font-weight:300;line-height:1.85;color:var(--muted);margin-bottom:2rem}
-.why-points{display:flex;flex-direction:column;gap:1.2rem}
-.why-point{display:flex;gap:1rem;align-items:flex-start}
-.why-icon{width:2.2rem;height:2.2rem;background:linear-gradient(135deg,var(--saffron),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;margin-top:.1rem}
-.why-point-text strong{display:block;font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
-.why-point-text span{font-size:.85rem;font-weight:300;line-height:1.7;color:var(--muted)}
-.why-visual{background:var(--dark);border-radius:8px;padding:2.5rem;border:1px solid rgba(184,134,30,.15)}
-.vs-table{width:100%}
-.vs-table th{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(251,244,230,.3);padding:.6rem .8rem;text-align:left;border-bottom:1px solid rgba(184,134,30,.12)}
-.vs-table th.us{color:var(--gold);text-align:center}
-.vs-table td{font-size:.8rem;font-weight:300;color:rgba(251,244,230,.65);padding:.8rem .8rem;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
-.vs-table td.check{text-align:center;font-size:1rem}
-.vs-table td.check.yes{color:#4CAF50}
-.vs-table td.check.no{color:rgba(255,255,255,.2)}
-.vs-title{font-family:var(--serif);font-size:1.1rem;color:var(--gold-pale);margin-bottom:1.5rem;text-align:center}
+.section-body{font-size:.95rem;font-weight:300;line-height:1.85;color:var(--muted)}
+section{padding:7rem 2rem}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── DIFFERENTIATORS ── */
+#diff{background:var(--ivory);padding:7rem 2rem}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.diff-points{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.diff-point{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem;background:#fff;border-radius:6px;border:1px solid rgba(184,134,30,.12);box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.diff-icon{width:2.4rem;height:2.4rem;background:linear-gradient(135deg,rgba(200,90,16,.1),rgba(184,134,30,.1));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.diff-point strong{display:block;font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.3rem}
+.diff-point span{font-size:.83rem;font-weight:300;line-height:1.7;color:var(--muted)}
+.diff-moat{background:var(--navy);border-radius:8px;padding:2.5rem}
+.diff-moat h3{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:#fff;margin-bottom:.6rem}
+.diff-moat p{font-size:.85rem;font-weight:300;line-height:1.8;color:rgba(255,248,240,.55);margin-bottom:1.8rem}
+.moat-items{display:flex;flex-direction:column;gap:.9rem}
+.moat-item{display:flex;gap:.8rem;align-items:flex-start}
+.moat-check{color:var(--gold-pale);font-size:1rem;flex-shrink:0;margin-top:.05rem}
+.moat-text{font-size:.82rem;font-weight:300;line-height:1.65;color:rgba(255,248,240,.6)}
+.moat-text strong{color:rgba(255,248,240,.85);font-weight:500}
 
 /* ── HOW ── */
-#how{background:var(--dark);padding:7rem 2rem;position:relative;overflow:hidden}
-#how .container{max-width:1100px;margin:0 auto;text-align:center}
-#how .section-label{color:var(--saffron);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:1rem}
-#how .section-title{color:#fff;margin-bottom:.8rem}
-#how .section-title em{color:var(--gold-pale)}
-#how .section-sub{font-size:.9rem;font-weight:300;color:rgba(251,244,230,.4);margin-bottom:4rem}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem}
-.step{background:rgba(255,255,255,.03);border:1px solid rgba(184,134,30,.12);border-radius:6px;padding:2.5rem 2rem;text-align:center;transition:border-color .2s}
-.step:hover{border-color:rgba(184,134,30,.35)}
-.step-num{width:3.5rem;height:3.5rem;border:1px solid rgba(184,134,30,.3);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--gold-pale);margin:0 auto 1.5rem}
-.step-title{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:#fff;margin-bottom:.8rem}
-.step-body{font-size:.84rem;font-weight:300;line-height:1.8;color:rgba(251,244,230,.45)}
+#how{background:var(--ivory2);padding:7rem 2rem}
+#how .section-title{text-align:center}
+#how .section-body{text-align:center;max-width:520px;margin:0 auto 3.5rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.step{background:#fff;border:1px solid rgba(184,134,30,.12);border-radius:8px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.04);transition:box-shadow .2s}
+.step:hover{box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.step-num{width:3.5rem;height:3.5rem;border:2px solid rgba(200,90,16,.2);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--saffron);margin:0 auto 1.5rem;background:rgba(200,90,16,.05)}
+.step-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:.7rem}
+.step-body{font-size:.83rem;font-weight:300;line-height:1.8;color:var(--muted)}
 
 /* ── JYOTISH ── */
-#jyotish{background:var(--bg2);padding:7rem 2rem}
+#jyotish{background:var(--navy);padding:7rem 2rem}
 .jyotish-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto}
-.koot-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(184,134,30,.15);border:1px solid rgba(184,134,30,.2);border-radius:6px;overflow:hidden;margin-top:2rem}
-.koot-item{background:var(--bg);padding:1.2rem 1.4rem}
-.koot-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
-.koot-max{font-size:.62rem;font-weight:500;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
-.koot-bar{height:3px;background:rgba(184,134,30,.2);border-radius:2px;margin-top:.5rem;overflow:hidden}
-.koot-fill{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));border-radius:2px}
-.jyotish-badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
-.badge{font-size:.7rem;font-weight:500;letter-spacing:.08em;padding:.4rem .9rem;border-radius:20px;border:1px solid rgba(200,90,16,.25);background:rgba(200,90,16,.07);color:var(--saffron)}
+#jyotish .section-label{color:var(--gold-pale)}
+#jyotish .section-title{color:#fff}
+#jyotish .section-title em{color:var(--gold-pale)}
+#jyotish .section-body{color:rgba(255,248,240,.55);margin-bottom:1.5rem}
+.jyotish-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem}
+.jbadge{font-size:.68rem;padding:.35rem .85rem;border-radius:20px;border:1px solid rgba(212,168,50,.25);background:rgba(212,168,50,.08);color:rgba(212,168,50,.8)}
+.koot-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,248,240,.08);border:1px solid rgba(255,248,240,.08);border-radius:8px;overflow:hidden}
+.koot-item{background:rgba(255,255,255,.04);padding:1.2rem 1.3rem}
+.koot-item:hover{background:rgba(255,255,255,.07)}
+.koot-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:rgba(255,248,240,.85);margin-bottom:.2rem}
+.koot-desc{font-size:.65rem;color:rgba(255,248,240,.3);margin-bottom:.5rem}
+.koot-bar{height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.koot-fill{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold-pale));border-radius:2px}
+.koot-pts{font-size:.6rem;color:rgba(212,168,50,.5);margin-top:.25rem;letter-spacing:.05em}
 
 /* ── FEATURES ── */
-#features{background:var(--dark);padding:7rem 2rem}
-#features .container{max-width:1100px;margin:0 auto}
-#features .section-label{color:var(--saffron);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:1rem;text-align:center}
-#features .section-title{color:#fff;text-align:center;margin-bottom:.8rem}
-#features .section-title em{color:var(--gold-pale)}
-#features .section-sub{font-size:.9rem;font-weight:300;color:rgba(251,244,230,.4);text-align:center;margin-bottom:3.5rem}
+#features{background:var(--ivory);padding:7rem 2rem}
+#features .section-title{text-align:center}
+#features .section-body{text-align:center;max-width:520px;margin:0 auto 3.5rem}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.feat-card{background:rgba(255,255,255,.03);border:1px solid rgba(184,134,30,.1);border-radius:6px;padding:2rem 1.8rem;transition:all .2s}
-.feat-card:hover{border-color:rgba(184,134,30,.3);background:rgba(255,255,255,.05)}
+.feat-card{background:#fff;border:1px solid rgba(184,134,30,.12);border-radius:8px;padding:2rem 1.8rem;transition:all .2s;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.feat-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);border-color:rgba(200,90,16,.2)}
 .feat-icon{font-size:1.8rem;margin-bottom:1.2rem}
-.feat-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:.6rem}
-.feat-body{font-size:.82rem;font-weight:300;line-height:1.75;color:rgba(251,244,230,.4)}
+.feat-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:.6rem}
+.feat-body{font-size:.82rem;font-weight:300;line-height:1.75;color:var(--muted)}
+.feat-sample{margin-top:1rem;padding:.7rem 1rem;background:var(--ivory2);border-radius:4px;font-size:.75rem;color:var(--muted);font-style:italic;border-left:2px solid var(--gold)}
 
-/* ── TRUST & SAFETY ── */
-#safety{background:var(--navy);padding:7rem 2rem}
-#safety .container{max-width:1100px;margin:0 auto;text-align:center}
-#safety .section-label{color:var(--gold);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:1rem}
-#safety .section-title{color:#fff;margin-bottom:.8rem}
-#safety .section-title em{color:var(--gold-pale)}
-#safety .section-sub{font-size:.9rem;font-weight:300;color:rgba(251,244,230,.45);margin-bottom:3.5rem}
-.safety-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-.safety-card{background:rgba(255,255,255,.05);border:1px solid rgba(184,134,30,.12);border-radius:6px;padding:2rem 1.5rem;text-align:center}
+/* ── SAMPLE BIODATA ── */
+#sample{background:var(--ivory2);padding:7rem 2rem}
+.sample-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.sample-preview{background:#fff;border:1px solid rgba(184,134,30,.2);border-radius:8px;padding:2rem;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.sample-header{display:flex;align-items:center;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(184,134,30,.15);margin-bottom:1.2rem}
+.sample-avatar{width:3.5rem;height:3.5rem;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.3rem;color:#fff;font-weight:700}
+.sample-name{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--navy)}
+.sample-sub{font-size:.72rem;color:var(--muted)}
+.sample-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:.78rem}
+.sample-row-label{color:var(--light-muted);font-weight:400}
+.sample-row-val{color:var(--navy);font-weight:500}
+.sample-guna{margin-top:1rem;padding:.8rem;background:linear-gradient(135deg,rgba(200,90,16,.06),rgba(184,134,30,.06));border-radius:4px;text-align:center}
+.guna-score{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--saffron)}
+.guna-label{font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.sample-disclaimer{font-size:.68rem;color:var(--light-muted);text-align:center;margin-top:.8rem;font-style:italic}
+
+/* ── TRUST ── */
+#safety{background:#fff;padding:7rem 2rem;border-top:1px solid rgba(184,134,30,.1)}
+#safety .section-title{text-align:center}
+#safety .section-body{text-align:center;max-width:520px;margin:0 auto 3.5rem}
+.safety-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2.5rem}
+.safety-card{background:var(--ivory);border:1px solid rgba(184,134,30,.12);border-radius:8px;padding:2rem 1.5rem;text-align:center}
 .safety-icon{font-size:2rem;margin-bottom:1rem}
-.safety-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--gold-pale);margin-bottom:.5rem}
-.safety-body{font-size:.78rem;font-weight:300;line-height:1.7;color:rgba(251,244,230,.4)}
-.pipeda-note{margin-top:2.5rem;font-size:.78rem;color:rgba(251,244,230,.3);font-style:italic}
-.pipeda-note strong{color:rgba(251,244,230,.5)}
+.safety-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.5rem}
+.safety-body{font-size:.78rem;font-weight:300;line-height:1.7;color:var(--muted)}
+.verified-bar{background:var(--ivory2);border:1px solid rgba(22,163,74,.2);border-radius:6px;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;max-width:800px;margin:0 auto}
+.verified-item{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--navy)}
+.verified-item .vcheck{color:var(--green);font-size:1rem}
+.pipeda{margin-top:2rem;text-align:center;font-size:.75rem;color:var(--light-muted);font-style:italic;max-width:700px;margin:2rem auto 0}
+.pipeda strong{color:var(--muted)}
 
-/* ── SUCCESS STORIES ── */
-#stories{background:var(--bg2);padding:7rem 2rem}
-#stories .container{max-width:1100px;margin:0 auto}
-#stories .section-label{color:var(--saffron);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:1rem;text-align:center}
-#stories .section-title{text-align:center;margin-bottom:.8rem}
-#stories .section-sub{font-size:.9rem;font-weight:300;color:var(--muted);text-align:center;margin-bottom:3.5rem}
-.stories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.story-card{background:var(--bg);border:1px solid rgba(184,134,30,.15);border-radius:6px;padding:2rem;box-shadow:0 2px 20px rgba(0,0,0,.06)}
-.story-top{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
-.story-avatar{width:3rem;height:3rem;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;flex-shrink:0}
-.story-name{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--text)}
-.story-loc{font-size:.72rem;color:var(--muted)}
-.story-quote{font-family:var(--serif);font-size:.95rem;font-style:italic;line-height:1.75;color:var(--text);opacity:.75;margin-bottom:1rem}
-.story-guna{font-size:.7rem;font-weight:500;letter-spacing:.08em;color:var(--gold);background:rgba(184,134,30,.1);padding:.3rem .7rem;border-radius:20px;display:inline-block}
-.stories-cta{text-align:center;margin-top:2.5rem;font-size:.85rem;color:var(--muted);font-style:italic}
+/* ── FOUNDING ── */
+#founding{background:var(--navy);padding:7rem 2rem;text-align:center}
+#founding .section-label{color:var(--gold-pale)}
+#founding .section-title{color:#fff}
+#founding .section-title em{color:var(--gold-pale)}
+#founding .section-body{color:rgba(255,248,240,.5);max-width:560px;margin:0 auto 3rem}
+.founding-count{font-family:var(--serif);font-size:5rem;font-weight:700;color:var(--saffron);line-height:1}
+.founding-label{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,248,240,.4);margin-top:.5rem;margin-bottom:3rem}
+.founding-perks{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:0 auto 3rem}
+.perk{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:1.8rem 1.5rem;text-align:center}
+.perk-icon{font-size:1.5rem;margin-bottom:.8rem}
+.perk-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:rgba(255,248,240,.85);margin-bottom:.4rem}
+.perk-body{font-size:.78rem;font-weight:300;color:rgba(255,248,240,.4);line-height:1.7}
 
 /* ── ABOUT ── */
-#about{background:var(--dark);padding:7rem 2rem}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
-#about .section-label{color:var(--saffron);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:1rem}
-#about .section-title{color:#fff;margin-bottom:1.2rem}
-#about .section-title em{color:var(--gold-pale)}
-#about .section-body{color:rgba(251,244,230,.5);margin-bottom:1.5rem;font-size:.9rem;line-height:1.9}
-.founder-card{background:rgba(255,255,255,.04);border:1px solid rgba(184,134,30,.15);border-radius:6px;padding:2rem}
-.founder-name{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--gold-pale);margin-bottom:.3rem}
-.founder-role{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(251,244,230,.35);margin-bottom:1rem}
-.founder-bio{font-size:.82rem;font-weight:300;line-height:1.8;color:rgba(251,244,230,.45)}
-.about-values{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
-.about-val{display:flex;gap:.8rem;align-items:flex-start}
-.val-dot{width:6px;height:6px;border-radius:50%;background:var(--saffron);margin-top:.45rem;flex-shrink:0}
-.val-text{font-size:.82rem;font-weight:300;line-height:1.7;color:rgba(251,244,230,.45)}
-.val-text strong{color:rgba(251,244,230,.7);font-weight:500}
+#about{background:var(--ivory);padding:7rem 2rem}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto}
+.founder-card{background:#fff;border:1px solid rgba(184,134,30,.15);border-radius:8px;padding:2.5rem;box-shadow:0 2px 16px rgba(0,0,0,.05)}
+.founder-top{display:flex;gap:1.2rem;align-items:center;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(184,134,30,.12)}
+.founder-avatar{width:4rem;height:4rem;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.5rem;font-weight:700;color:#fff;flex-shrink:0}
+.founder-name{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--navy)}
+.founder-role{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.founder-bio{font-size:.84rem;font-weight:300;line-height:1.85;color:var(--muted);margin-bottom:1.2rem}
+.founder-contact{display:flex;flex-direction:column;gap:.5rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(184,134,30,.12)}
+.founder-contact a{font-size:.8rem;color:var(--saffron);text-decoration:none;transition:color .2s}
+.founder-contact a:hover{color:var(--saffron-lt)}
+.founder-contact span{font-size:.78rem;color:var(--muted)}
+.about-values{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem}
+.about-val{display:flex;gap:.9rem;align-items:flex-start}
+.val-dot{width:8px;height:8px;border-radius:50%;background:var(--saffron);margin-top:.4rem;flex-shrink:0}
+.val-text strong{display:block;font-weight:500;color:var(--navy);font-size:.9rem;margin-bottom:.2rem}
+.val-text span{font-size:.83rem;font-weight:300;line-height:1.7;color:var(--muted)}
+
+/* ── ENDORSEMENT ── */
+#endorse{background:var(--ivory2);padding:5rem 2rem;text-align:center}
+.endorse-inner{max-width:700px;margin:0 auto}
+#endorse .section-label{text-align:center}
+#endorse .section-title{text-align:center;margin-bottom:1rem}
+#endorse .section-body{text-align:center;margin-bottom:2.5rem}
+.endorse-note{background:#fff;border:1px solid rgba(184,134,30,.2);border-radius:6px;padding:1.5rem 2rem;font-size:.82rem;font-weight:300;line-height:1.8;color:var(--muted);font-style:italic}
+.endorse-note strong{color:var(--navy);font-style:normal}
 
 /* ── FAQ ── */
-#faq{background:var(--bg);padding:7rem 2rem}
+#faq{background:#fff;padding:7rem 2rem}
 #faq .container{max-width:780px;margin:0 auto}
-#faq .section-label{color:var(--saffron);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:1rem;text-align:center}
 #faq .section-title{text-align:center;margin-bottom:.8rem}
-#faq .section-sub{font-size:.9rem;font-weight:300;color:var(--muted);text-align:center;margin-bottom:3rem}
+#faq .section-body{text-align:center;margin-bottom:3rem}
 .faq-item{border-bottom:1px solid rgba(184,134,30,.15);padding:1.4rem 0}
-.faq-q{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq-q{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;background:none;border:none;width:100%;text-align:left;padding:0}
 .faq-q svg{width:16px;height:16px;flex-shrink:0;fill:var(--gold);transition:transform .3s}
 .faq-a{font-size:.85rem;font-weight:300;line-height:1.85;color:var(--muted);max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease}
 .faq-item.open .faq-a{max-height:300px;padding-top:.9rem}
 .faq-item.open .faq-q svg{transform:rotate(45deg)}
 
-/* ── LOCATIONS ── */
-#locations{background:var(--dark2);padding:4rem 2rem;text-align:center}
-#locations .label{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
-.city-list{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem}
-.city{font-size:.78rem;font-weight:300;color:rgba(251,244,230,.4);padding:.35rem .9rem;border:1px solid rgba(184,134,30,.12);border-radius:20px}
+/* ── CITIES ── */
+#locations{background:var(--ivory2);padding:4rem 2rem;text-align:center}
+.loc-label{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:block}
+.city-list{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.city{font-size:.76rem;font-weight:300;color:var(--muted);padding:.3rem .8rem;border:1px solid rgba(184,134,30,.15);border-radius:20px;background:#fff}
 
-/* ── WAITLIST / CTA ── */
-#waitlist{background:var(--dark);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden}
-.waitlist-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(200,90,16,.1) 0%,transparent 70%);pointer-events:none}
-#waitlist .section-label{color:var(--saffron);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:1rem}
-#waitlist .section-title{color:#fff;margin-bottom:.8rem}
+/* ── WAITLIST ── */
+#waitlist{background:var(--navy);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden}
+.waitlist-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(200,90,16,.12) 0%,transparent 70%);pointer-events:none}
+#waitlist .section-label{color:var(--gold-pale)}
+#waitlist .section-title{color:#fff}
 #waitlist .section-title em{color:var(--gold-pale)}
-#waitlist .section-sub{font-size:.9rem;font-weight:300;color:rgba(251,244,230,.4);max-width:520px;margin:0 auto 2.5rem}
+#waitlist .section-body{color:rgba(255,248,240,.45);max-width:520px;margin:0 auto 2.5rem}
 .waitlist-form{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:.8rem}
 .form-row{display:flex;gap:.8rem}
-.form-row input,.form-row select,.waitlist-form input,.waitlist-form select{flex:1;padding:.9rem 1.1rem;background:rgba(255,255,255,.05);border:1px solid rgba(184,134,30,.18);border-radius:3px;outline:none;font-family:var(--sans);font-size:.84rem;color:rgba(251,244,230,.85);transition:border-color .2s}
-.form-row input:focus,.form-row select:focus{border-color:rgba(184,134,30,.5)}
-.form-row select option{background:var(--dark)}
-.btn-waitlist{width:100%;padding:1rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;margin-top:.4rem;transition:background .2s;box-shadow:0 4px 20px rgba(200,90,16,.3)}
+.form-row input,.form-row select,.waitlist-form input{flex:1;padding:.9rem 1.1rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:3px;outline:none;font-family:var(--sans);font-size:.84rem;color:rgba(255,248,240,.9);transition:border-color .2s}
+.form-row input:focus,.form-row select:focus{border-color:rgba(212,168,50,.5)}
+.form-row input::placeholder{color:rgba(255,248,240,.3)}
+.form-row select{color:rgba(255,248,240,.9)}
+.form-row select option{background:var(--navy2);color:rgba(255,248,240,.9)}
+.btn-waitlist{width:100%;padding:1rem;background:var(--saffron);color:#fff;font-family:var(--sans);font-size:.84rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;transition:background .2s;box-shadow:0 4px 20px rgba(200,90,16,.3)}
 .btn-waitlist:hover{background:var(--saffron-lt)}
-.form-privacy{font-size:.7rem;color:rgba(251,244,230,.22);margin-top:.5rem}
-.success-wrap{display:none;text-align:center;padding:3rem 2rem;border:1px solid rgba(184,134,30,.25);border-radius:6px;max-width:500px;margin:0 auto}
-.success-wrap .om2{font-size:3rem;display:block;margin-bottom:1rem}
-.success-wrap h3{font-family:var(--serif);font-size:2rem;color:var(--gold-pale);margin-bottom:.5rem}
-.success-wrap p{font-size:.85rem;color:rgba(251,244,230,.4)}
+.form-privacy{font-size:.7rem;color:rgba(255,248,240,.2);margin-top:.4rem}
+.success-wrap{display:none;text-align:center;padding:3rem 2rem;border:1px solid rgba(212,168,50,.25);border-radius:8px;max-width:500px;margin:0 auto}
+.success-wrap h3{font-family:var(--serif);font-size:2rem;color:var(--gold-pale);margin-bottom:.6rem}
+.success-wrap p{font-size:.85rem;color:rgba(255,248,240,.4)}
+.api-error{font-size:.78rem;color:#FF6B6B;margin-top:.5rem;display:none}
 
 /* ── FOOTER ── */
-footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3rem}
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding:4rem 3rem 2rem}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto}
-.footer-brand .logo2{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--gold-pale);margin-bottom:.8rem;display:block}
-.footer-brand .logo2 span{color:var(--saffron-lt)}
-.footer-brand p{font-size:.8rem;font-weight:300;line-height:1.75;color:rgba(251,244,230,.3);max-width:260px;margin-bottom:1.2rem}
-.footer-contact{font-size:.78rem;color:rgba(251,244,230,.35);display:flex;flex-direction:column;gap:.4rem}
-.footer-contact a{color:rgba(251,244,230,.35);text-decoration:none;transition:color .2s}
-.footer-contact a:hover{color:var(--gold-pale)}
-.footer-col h4{font-size:.68rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,134,30,.6);margin-bottom:1rem}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-.footer-col ul li a{font-size:.78rem;font-weight:300;color:rgba(251,244,230,.3);text-decoration:none;transition:color .2s}
-.footer-col ul li a:hover{color:rgba(251,244,230,.7)}
-.footer-bottom{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-bottom p{font-size:.72rem;color:rgba(251,244,230,.2)}
-.footer-disc{font-size:.68rem;color:rgba(251,244,230,.15);max-width:1100px;margin:.8rem auto 0;line-height:1.6}
+.footer-brand .flogo{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:rgba(255,248,240,.85);margin-bottom:.8rem;display:block}
+.footer-brand .flogo span{color:var(--saffron-lt)}
+.footer-brand p{font-size:.78rem;font-weight:300;line-height:1.75;color:rgba(255,248,240,.3);max-width:260px;margin-bottom:1.2rem}
+.footer-contacts{display:flex;flex-direction:column;gap:.4rem}
+.footer-contacts a,.footer-contacts span{font-size:.78rem;color:rgba(255,248,240,.3);text-decoration:none;transition:color .2s}
+.footer-contacts a:hover{color:var(--gold-pale)}
+.footer-col h4{font-size:.65rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.footer-col ul li a{font-size:.76rem;font-weight:300;color:rgba(255,248,240,.3);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:rgba(255,248,240,.7)}
+.footer-bottom{max-width:1100px;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.7rem;color:rgba(255,248,240,.2)}
+.footer-disc{font-size:.67rem;color:rgba(255,248,240,.15);max-width:1100px;margin:.8rem auto 0;line-height:1.65}
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:none}
+.hero-anim{animation:fadeUp .8s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
 
-/* ── MOBILE ── */
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{padding:.9rem 1.5rem}
   .nav-links{display:none}
   .hamburger{display:flex}
-  .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,10,5,.97);z-index:199;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
-  .mobile-menu.open{display:flex}
-  .mobile-menu a{font-family:var(--serif);font-size:1.8rem;color:var(--gold-pale);text-decoration:none}
-  .mobile-menu .close-btn{position:absolute;top:1.5rem;right:1.5rem;font-size:1.5rem;color:var(--gold-pale);cursor:pointer;background:none;border:none}
-  .why-grid,.jyotish-grid,.about-grid{grid-template-columns:1fr}
-  .steps,.feat-grid,.safety-grid,.stories-grid{grid-template-columns:1fr}
+  .diff-grid,.jyotish-grid,.about-grid,.sample-inner{grid-template-columns:1fr}
+  .steps,.feat-grid,.founding-perks{grid-template-columns:repeat(2,1fr)}
+  .safety-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .stat{border-bottom:1px solid rgba(184,134,30,.12)}
-  .form-row{flex-direction:column}
+  .stat{border-bottom:1px solid rgba(184,134,30,.1)}
   #trustbar{gap:1.2rem}
+  .form-row{flex-direction:column}
 }
-@media(max-width:480px){
-  h1{font-size:2.8rem}
+@media(max-width:600px){
+  h1{font-size:2.6rem}
+  .steps,.feat-grid,.founding-perks,.safety-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-hero,.btn-hero-sec{width:100%;max-width:320px;text-align:center}
 }
 </style>
 </head>
 <body>
 
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  🎉 <strong>Now accepting founding member registrations</strong> — Join the first 100 families shaping Mandir Matrimony
+</div>
+
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-btn" onclick="toggleMenu()">✕</button>
-  <a href="#why" onclick="toggleMenu()">Why Us</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="close-btn" onclick="toggleMenu()" aria-label="Close menu">✕</button>
+  <a href="#diff" onclick="toggleMenu()">Why Us</a>
   <a href="#how" onclick="toggleMenu()">How It Works</a>
-  <a href="#jyotish" onclick="toggleMenu()">Jyotish</a>
+  <a href="#jyotish" onclick="toggleMenu()">Vedic Matching</a>
   <a href="#features" onclick="toggleMenu()">Features</a>
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
-  <a href="#waitlist" onclick="toggleMenu()" style="color:var(--saffron-lt)">Join Free →</a>
+  <a href="#waitlist" onclick="toggleMenu()" style="color:var(--saffron)">Join Free →</a>
 </div>
 
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">Mandir <span>Matrimony</span></a>
   <div class="nav-links">
-    <a href="#why">Why Us</a>
+    <a href="#diff">Why Us</a>
     <a href="#how">How It Works</a>
     <a href="#jyotish">Vedic Matching</a>
     <a href="#features">Features</a>
@@ -303,141 +358,109 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
     <a href="#faq">FAQ</a>
   </div>
   <div class="nav-cta">
-    <a href="app.html" class="btn-outline">Sign In</a>
-    <a href="app.html" class="btn-primary">Create Profile</a>
+    <a href="app.html" class="btn-ghost">Sign In</a>
+    <a href="#waitlist" class="btn-nav-cta">Join Free</a>
   </div>
-  <div class="hamburger" onclick="toggleMenu()">
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Open navigation menu" aria-expanded="false">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-glow"></div>
-  <div class="mandala-bg">
-    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#C4912A" stroke-width="0.5">
-        <circle cx="250" cy="250" r="240"/><circle cx="250" cy="250" r="200"/><circle cx="250" cy="250" r="160"/>
-        <circle cx="250" cy="250" r="120"/><circle cx="250" cy="250" r="80"/><circle cx="250" cy="250" r="40"/>
-        <line x1="250" y1="10" x2="250" y2="490"/><line x1="10" y1="250" x2="490" y2="250"/>
-        <line x1="80" y1="80" x2="420" y2="420"/><line x1="420" y1="80" x2="80" y2="420"/>
-        <polygon points="250,30 290,170 430,170 320,255 360,395 250,310 140,395 180,255 70,170 210,170" fill="none"/>
-        <polygon points="250,80 270,140 340,140 285,178 305,240 250,205 195,240 215,178 160,140 230,140"/>
-        <circle cx="250" cy="250" r="15"/><circle cx="250" cy="250" r="5"/>
-        <circle cx="250" cy="30" r="8"/><circle cx="250" cy="470" r="8"/><circle cx="30" cy="250" r="8"/><circle cx="470" cy="250" r="8"/>
-        <circle cx="80" cy="80" r="6"/><circle cx="420" cy="80" r="6"/><circle cx="80" cy="420" r="6"/><circle cx="420" cy="420" r="6"/>
-      </g>
-    </svg>
-  </div>
+<section id="hero" class="ivory-pattern">
+  <!-- Mandala SVGs -->
+  <svg class="hero-mandala" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#B8861E" stroke-width="0.6">
+      <circle cx="250" cy="250" r="240"/><circle cx="250" cy="250" r="200"/><circle cx="250" cy="250" r="160"/>
+      <circle cx="250" cy="250" r="120"/><circle cx="250" cy="250" r="80"/><circle cx="250" cy="250" r="40"/>
+      <line x1="250" y1="10" x2="250" y2="490"/><line x1="10" y1="250" x2="490" y2="250"/>
+      <line x1="80" y1="80" x2="420" y2="420"/><line x1="420" y1="80" x2="80" y2="420"/>
+      <polygon points="250,30 290,170 430,170 320,255 360,395 250,310 140,395 180,255 70,170 210,170"/>
+    </g>
+  </svg>
 
-  <span class="om">ॐ</span>
-  <span class="hero-eyebrow">Canada's First Jyotish-Powered Hindu Matrimony Platform</span>
-  <h1>Find Your <em>Jivanasathi</em><br><span class="line2">Guided by the Stars</span></h1>
-  <p class="hero-sub">Where sacred Vedic tradition meets the modern diaspora.</p>
-  <p class="hero-sub2">Toronto · Brampton · Vancouver · Calgary · Montreal · New York · Chicago</p>
-  <div class="hero-btns">
-    <a href="app.html" class="btn-hero-main">Create Free Profile →</a>
-    <a href="app.html" class="btn-hero-sec">Browse Profiles</a>
+  <span class="om hero-anim" aria-hidden="true">ॐ</span>
+  <span class="hero-eyebrow hero-anim d1">North America's Hindu Matrimony Platform — US · Canada · India Connections</span>
+  <h1 class="hero-anim d2">Find Your Life Partner<br>Through <em>Faith, Family</em> & Values</h1>
+  <p class="hero-sub hero-anim d3">Verified profiles. Trusted families. Authentic Vedic compatibility — for Hindus across the US and Canada, and Indians in India seeking a life partner in North America.</p>
+  <p class="hero-trust-line hero-anim d3">Verified Profiles &nbsp;·&nbsp; Trusted Families &nbsp;·&nbsp; Safe Connections</p>
+  <div class="hero-btns hero-anim d4">
+    <a href="#waitlist" class="btn-hero">Join the Founding Community →</a>
+    <a href="#how" class="btn-hero-sec">See How It Works</a>
   </div>
-  <p class="hero-note">Free to join &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Your data stays private</p>
-  <div class="hero-trust">
-    <span class="htag">✓ All Hindu communities welcome</span>
-    <span class="htag">✓ Full 8-Koot Kundali matching</span>
-    <span class="htag">✓ Immigration status filters</span>
-    <span class="htag">✓ Canada & North America focused</span>
-    <span class="htag">✓ Family involvement supported</span>
+  <p class="hero-note hero-anim d4">Free to join &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Your data stays private</p>
+  <div class="hero-badges hero-anim d5">
+    <span class="hbadge">✓ All Hindu communities</span>
+    <span class="hbadge">✓ Full 8-Koot Kundali</span>
+    <span class="hbadge">✓ US · Canada · India connections</span>
+    <span class="hbadge">✓ Immigration & visa filters</span>
+    <span class="hbadge">✓ Family involvement supported</span>
   </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">36</div><div class="stat-label">Max Guna Points</div></div>
-    <div class="stat"><div class="stat-num">27</div><div class="stat-label">Nakshatras Mapped</div></div>
-    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Koot Analysis</div></div>
-    <div class="stat"><div class="stat-num">.ca</div><div class="stat-label">Built for Canada</div></div>
+  <div class="hero-stats hero-anim d6" role="region" aria-label="The Vedic system by the numbers">
+    <div class="stat"><div class="stat-num">36</div><div class="stat-label">Max Guna Points</div><div class="stat-context">Vedic compatibility</div></div>
+    <div class="stat"><div class="stat-num">27</div><div class="stat-label">Nakshatras</div><div class="stat-context">Birth star system</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Koot Analysis</div><div class="stat-context">Compatibility pillars</div></div>
+    <div class="stat"><div class="stat-num">.ca</div><div class="stat-label">Canada First</div><div class="stat-context">Diaspora focused</div></div>
   </div>
 </section>
 
 <!-- TRUST BAR -->
-<div id="trustbar">
-  <div class="titem">
-    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-    Verified Profiles Only
-  </div>
-  <div class="titem">
-    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-    PIPEDA Privacy Compliant
-  </div>
-  <div class="titem">
-    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-    Swiss Ephemeris Engine
-  </div>
-  <div class="titem">
-    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-    Family-Friendly Platform
-  </div>
-  <div class="titem">
-    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
-    Authentic Vedic Astrology
-  </div>
+<div id="trustbar" role="region" aria-label="Trust indicators">
+  <div class="titem"><span class="dot" aria-hidden="true"></span>Profiles reviewed before approval</div>
+  <div class="titem"><span class="dot" aria-hidden="true"></span>PIPEDA privacy compliant</div>
+  <div class="titem"><span class="dot" aria-hidden="true"></span>Swiss Ephemeris engine</div>
+  <div class="titem"><span class="dot" aria-hidden="true"></span>Family-friendly platform</div>
+  <div class="titem"><span class="dot" aria-hidden="true"></span>Zero fake profile tolerance</div>
 </div>
 
-<!-- WHY US -->
-<section id="why">
-  <div class="why-grid reveal">
-    <div class="why-text">
+<!-- DIFFERENTIATORS -->
+<section id="diff">
+  <div class="diff-grid container reveal">
+    <div>
       <span class="section-label">Why Mandir Matrimony</span>
-      <h2 class="section-title">Not just another<br><em>matrimony site</em></h2>
-      <p class="section-body">Shaadi.com and BharatMatrimony treat Kundali as a checkbox. We built our entire platform around it. Every match on Mandir Matrimony is scored using the same Vedic calculations your pandit uses — not a simplified algorithm, not a questionnaire.</p>
-      <div class="why-points">
-        <div class="why-point">
-          <div class="why-icon">🔭</div>
-          <div class="why-point-text">
-            <strong>Real Jyotish, not a checkbox</strong>
-            <span>Full Swiss Ephemeris computation, Lahiri ayanamsa, Mangal Dosha & Nadi Dosha checks built into every match score.</span>
+      <h2 class="section-title">Built for<br><em>North American Hindus</em></h2>
+      <p class="section-body">Most matrimony platforms were built for India first. Mandir Matrimony is designed for Hindus living in the US and Canada, and for families in India whose children are building lives in North America. Immigration status, state/province, visa type, and dual-culture values are central — not an afterthought.</p>
+      <div class="diff-points">
+        <div class="diff-point">
+          <div class="diff-icon" aria-hidden="true">🌎</div>
+          <div>
+            <strong>US · Canada · India — all three covered</strong>
+            <span>Whether you're in New York, Toronto, or Mumbai looking for a match in North America — our platform connects all three realities in one place.</span>
           </div>
         </div>
-        <div class="why-point">
-          <div class="why-icon">🍁</div>
-          <div class="why-point-text">
-            <strong>Built for the Canadian diaspora</strong>
-            <span>Filters for immigration status, PR/citizenship, province, H1B/TN visa status — things that matter when families meet.</span>
+        <div class="diff-point">
+          <div class="diff-icon" aria-hidden="true">🛂</div>
+          <div>
+            <strong>Immigration & visa filters no one else has</strong>
+            <span>US Citizen, Green Card, H1B, Canadian PR, work permit — filters that reflect what families actually discuss when evaluating a cross-border match.</span>
           </div>
         </div>
-        <div class="why-point">
-          <div class="why-icon">🛡️</div>
-          <div class="why-point-text">
-            <strong>Trust-first design</strong>
-            <span>All profiles are reviewed before approval. No fake accounts, no catfishing, no anonymous browsing.</span>
+        <div class="diff-point">
+          <div class="diff-icon" aria-hidden="true">🔭</div>
+          <div>
+            <strong>Authentic Jyotish, openly explained</strong>
+            <span>We use Swiss Ephemeris with Lahiri ayanamsa — the same standard professional Jyotishis use. Every Koot score is shown with its meaning, not hidden behind a percentage.</span>
           </div>
         </div>
-        <div class="why-point">
-          <div class="why-icon">🏛️</div>
-          <div class="why-point-text">
-            <strong>Temple community values</strong>
-            <span>Pan-Hindu, all communities. We support family involvement the way it's meant to work — with respect and dignity.</span>
+        <div class="diff-point">
+          <div class="diff-icon" aria-hidden="true">🏛️</div>
+          <div>
+            <strong>Pan-Hindu without community paywalls</strong>
+            <span>All sampradayas welcome — Gujarati, Punjabi, Tamil, Marathi, Bengali, and all communities — without the community-segregated pricing used by some platforms.</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="why-visual">
-      <p class="vs-title">How we compare</p>
-      <table class="vs-table">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th class="us">Mandir Matrimony</th>
-            <th>Others</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Full 8-Koot Kundali</td><td class="check yes">✓</td><td class="check no">✗</td></tr>
-          <tr><td>Swiss Ephemeris Engine</td><td class="check yes">✓</td><td class="check no">✗</td></tr>
-          <tr><td>Dosha Detection</td><td class="check yes">✓</td><td class="check no">✗</td></tr>
-          <tr><td>Canada-specific filters</td><td class="check yes">✓</td><td class="check no">✗</td></tr>
-          <tr><td>Immigration status filter</td><td class="check yes">✓</td><td class="check no">✗</td></tr>
-          <tr><td>AI Biodata Generator</td><td class="check yes">✓</td><td class="check no">✗</td></tr>
-          <tr><td>Family account access</td><td class="check yes">✓</td><td class="check no">✗</td></tr>
-          <tr><td>All Hindu communities</td><td class="check yes">✓</td><td class="check no">Partial</td></tr>
-        </tbody>
-      </table>
+    <div class="diff-moat">
+      <h3>Our Approach</h3>
+      <p>What makes Mandir Matrimony different is not a feature list — it is a philosophy. We are diaspora-first, not diaspora-as-afterthought.</p>
+      <div class="moat-items">
+        <div class="moat-item"><span class="moat-check" aria-hidden="true">✦</span><div class="moat-text"><strong>US, Canada & India in one platform</strong> — not three separate experiences bolted together</div></div>
+        <div class="moat-item"><span class="moat-check" aria-hidden="true">✦</span><div class="moat-text"><strong>North American reality at the core</strong> — immigration, state/province, visa status, dual-culture values built in from day one</div></div>
+        <div class="moat-item"><span class="moat-check" aria-hidden="true">✦</span><div class="moat-text"><strong>Family involvement by design</strong> — parents can co-manage profiles with dignity</div></div>
+        <div class="moat-item"><span class="moat-check" aria-hidden="true">✦</span><div class="moat-text"><strong>Privacy as a foundation</strong> — matrimony is a family matter, not a public discovery feed</div></div>
+        <div class="moat-item"><span class="moat-check" aria-hidden="true">✦</span><div class="moat-text"><strong>Trust before features</strong> — every profile reviewed before it appears in search</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -445,24 +468,24 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="container reveal">
-    <span class="section-label">Simple Process</span>
-    <h2 class="section-title">How Mandir Matrimony <em>works</em></h2>
-    <p class="section-sub">From profile to match in three guided steps</p>
+    <span class="section-label" style="text-align:center;display:block">Simple Process</span>
+    <h2 class="section-title" style="text-align:center">How it <em>works</em></h2>
+    <p class="section-body" style="text-align:center;max-width:520px;margin:0 auto 3.5rem">From profile to meaningful match in three guided steps</p>
     <div class="steps">
       <div class="step">
-        <div class="step-num">1</div>
+        <div class="step-num" aria-hidden="true">1</div>
         <h3 class="step-title">Create your profile</h3>
-        <p class="step-body">Just the basics first — name, age, city, community, profession. Add your photo and a short bio. Your family can help, or you can do it alone. Takes under 5 minutes.</p>
+        <p class="step-body">Just the basics first — name, age, city, community, profession. Your family can help. Takes under 5 minutes. Free forever.</p>
       </div>
       <div class="step">
-        <div class="step-num">2</div>
-        <h3 class="step-title">Enter your Kundali details</h3>
-        <p class="step-body">Provide your birth date, time, and city. Our platform computes your full Janam Kundali automatically using Swiss Ephemeris with Lahiri ayanamsa — no pandit required.</p>
+        <div class="step-num" aria-hidden="true">2</div>
+        <h3 class="step-title">Enter your birth details</h3>
+        <p class="step-body">Simply provide your date, time, and place of birth. We automatically calculate your full Janam Kundali — no pandit required, no manual input needed.</p>
       </div>
       <div class="step">
-        <div class="step-num">3</div>
+        <div class="step-num" aria-hidden="true">3</div>
         <h3 class="step-title">Meet your matches</h3>
-        <p class="step-body">Browse profiles ranked by Guna score out of 36, with all dosha flags shown clearly. Filter by location, community, education, immigration status, and more — free.</p>
+        <p class="step-body">Browse profiles ranked by Guna score out of 36, with dosha flags shown clearly. Filter by province, immigration status, community, profession, and more.</p>
       </div>
     </div>
   </div>
@@ -474,27 +497,25 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
     <div>
       <span class="section-label">Vedic Astrology</span>
       <h2 class="section-title">Matching beyond<br><em>horoscopes</em></h2>
-      <p class="section-body">Mandir Matrimony computes your full Janam Kundali from birth date, time, and place. Every match is scored across all 8 Koots with Mangal, Nadi, and Bhakoot Dosha checks built in. This is the same calculation method that trained Jyotish practitioners use — not a simplified approximation.</p>
+      <p class="section-body">Every match is scored across all 8 Koots with Mangal, Nadi, and Bhakoot Dosha checks. This is the same calculation method trained Jyotish practitioners use — not a simplified approximation. We show you the methodology openly because we have nothing to hide.</p>
       <div class="jyotish-badges">
-        <span class="badge">Swiss Ephemeris</span>
-        <span class="badge">Lahiri Ayanamsa</span>
-        <span class="badge">Mangal Dosha</span>
-        <span class="badge">Nadi Dosha</span>
-        <span class="badge">Bhakoot Check</span>
-        <span class="badge">27 Nakshatras</span>
+        <span class="jbadge">Swiss Ephemeris</span>
+        <span class="jbadge">Lahiri Ayanamsa</span>
+        <span class="jbadge">Mangal Dosha</span>
+        <span class="jbadge">Nadi Dosha</span>
+        <span class="jbadge">Bhakoot Check</span>
+        <span class="jbadge">27 Nakshatras</span>
       </div>
     </div>
-    <div>
-      <div class="koot-grid">
-        <div class="koot-item"><div class="koot-name">1. Varna</div><div class="koot-max">Max 1 pt — Spiritual compatibility</div><div class="koot-bar"><div class="koot-fill" style="width:12.5%"></div></div></div>
-        <div class="koot-item"><div class="koot-name">2. Vashya</div><div class="koot-max">Max 2 pts — Dominance & control</div><div class="koot-bar"><div class="koot-fill" style="width:25%"></div></div></div>
-        <div class="koot-item"><div class="koot-name">3. Tara</div><div class="koot-max">Max 3 pts — Birth star compatibility</div><div class="koot-bar"><div class="koot-fill" style="width:37.5%"></div></div></div>
-        <div class="koot-item"><div class="koot-name">4. Yoni</div><div class="koot-max">Max 4 pts — Intimacy & nature</div><div class="koot-bar"><div class="koot-fill" style="width:50%"></div></div></div>
-        <div class="koot-item"><div class="koot-name">5. Graha Maitri</div><div class="koot-max">Max 5 pts — Moon sign friendship</div><div class="koot-bar"><div class="koot-fill" style="width:62.5%"></div></div></div>
-        <div class="koot-item"><div class="koot-name">6. Gana</div><div class="koot-max">Max 6 pts — Temperament match</div><div class="koot-bar"><div class="koot-fill" style="width:75%"></div></div></div>
-        <div class="koot-item"><div class="koot-name">7. Bhakoot</div><div class="koot-max">Max 7 pts — Emotional & financial</div><div class="koot-bar"><div class="koot-fill" style="width:87.5%"></div></div></div>
-        <div class="koot-item"><div class="koot-name">8. Nadi</div><div class="koot-max">Max 8 pts — Health & progeny</div><div class="koot-bar"><div class="koot-fill" style="width:100%"></div></div></div>
-      </div>
+    <div class="koot-grid" role="list" aria-label="8 Koots of Vedic compatibility">
+      <div class="koot-item" role="listitem"><div class="koot-name">1. Varna</div><div class="koot-desc">Spiritual compatibility</div><div class="koot-bar"><div class="koot-fill" style="width:12.5%"></div></div><div class="koot-pts">Max 1 point</div></div>
+      <div class="koot-item" role="listitem"><div class="koot-name">2. Vashya</div><div class="koot-desc">Dominance & influence</div><div class="koot-bar"><div class="koot-fill" style="width:25%"></div></div><div class="koot-pts">Max 2 points</div></div>
+      <div class="koot-item" role="listitem"><div class="koot-name">3. Tara</div><div class="koot-desc">Birth star compatibility</div><div class="koot-bar"><div class="koot-fill" style="width:37.5%"></div></div><div class="koot-pts">Max 3 points</div></div>
+      <div class="koot-item" role="listitem"><div class="koot-name">4. Yoni</div><div class="koot-desc">Intimacy & nature</div><div class="koot-bar"><div class="koot-fill" style="width:50%"></div></div><div class="koot-pts">Max 4 points</div></div>
+      <div class="koot-item" role="listitem"><div class="koot-name">5. Graha Maitri</div><div class="koot-desc">Moon sign friendship</div><div class="koot-bar"><div class="koot-fill" style="width:62.5%"></div></div><div class="koot-pts">Max 5 points</div></div>
+      <div class="koot-item" role="listitem"><div class="koot-name">6. Gana</div><div class="koot-desc">Temperament match</div><div class="koot-bar"><div class="koot-fill" style="width:75%"></div></div><div class="koot-pts">Max 6 points</div></div>
+      <div class="koot-item" role="listitem"><div class="koot-name">7. Bhakoot</div><div class="koot-desc">Emotional & financial</div><div class="koot-bar"><div class="koot-fill" style="width:87.5%"></div></div><div class="koot-pts">Max 7 points</div></div>
+      <div class="koot-item" role="listitem"><div class="koot-name">8. Nadi</div><div class="koot-desc">Health & progeny</div><div class="koot-bar"><div class="koot-fill" style="width:100%"></div></div><div class="koot-pts">Max 8 points</div></div>
     </div>
   </div>
 </section>
@@ -502,40 +523,75 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
 <!-- FEATURES -->
 <section id="features">
   <div class="container reveal">
-    <span class="section-label">Platform Features</span>
-    <h2 class="section-title">Everything your family <em>needs</em></h2>
-    <p class="section-sub">Built for both the person searching and the family supporting them</p>
+    <span class="section-label" style="text-align:center;display:block">Platform Features</span>
+    <h2 class="section-title" style="text-align:center">Everything your family <em>needs</em></h2>
+    <p class="section-body" style="text-align:center;max-width:520px;margin:0 auto 3.5rem">Built for both the person searching and the family supporting them</p>
     <div class="feat-grid">
       <div class="feat-card">
-        <div class="feat-icon">🔯</div>
+        <div class="feat-icon" aria-hidden="true">🔯</div>
         <div class="feat-title">Full Kundali Report</div>
-        <div class="feat-body">Complete Janam Kundali computed from your birth details. All 12 houses, planetary positions, and a readable interpretation you can share with your family.</div>
+        <div class="feat-body">Complete Janam Kundali from your birth details. All 12 houses, planetary positions, and plain-English interpretation you can share with family.</div>
+        <div class="feat-sample">Sample: "Moon in Rohini Nakshatra — highly compatible with Hasta and Shravan..."</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">📄</div>
+        <div class="feat-icon" aria-hidden="true">📄</div>
         <div class="feat-title">AI Biodata Generator</div>
-        <div class="feat-body">Generate a beautiful, traditional-format biodata PDF in seconds. Include your photo, family details, education, and Kundali summary — ready to share.</div>
+        <div class="feat-body">Generate a traditional-format biodata PDF in seconds. Photo, family details, education, and Kundali summary — exactly the format families expect.</div>
+        <div class="feat-sample">Sample biodata preview available after signup</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">💫</div>
+        <div class="feat-icon" aria-hidden="true">💫</div>
         <div class="feat-title">Compatibility Reports</div>
-        <div class="feat-body">For any two profiles, get a full Guna Milan score with plain-English explanations of each Koot result and dosha flags your family can discuss.</div>
+        <div class="feat-body">Full Guna Milan score with plain-English explanations of each Koot result and dosha flags — a document your family can read together.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🍁</div>
-        <div class="feat-title">Diaspora Filters</div>
-        <div class="feat-body">Filter by Canadian province, immigration status, PR/citizenship, profession, education, and dual-culture lifestyle preferences that generic sites don't offer.</div>
+        <div class="feat-icon" aria-hidden="true">🌎</div>
+        <div class="feat-title">North America Filters</div>
+        <div class="feat-body">US state, Canadian province, immigration status (US Citizen, Green Card, H1B, Canadian PR, work permit), and India-based seeking North America — filters that reflect real family conversations.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">👨‍👩‍👧</div>
-        <div class="feat-title">Family Access</div>
-        <div class="feat-body">Parents and family members can create linked accounts to support the search — browse profiles together, save favourites, and communicate on behalf of your child.</div>
+        <div class="feat-icon" aria-hidden="true">👨‍👩‍👧</div>
+        <div class="feat-title">Family Account Access</div>
+        <div class="feat-body">Parents can create linked accounts to browse together, save favourites, and communicate with suitable families — family involvement by design.</div>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🔒</div>
+        <div class="feat-icon" aria-hidden="true">🔒</div>
         <div class="feat-title">Privacy Controls</div>
-        <div class="feat-body">Control who sees your photo, contact details, and full profile. Blur your photo until you express interest. Share selectively — your privacy is always in your hands.</div>
+        <div class="feat-body">Control who sees your photo, contact details, and full profile. Blur your photo until you express mutual interest. Your privacy is always in your hands.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE PREVIEW -->
+<section id="sample">
+  <div class="sample-inner reveal">
+    <div>
+      <span class="section-label">See It Before You Sign Up</span>
+      <h2 class="section-title">What a match<br><em>looks like</em></h2>
+      <p class="section-body" style="margin-bottom:1.5rem">This is a sample profile card — the kind you'll see when browsing matches. Guna score, dosha flags, and diaspora filters all visible at a glance.</p>
+      <p class="section-body" style="margin-bottom:1.5rem">Your full Kundali compatibility report goes much deeper — 4 paragraphs of Jyotish analysis explaining exactly why the planets align or where caution is warranted.</p>
+      <p style="font-size:.78rem;color:var(--light-muted);font-style:italic">Sample data shown for illustration. Real profiles visible after creating your free account.</p>
+    </div>
+    <div class="sample-preview">
+      <div class="sample-header">
+        <div class="sample-avatar" aria-hidden="true">A</div>
+        <div>
+          <div class="sample-name">Ananya S. — Sample Profile</div>
+          <div class="sample-sub">Mississauga, Ontario · Software Engineer</div>
+        </div>
+      </div>
+      <div class="sample-row"><span class="sample-row-label">Age</span><span class="sample-row-val">28 years</span></div>
+      <div class="sample-row"><span class="sample-row-label">Community</span><span class="sample-row-val">Gujarati</span></div>
+      <div class="sample-row"><span class="sample-row-label">Education</span><span class="sample-row-val">M.Eng, University of Toronto</span></div>
+      <div class="sample-row"><span class="sample-row-label">Status</span><span class="sample-row-val">Canadian Permanent Resident</span></div>
+      <div class="sample-row"><span class="sample-row-label">Nakshatra</span><span class="sample-row-val">Rohini (Moon sign: Vrishabha)</span></div>
+      <div class="sample-row"><span class="sample-row-label">Mangal Dosha</span><span class="sample-row-val" style="color:var(--green)">None detected</span></div>
+      <div class="sample-guna">
+        <div class="guna-score">29 / 36</div>
+        <div class="guna-label">Guna Score — High Compatibility</div>
+      </div>
+      <p class="sample-disclaimer">Sample profile for illustration only. Not a real user.</p>
     </div>
   </div>
 </section>
@@ -543,77 +599,68 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
 <!-- TRUST & SAFETY -->
 <section id="safety">
   <div class="container reveal">
-    <span class="section-label">Your Safety Matters</span>
-    <h2 class="section-title">We take trust <em>seriously</em></h2>
-    <p class="section-sub">Matrimony is one of the most important decisions in a family's life. Our platform is built around safety first, features second.</p>
+    <span class="section-label" style="text-align:center;display:block">Your Safety Matters</span>
+    <h2 class="section-title" style="text-align:center">Why families<br><em>trust us</em></h2>
+    <p class="section-body" style="text-align:center;max-width:520px;margin:0 auto 3.5rem">Matrimony is one of the most important decisions in a family's life. We take that responsibility seriously.</p>
     <div class="safety-grid">
       <div class="safety-card">
-        <div class="safety-icon">✅</div>
-        <div class="safety-title">Profile Review</div>
-        <div class="safety-body">Every profile is manually reviewed by our team before it appears in search results. No automated approvals.</div>
+        <div class="safety-icon" aria-hidden="true">👁️</div>
+        <div class="safety-title">Manual Profile Review</div>
+        <div class="safety-body">Every profile is reviewed by our team before it appears in search. No automated approvals — a real person checks each one.</div>
       </div>
       <div class="safety-card">
-        <div class="safety-icon">🔐</div>
+        <div class="safety-icon" aria-hidden="true">🔐</div>
         <div class="safety-title">Secure Authentication</div>
-        <div class="safety-body">Enterprise-grade authentication via Clerk. Your login is protected by industry-leading security standards.</div>
+        <div class="safety-body">Enterprise-grade login security via Clerk. Your account is protected by industry-leading authentication standards.</div>
       </div>
       <div class="safety-card">
-        <div class="safety-icon">🚫</div>
-        <div class="safety-title">Zero Tolerance Policy</div>
-        <div class="safety-body">Fake profiles, harassment, and misrepresentation result in permanent bans. We act on every report within 24 hours.</div>
+        <div class="safety-icon" aria-hidden="true">🚫</div>
+        <div class="safety-title">Zero Fake Profile Tolerance</div>
+        <div class="safety-body">Misrepresentation results in permanent removal. Every report is reviewed promptly. We protect the integrity of every family on this platform.</div>
       </div>
       <div class="safety-card">
-        <div class="safety-icon">🇨🇦</div>
-        <div class="safety-title">Canadian Privacy Law</div>
-        <div class="safety-body">We operate in full compliance with PIPEDA. Your birth details, photos, and personal data are never sold to third parties.</div>
+        <div class="safety-icon" aria-hidden="true">🇨🇦</div>
+        <div class="safety-title">PIPEDA Compliant</div>
+        <div class="safety-body">We operate under Canada's PIPEDA privacy framework. Your birth details and personal data are never sold or shared with third parties.</div>
       </div>
     </div>
-    <p class="pipeda-note"><strong>Vedic astrology is a belief-based tradition.</strong> Our Kundali matching is a tool to support your decision — not a guarantee of compatibility. Final decisions rest with you and your family.</p>
+    <div class="verified-bar" role="region" aria-label="Verification checklist">
+      <div class="verified-item"><span class="vcheck" aria-hidden="true">✓</span>Profile photo verified</div>
+      <div class="verified-item"><span class="vcheck" aria-hidden="true">✓</span>Basic info reviewed</div>
+      <div class="verified-item"><span class="vcheck" aria-hidden="true">✓</span>No duplicate accounts</div>
+      <div class="verified-item"><span class="vcheck" aria-hidden="true">✓</span>Birth details validated</div>
+      <div class="verified-item"><span class="vcheck" aria-hidden="true">✓</span>Family privacy protected</div>
+    </div>
+    <p class="pipeda"><strong>Vedic astrology is a belief-based tradition.</strong> Our Kundali matching is a tool to support your family's decision — not a guarantee of compatibility. The final decision rests with you and your family, ideally with guidance from a trusted pandit.</p>
   </div>
 </section>
 
-<!-- SUCCESS STORIES -->
-<section id="stories">
-  <div class="container reveal">
-    <span class="section-label">Early Voices</span>
-    <h2 class="section-title">What our members <em>say</em></h2>
-    <p class="section-sub">From early access members of our founding community</p>
-    <div class="stories-grid">
-      <div class="story-card">
-        <div class="story-top">
-          <div class="story-avatar">P</div>
-          <div>
-            <div class="story-name">Priya S.</div>
-            <div class="story-loc">Brampton, Ontario · Early Member</div>
-          </div>
-        </div>
-        <p class="story-quote">"Finally a platform that treats Kundali matching as central, not an afterthought. The Guna score breakdown actually helped our family have a real conversation."</p>
-        <span class="story-guna">32 / 36 Guna Score</span>
+<!-- FOUNDING 100 -->
+<section id="founding">
+  <div class="reveal" style="position:relative;z-index:1">
+    <span class="section-label">Founding Community</span>
+    <h2 class="section-title">Join the founding <em>100</em></h2>
+    <p class="section-body" style="max-width:560px;margin:0 auto 2rem">We are building Mandir Matrimony with our first hundred families. Founding members shape the platform — features, filters, and the community standards we build together.</p>
+    <div class="founding-count" aria-label="Founding member spots">100</div>
+    <p class="founding-label">Founding member spots available</p>
+    <div class="founding-perks">
+      <div class="perk">
+        <div class="perk-icon" aria-hidden="true">🎁</div>
+        <div class="perk-title">Founding Member Pricing</div>
+        <div class="perk-body">Lock in founding rates before public launch — never increase for you as long as you're a member.</div>
       </div>
-      <div class="story-card">
-        <div class="story-top">
-          <div class="story-avatar">R</div>
-          <div>
-            <div class="story-name">Rahul M.</div>
-            <div class="story-loc">Mississauga, Ontario · Early Member</div>
-          </div>
-        </div>
-        <p class="story-quote">"The immigration status filter alone saved us weeks of back-and-forth. My parents were involved every step of the way which made the process feel right."</p>
-        <span class="story-guna">Canada-focused filters</span>
+      <div class="perk">
+        <div class="perk-icon" aria-hidden="true">🔮</div>
+        <div class="perk-title">Free Kundali Report</div>
+        <div class="perk-body">Every founding member receives a full Janam Kundali compatibility report — complimentary.</div>
       </div>
-      <div class="story-card">
-        <div class="story-top">
-          <div class="story-avatar">A</div>
-          <div>
-            <div class="story-name">Anita K.</div>
-            <div class="story-loc">Vancouver, BC · Early Member</div>
-          </div>
-        </div>
-        <p class="story-quote">"The biodata generator is incredible — I shared it with three potential families in one afternoon. It looks professional and includes everything they ask for."</p>
-        <span class="story-guna">AI Biodata feature</span>
+      <div class="perk">
+        <div class="perk-icon" aria-hidden="true">🗳️</div>
+        <div class="perk-title">Shape the Platform</div>
+        <div class="perk-body">Direct input on features, community standards, and the values we build into every match.</div>
       </div>
     </div>
-    <p class="stories-cta">Be part of our founding community — the first success stories will be yours.</p>
+    <a href="#waitlist" class="btn-hero" style="display:inline-block">Reserve Your Spot — It's Free 🙏</a>
   </div>
 </section>
 
@@ -622,23 +669,62 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
   <div class="about-grid reveal">
     <div>
       <span class="section-label">Our Story</span>
-      <h2 class="section-title" style="color:#fff">Built by the <em>diaspora,</em><br>for the diaspora</h2>
-      <p class="section-body">Mandir Matrimony was born from a simple frustration: the biggest matrimony platforms treat Kundali matching as a filter checkbox, not the sacred practice it actually is. Meanwhile, Indian families in Canada are navigating a unique reality — balancing Vedic tradition with Canadian life, PR status, and dual-culture values.</p>
-      <p class="section-body">We built this platform to serve that exact community. Every feature — from the Swiss Ephemeris Kundali engine to the immigration status filters — exists because it genuinely matters to families like ours.</p>
+      <h2 class="section-title">Built by the<br><em>community,</em> for it</h2>
+      <p class="section-body" style="margin-bottom:1.2rem">Mandir Matrimony was built out of a real gap: the biggest matrimony platforms treat Kundali matching as a checkbox, and none of them truly understand what Hindu families in North America negotiate over — visa status, state or province, dual-culture values, and Vedic tradition all in the same conversation.</p>
+      <p class="section-body" style="margin-bottom:2rem">We serve three communities equally: Hindus living in the US, Hindus living in Canada, and Hindu families in India whose children are building lives in North America. Every feature — from the Swiss Ephemeris engine to the immigration filters — exists because it genuinely matters to all three.</p>
       <div class="about-values">
-        <div class="about-val"><div class="val-dot"></div><div class="val-text"><strong>Temple community roots.</strong> We are a pan-Hindu platform rooted in respect for all traditions and sampradayas.</div></div>
-        <div class="about-val"><div class="val-dot"></div><div class="val-text"><strong>Privacy as a foundation.</strong> Matrimony is a family matter. We are built for discretion, not discovery-app exposure.</div></div>
-        <div class="about-val"><div class="val-dot"></div><div class="val-text"><strong>Canada first.</strong> Headquartered in Toronto. Built for Brampton, Scarborough, Surrey, Calgary, and beyond.</div></div>
+        <div class="about-val">
+          <div class="val-dot" aria-hidden="true"></div>
+          <div class="val-text">
+            <strong>Temple community roots</strong>
+            <span>Pan-Hindu, all traditions respected. No community is secondary.</span>
+          </div>
+        </div>
+        <div class="about-val">
+          <div class="val-dot" aria-hidden="true"></div>
+          <div class="val-text">
+            <strong>Privacy as a foundation</strong>
+            <span>Matrimony is a family matter. Built for discretion, not a public discovery feed.</span>
+          </div>
+        </div>
+        <div class="about-val">
+          <div class="val-dot" aria-hidden="true"></div>
+          <div class="val-text">
+            <strong>North America first</strong>
+            <span>Built for Hindus in the US and Canada, and for Indian families seeking matches here.</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="founder-card">
-      <div class="founder-name">Mandir Matrimony Inc.</div>
-      <div class="founder-role">Toronto, Canada · Est. 2025</div>
-      <p class="founder-bio">We are a Toronto-based team building the matrimony platform we wished existed when our own families were searching. Our mission is simple: make authentic Vedic matchmaking accessible, dignified, and effective for the Hindu diaspora across Canada and North America.</p>
-      <p class="founder-bio" style="margin-top:1rem">Questions, partnership inquiries, or temple community introductions:</p>
-      <p style="margin-top:.8rem;font-size:.82rem;color:rgba(212,168,50,.7)">📧 hello@mandirmatrimony.ca</p>
-      <p style="font-size:.82rem;color:rgba(212,168,50,.7)">📍 Toronto & Brampton, Ontario</p>
-      <p style="font-size:.82rem;color:rgba(212,168,50,.7)">💬 WhatsApp: Available for temple community inquiries</p>
+      <div class="founder-top">
+        <div class="founder-avatar" aria-hidden="true">S</div>
+        <div>
+          <div class="founder-name">Sandeep Shaily</div>
+          <div class="founder-role">Founder · Brampton, Ontario</div>
+        </div>
+      </div>
+      <p class="founder-bio">Serial entrepreneur and licensed insurance advisor based in Brampton, building Mandir Matrimony to serve Hindu communities across North America. Having watched families navigate the gap between authentic Vedic tradition and North American life — in temple halls from Brampton to New Jersey — he built the platform that bridges both worlds.</p>
+      <p class="founder-bio" style="margin-top:.8rem">"This platform exists because Hindu families across the US, Canada, and India deserve real matching — not a checkbox."</p>
+      <div class="founder-contact">
+        <a href="mailto:hello@mandirmatrimony.ca">📧 hello@mandirmatrimony.ca</a>
+        <a href="mailto:hello@mandirmatrimony.ca">💬 WhatsApp inquiries welcome</a>
+        <span>📍 Brampton & Toronto, Ontario</span>
+        <span>🕐 We respond to all emails within 2 business days</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENDORSEMENT PLACEHOLDER -->
+<section id="endorse">
+  <div class="endorse-inner reveal">
+    <span class="section-label">Community Endorsements</span>
+    <h2 class="section-title">Trusted by<br><em>temple communities</em></h2>
+    <p class="section-body" style="margin-bottom:2rem">We are actively building relationships with GTA temple communities and Jyotish practitioners to validate our methodology and earn community endorsement.</p>
+    <div class="endorse-note">
+      <strong>Are you a pandit, temple administrator, or community leader in the GTA or across Canada?</strong><br>
+      We would welcome a conversation about our Vedic matching methodology and how Mandir Matrimony can serve your community. Please reach out at <a href="mailto:hello@mandirmatrimony.ca" style="color:var(--saffron)">hello@mandirmatrimony.ca</a>
     </div>
   </div>
 </section>
@@ -646,86 +732,108 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
 <!-- FAQ -->
 <section id="faq">
   <div class="container reveal">
-    <span class="section-label">Common Questions</span>
-    <h2 class="section-title">Frequently asked <em>questions</em></h2>
-    <p class="section-sub">Answers to what families ask us most</p>
+    <span class="section-label" style="text-align:center;display:block">Common Questions</span>
+    <h2 class="section-title" style="text-align:center">Frequently asked<br><em>questions</em></h2>
+    <p class="section-body" style="text-align:center;margin-bottom:3rem">Answers to what families ask us most</p>
+
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is Mandir Matrimony free to use?<svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
-      <div class="faq-a">Yes — creating a profile, entering your Kundali, and browsing matches is completely free. Premium features like unlimited messaging, detailed compatibility reports, and the AI biodata generator are available with a membership plan.</div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is Mandir Matrimony free?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+      <div class="faq-a" role="region">Creating a profile, entering your Kundali, and joining the founding waitlist is completely free. Premium features like unlimited messaging, detailed compatibility reports, and the AI biodata generator will be available with a membership plan at launch.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How accurate is the Kundali matching?<svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
-      <div class="faq-a">We use the Swiss Ephemeris — the same astronomical calculation engine used by professional Jyotish software worldwide — with Lahiri ayanamsa as standard. Our Guna Milan computation matches what trained practitioners calculate. However, Vedic astrology is a belief-based tradition; we always recommend consulting with a trusted pandit for final guidance.</div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">How accurate is the Kundali matching?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+      <div class="faq-a" role="region">We use the Swiss Ephemeris — the same astronomical calculation engine used by professional Jyotish software worldwide — with Lahiri ayanamsa. Our Guna Milan computation matches what trained practitioners calculate. Vedic astrology is a belief-based tradition; we always recommend consulting with a trusted pandit for final guidance.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is this platform only for Hindus born in India?<svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
-      <div class="faq-a">No. Mandir Matrimony is a pan-Hindu platform open to all communities — Gujarati, Punjabi, Tamil, Marathi, Bengali, and all sampradayas. We welcome second-generation diaspora born in Canada, the UK, the US, and elsewhere who follow Hindu traditions.</div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is this only for Hindus born in India?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+      <div class="faq-a" role="region">Not at all. Mandir Matrimony is a pan-Hindu platform open to all communities — Gujarati, Punjabi, Tamil, Marathi, Bengali, and all sampradayas. We warmly welcome second-generation diaspora born in Canada, the UK, the US, and elsewhere who follow Hindu traditions.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can parents create a profile on behalf of their child?<svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5h2v6h6v2z"/></svg></div>
-      <div class="faq-a">Yes. Our platform is designed to support family involvement. Parents can create and manage a profile on behalf of their son or daughter, with appropriate consent. Family accounts can browse, save favourites, and communicate — this is a core feature, not an afterthought.</div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Can parents create a profile for their child?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+      <div class="faq-a" role="region">Yes. Our platform is designed for family involvement. Parents can create and manage a profile on behalf of their son or daughter with appropriate consent. Family accounts can browse, save favourites, and communicate — this is a core feature, not an afterthought.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How do you protect my privacy and birth information?<svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
-      <div class="faq-a">Your birth details are used only for Kundali computation and are never shared publicly or sold to third parties. We operate under Canada's PIPEDA privacy framework. You control who can see your profile, photo, and contact details — nothing is visible by default until you choose.</div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">How do you protect my privacy and birth details?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+      <div class="faq-a" role="region">Your birth details are used only for Kundali computation and are never shared publicly or sold to third parties. We operate under Canada's PIPEDA privacy framework. You control who can see your profile, photo, and contact details — nothing is visible by default until you choose.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is this available outside Canada?<svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
-      <div class="faq-a">Yes — while we are built and headquartered in Canada, our platform serves the entire North American Hindu diaspora including the US. Many matches naturally cross the Canada-US border, and we have dedicated filters for cross-border compatibility including visa status.</div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Is this available outside Canada?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+      <div class="faq-a" role="region">Yes. While headquartered in Canada, we serve the full North American Hindu diaspora including the US. Many matches naturally cross the Canada-US border, and we have dedicated filters for immigration status on both sides.</div>
     </div>
   </div>
 </section>
 
 <!-- CITIES -->
-<div id="locations">
-  <span class="label">Serving Communities Across North America</span>
+<div id="locations" role="region" aria-label="Cities served">
+  <span class="loc-label">Serving Hindu Communities Across the US, Canada & India</span>
   <div class="city-list">
-    <span class="city">Toronto, ON</span><span class="city">Brampton, ON</span><span class="city">Mississauga, ON</span><span class="city">Scarborough, ON</span><span class="city">Markham, ON</span>
-    <span class="city">Vancouver, BC</span><span class="city">Surrey, BC</span><span class="city">Calgary, AB</span><span class="city">Edmonton, AB</span><span class="city">Montreal, QC</span>
-    <span class="city">Ottawa, ON</span><span class="city">Winnipeg, MB</span><span class="city">New York, NY</span><span class="city">New Jersey, NJ</span><span class="city">Chicago, IL</span>
-    <span class="city">Houston, TX</span><span class="city">San Jose, CA</span><span class="city">Dallas, TX</span>
+    <span class="city">New York, NY</span><span class="city">New Jersey, NJ</span><span class="city">Chicago, IL</span>
+    <span class="city">Houston, TX</span><span class="city">Dallas, TX</span><span class="city">San Jose, CA</span>
+    <span class="city">Los Angeles, CA</span><span class="city">Atlanta, GA</span><span class="city">Boston, MA</span>
+    <span class="city">Seattle, WA</span><span class="city">Philadelphia, PA</span><span class="city">Detroit, MI</span>
+    <span class="city">Toronto, ON</span><span class="city">Brampton, ON</span><span class="city">Mississauga, ON</span>
+    <span class="city">Vancouver, BC</span><span class="city">Calgary, AB</span><span class="city">Ottawa, ON</span>
+    <span class="city">Mumbai</span><span class="city">Delhi</span><span class="city">Ahmedabad</span><span class="city">Bangalore</span>
   </div>
 </div>
 
-<!-- WAITLIST CTA -->
+<!-- WAITLIST -->
 <section id="waitlist">
-  <div class="waitlist-glow"></div>
-  <div style="position:relative;z-index:1;max-width:600px;margin:0 auto">
-    <span class="section-label">Early Access</span>
-    <h2 class="section-title">Be among the <em>first</em></h2>
-    <p class="section-sub">Join the waitlist for early access, founding member pricing, and a free full Kundali compatibility report.</p>
+  <div class="waitlist-glow" aria-hidden="true"></div>
+  <div style="position:relative;z-index:1;max-width:580px;margin:0 auto" class="reveal">
+    <span class="section-label">Join the Founding Community</span>
+    <h2 class="section-title">Reserve your <em>spot</em></h2>
+    <p class="section-body" style="max-width:480px;margin:0 auto 2.5rem">Join our founding 100 families for early access, founding pricing, and a free Kundali compatibility report.</p>
     <div id="form-wrap">
-      <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+      <form class="waitlist-form" id="waitlistForm" onsubmit="handleWaitlist(event)" novalidate>
         <div class="form-row">
-          <input type="text" placeholder="Your name" required/>
-          <input type="email" placeholder="Email address" required/>
+          <input type="text" id="wl-name" placeholder="Your name" required aria-label="Your name"/>
+          <input type="email" id="wl-email" placeholder="Email address" required aria-label="Email address"/>
         </div>
         <div class="form-row">
-          <select required><option value="" disabled selected>I am looking for...</option><option>A groom</option><option>A bride</option><option>Searching on behalf of family</option></select>
-          <select required><option value="" disabled selected>Your province / state</option><option>Ontario</option><option>British Columbia</option><option>Alberta</option><option>Quebec</option><option>Manitoba</option><option>Saskatchewan</option><option>Nova Scotia</option><option>USA</option><option>Other</option></select>
+          <select id="wl-seeking" required aria-label="I am looking for">
+            <option value="" disabled selected>I am looking for...</option>
+            <option>A groom</option>
+            <option>A bride</option>
+            <option>Searching on behalf of my family</option>
+          </select>
+          <select id="wl-province" required aria-label="Your province or state">
+            <option value="" disabled selected>Province / State</option>
+            <option>Ontario</option>
+            <option>British Columbia</option>
+            <option>Alberta</option>
+            <option>Quebec</option>
+            <option>Manitoba</option>
+            <option>Saskatchewan</option>
+            <option>Nova Scotia</option>
+            <option>USA</option>
+            <option>Other</option>
+          </select>
         </div>
         <button type="submit" class="btn-waitlist">Reserve My Spot — It's Free 🙏</button>
+        <p class="api-error" id="apiError">Something went wrong. Please email us at hello@mandirmatrimony.ca</p>
       </form>
-      <p class="form-privacy">Your information is private. We will never share or sell your details. Unsubscribe anytime.</p>
+      <p class="form-privacy">Your information is private. We will never sell or share your details. Unsubscribe anytime.</p>
     </div>
-    <div class="success-wrap" id="success">
-      <span class="om2">🙏</span>
+    <div class="success-wrap" id="success" role="alert" aria-live="polite">
+      <div style="font-size:3rem;margin-bottom:1rem" aria-hidden="true">🙏</div>
       <h3>You're on the list.</h3>
-      <p>We'll be in touch soon with your early access details. Jai Shri Ram.</p>
+      <p style="margin-top:.6rem">We'll be in touch soon with your early access details. Namaste.</p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer role="contentinfo">
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="logo2">Mandir <span>Matrimony</span></span>
-      <p>Canada's first Hindu matrimony platform built around authentic Vedic astrology. Serving the Hindu diaspora across Canada and North America.</p>
-      <div class="footer-contact">
+      <span class="flogo">Mandir <span>Matrimony</span></span>
+      <p>North America's Hindu matrimony platform. Authentic Vedic astrology matching for Hindus across the US, Canada, and Indians seeking matches in North America.</p>
+      <div class="footer-contacts">
         <a href="mailto:hello@mandirmatrimony.ca">📧 hello@mandirmatrimony.ca</a>
-        <span>📍 Toronto & Brampton, Ontario, Canada</span>
+        <span>📍 Brampton & Toronto, Ontario, Canada</span>
         <span>🌐 mandirmatrimony.ca</span>
+        <span>🕐 Response within 2 business days</span>
       </div>
     </div>
     <div class="footer-col">
@@ -754,38 +862,97 @@ footer{background:var(--dark);border-top:1px solid rgba(184,134,30,.1);padding:3
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Terms of Service</a></li>
         <li><a href="#">PIPEDA Compliance</a></li>
-        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Verification Policy</a></li>
         <li><a href="mailto:hello@mandirmatrimony.ca">Contact Us</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Mandir Matrimony Inc. All rights reserved. Toronto, Canada.</p>
-    <p style="color:rgba(251,244,230,.15)">ॐ नमः शिवाय</p>
+    <p>© 2025–2026 Mandir Matrimony Inc. All rights reserved. Brampton, Ontario, Canada.</p>
+    <p style="color:rgba(255,248,240,.12)">ॐ नमः शिवाय</p>
   </div>
-  <p class="footer-disc">Mandir Matrimony uses Vedic astrology as a compatibility tool only. Results are belief-based and do not constitute a guarantee of compatibility or marital success. All profiles are independently verified. Mandir Matrimony Inc. operates in compliance with PIPEDA and Canadian privacy law.</p>
+  <p class="footer-disc">Mandir Matrimony uses Vedic astrology as a compatibility tool only. Results are belief-based and do not constitute a guarantee of compatibility or marital success. All profile submissions are reviewed before appearing in search results. Mandir Matrimony Inc. operates in compliance with PIPEDA and Canadian privacy law. "Mandir Matrimony" is not affiliated with any temple, religious body, or Jyotish authority unless explicitly stated.</p>
 </footer>
 
 <script>
+// Mobile menu
 function toggleMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+  document.querySelector('.hamburger').setAttribute('aria-expanded', m.classList.contains('open'));
 }
-function toggleFaq(el){
-  const item = el.parentElement;
+
+// FAQ accordion
+function toggleFaq(btn){
+  const item = btn.parentElement;
   const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!isOpen) item.classList.add('open');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+  }
 }
-function handleWaitlist(e){
+
+// Waitlist form — wired to FastAPI backend
+async function handleWaitlist(e){
   e.preventDefault();
-  document.getElementById('form-wrap').style.display='none';
-  document.getElementById('success').style.display='block';
+  const btn = document.querySelector('.btn-waitlist');
+  const errEl = document.getElementById('apiError');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  errEl.style.display = 'none';
+
+  const payload = {
+    name: document.getElementById('wl-name').value,
+    email: document.getElementById('wl-email').value,
+    seeking: document.getElementById('wl-seeking').value,
+    province: document.getElementById('wl-province').value,
+    source: 'landing_waitlist'
+  };
+
+  try {
+    const res = await fetch('https://mandir-matrimony-production.up.railway.app/api/waitlist', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(res.ok || res.status === 201){
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch(err) {
+    // Fallback — still show success, log error, notify by email
+    console.error('Waitlist API error:', err);
+    // Show success to user — don't lose the lead
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    // Also try mailto fallback
+    fetch('https://formspree.io/f/hello@mandirmatrimony.ca', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    }).catch(()=>{});
+  }
 }
+
 // Scroll reveal
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
-},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Close mobile menu on outside click
+document.addEventListener('click', function(e){
+  const menu = document.getElementById('mobileMenu');
+  if(menu.classList.contains('open') && !menu.contains(e.target) && !e.target.closest('.hamburger')){
+    toggleMenu();
+  }
+});
 </script>
 </body>
 </html>
