@@ -487,7 +487,7 @@ async function handleSignIn(e){
   try{
     await window.Clerk.load();
     if(window.Clerk.user){window.location.href='app.html';return;}
-    window.Clerk.openSignIn({afterSignInUrl:'/mandir-matrimony/app.html',afterSignUpUrl:'/mandir-matrimony/onboarding.html'});
+    window.Clerk.openSignIn({afterSignInUrl:'http://mandirmatrimony.ca/app.html',afterSignUpUrl:'http://mandirmatrimony.ca/onboarding.html'});
   }catch(err){window.location.href='app.html';}
 }
 
@@ -496,7 +496,7 @@ async function handleSignUp(e){
   try{
     await window.Clerk.load();
     if(window.Clerk.user){window.location.href='app.html';return;}
-    window.Clerk.openSignUp({afterSignUpUrl:'/mandir-matrimony/onboarding.html',afterSignInUrl:'/mandir-matrimony/app.html'});
+    window.Clerk.openSignUp({afterSignUpUrl:'http://mandirmatrimony.ca/onboarding.html',afterSignInUrl:'http://mandirmatrimony.ca/app.html'});
   }catch(err){window.location.href='onboarding.html';}
 }
 
